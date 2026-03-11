@@ -1691,12 +1691,12 @@ function renderMrrChart(f='all'){
   const contractedMrr=S.customers.reduce((a,c)=>a+c.mrr,0);
   CH.mrr=new Chart(document.getElementById('mrrChart'),{type:'bar',
     data:{labels,datasets:[
-      {label:'Fakturert (gjentakende)',data:values.map((v,i)=>isCurrent[i]?sentCur:v),backgroundColor:values.map((v,i)=>isCurrent[i]?t.mrr2:t.mrr),borderRadius:4,borderSkipped:false,order:2},
+      {label:'Fakturert (gjentakende)',data:values.map((v,i)=>isCurrent[i]?sentCur:v),backgroundColor:values.map((v,i)=>t.mrr),borderRadius:4,borderSkipped:false,order:2},
       {label:'Planlagt denne mnd',data:values.map((v,i)=>isCurrent[i]?(projCur-sentCur):0),backgroundColor:t.mrr2,borderColor:t.mrr,borderWidth:values.map((v,i)=>isCurrent[i]?1:0),borderRadius:4,borderSkipped:false,order:2},
       {label:'Kontraktsfestet MRR',data:labels.map(()=>contractedMrr),type:'line',borderColor:'rgba(99,102,241,0.5)',backgroundColor:'transparent',borderWidth:1.5,borderDash:[5,4],pointRadius:0,tension:0,order:1},
     ]},
     options:{responsive:true,maintainAspectRatio:false,barLabels:true,
-      scales:{x:{stacked:true,grid:{color:t.grid},ticks:{color:t.tick,font:{size:10}}},y:{stacked:false,grid:{color:t.grid},ticks:{color:t.tick,font:{size:10},callback:v=>'kr '+(v/1000).toFixed(0)+'k'}}},
+      scales:{x:{stacked:true,grid:{color:t.grid},ticks:{color:t.tick,font:{size:10}}},y:{stacked:true,grid:{color:t.grid},ticks:{color:t.tick,font:{size:10},callback:v=>'kr '+(v/1000).toFixed(0)+'k'}}},
       plugins:{
         legend:{labels:{color:t.tick,font:{size:10},padding:12,boxWidth:10,boxHeight:10,filter:item=>item.datasetIndex<3}},
         tooltip:{backgroundColor:t.ttBg,borderColor:t.ttBr,borderWidth:1,padding:10,titleColor:t.tick,bodyColor:t.tick,
@@ -1898,17 +1898,34 @@ function renderChurnChart(){
 function renderCustChart(){
   if(CH.cust)CH.cust.destroy();
   const t=tc();
-  // Build customer count from invoice history (proxy: n months with invoices)
   const finKeys=sortMonths(Object.keys(S.financials));
   if(finKeys.length<2)return;
-  // We don't have historical customer count - show MRR growth as line
   const hist=Object.keys(S.recurringHistory).length>0?S.recurringHistory:S.invoiceHistory;
-  const keys=sortMonths(Object.keys(hist)).slice(-12);
-  const vals=keys.map(k=>hist[k]||0);
+  const ti=getTodayInfo();
+  const curKey=NOM[ti.mo]+' '+ti.yr;
+  const sentCur=hist[curKey]||0;
+  const projCur=sentCur+(S.thisMonth.planned||0);
+  const contractedMrr=S.customers.reduce((a,c)=>a+c.mrr,0);
+  function addMo(key,n){const[m,y]=key.split(' ');let mo=NOM.indexOf(m)+n,yr=parseInt(y);while(mo>=12){mo-=12;yr++;}return NOM[mo]+' '+yr;}
+  const histKeys=sortMonths(Object.keys(hist)).slice(-12);
+  if(!histKeys.includes(curKey))histKeys.push(curKey);
+  const fut1=addMo(curKey,1),fut2=addMo(curKey,2);
+  const allKeys=[...histKeys,fut1,fut2];
+  const histData=allKeys.map(k=>{if(k===fut1||k===fut2)return null;if(k===curKey)return sentCur;return hist[k]||null;});
+  const forecastData=allKeys.map(k=>{if(k===fut1||k===fut2)return contractedMrr;if(k===curKey)return Math.max(projCur,sentCur);return hist[k]||null;});
   CH.cust=new Chart(document.getElementById('custChart'),{type:'line',
-    data:{labels:keys,datasets:[{label:'Gjentakende MRR fakturert',data:vals,borderColor:t.mrr,backgroundColor:t.mrr2,fill:true,borderWidth:2,pointRadius:3,tension:.3}]},
+    data:{labels:allKeys,datasets:[
+      {label:'Fakturert (gjentakende)',data:histData,borderColor:t.mrr,backgroundColor:t.mrr2,fill:true,borderWidth:2,pointRadius:3,tension:.3,spanGaps:false},
+      {label:'Fremtidig MRR',data:forecastData,borderColor:'rgba(99,102,241,0.45)',backgroundColor:'rgba(99,102,241,0.08)',fill:true,borderWidth:2,borderDash:[5,4],pointRadius:3,tension:.3,spanGaps:false},
+    ]},
     options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{labels:{color:t.tick,font:{size:10},padding:10}},tooltip:{backgroundColor:t.ttBg,borderColor:t.ttBr,borderWidth:1,titleColor:t.tick,bodyColor:t.tick,callbacks:{label:c=>' '+fmt(c.raw)}}},
+      plugins:{
+        legend:{labels:{color:t.tick,font:{size:10},padding:10}},
+        tooltip:{backgroundColor:t.ttBg,borderColor:t.ttBr,borderWidth:1,titleColor:t.tick,bodyColor:t.tick,callbacks:{
+          title:items=>items[0].label+([fut1,fut2].includes(items[0].label)?' (fremtidig)':items[0].label===curKey?' (inneværende)':''),
+          label:c=>{if(c.datasetIndex===0&&c.raw!==null)return' Fakturert: '+fmt(c.raw);if(c.datasetIndex===1&&c.raw!==null){if(c.label===curKey)return' Fremtidig MRR total: '+fmt(c.raw);return' Kontraktsfestet MRR: '+fmt(c.raw);}return null;}
+        }}
+      },
       scales:{x:{grid:{color:t.grid},ticks:{color:t.tick,font:{size:10}}},y:{grid:{color:t.grid},ticks:{color:t.tick,font:{size:10},callback:v=>'kr '+(v/1000).toFixed(0)+'k'}}}
     }
   });
