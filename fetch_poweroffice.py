@@ -29,7 +29,6 @@ TOKEN_HEADERS = {
 
 print("Henter access token...")
 token_resp = requests.post(TOKEN_URL, data="grant_type=client_credentials", headers=TOKEN_HEADERS)
-print(f"  Token-respons: {token_resp.status_code}")
 token_resp.raise_for_status()
 access_token = token_resp.json()["access_token"]
 print("  Token hentet OK")
@@ -40,90 +39,31 @@ AUTH_HEADERS = {
     "Accept": "application/json",
 }
 
-# --- 2. Finn riktige endepunktsnavn ---
-print("\n=== TESTER ENDEPUNKTER ===")
-candidates = [
-    "customers",
-    "Customer",
-    "Customers",
-    "outgoinginvoices",
-    "OutgoingInvoices",
-    "outgoing-invoices",
-    "reporting/outgoing-invoices",
-    "reporting/outgoinginvoices",
-    "invoices",
-    "Invoices",
-    "SentInvoice",
-    "SentInvoices",
-    "customerinvoices",
-    "CustomerInvoices",
-    "vouchers/outgoinginvoicejournals",
-    "Vouchers/OutgoingInvoiceJournals",
+# --- 2. Diagnose: prøv ulike parameterkombinasjonar for kjente endepunkter ---
+print("\n=== DIAGNOSTIKK – parametrar for 'customers' ===")
+param_variants = [
+    {},
+    {"$top": 1},
+    {"$skip": 0, "$top": 1},
+    {"page": 1, "pageSize": 1},
+    {"page": 0, "pageSize": 1},
+    {"PageIndex": 0, "PageSize": 1},
+    {"PageNumber": 1, "PageSize": 1},
+    {"offset": 0, "limit": 1},
 ]
+for pv in param_variants:
+    r = requests.get(f"{API_URL}/customers", headers=AUTH_HEADERS, params=pv)
+    print(f"  {r.status_code}  params={pv}")
+    if r.ok or r.status_code not in (400, 404):
+        print(f"  Svar: {r.text[:300]}")
+    elif r.status_code == 400:
+        print(f"  400-melding: {r.text[:300]}")
 
-working = []
-for ep in candidates:
-    r = requests.get(f"{API_URL}/{ep}", headers=AUTH_HEADERS, params={"page": 0, "pageSize": 1})
-    status = r.status_code
-    print(f"  {status}  {ep}")
-    if status == 200:
-        working.append(ep)
-
-print(f"\n=== FUNGERENDE ENDEPUNKTER: {working} ===\n")
-
-if not working:
-    print("Ingen endepunkter fungerte. Skriver ut token-svar for debugging:")
-    debug = token_resp.json()
-    print(json.dumps(debug, indent=2))
-    raise SystemExit("Fant ingen fungerende endepunkter")
-
-# --- 3. Hent data med første fungerende endepunkter ---
-def get_paged(endpoint, params=None):
-    results = []
-    page = 0
-    while True:
-        p = {"page": page, "pageSize": 100, **(params or {})}
-        r = requests.get(f"{API_URL}/{endpoint}", headers=AUTH_HEADERS, params=p)
-        print(f"  GET {endpoint} side {page}: {r.status_code}")
-        if not r.ok:
-            print(f"  Feil: {r.text[:300]}")
-            break
-        data = r.json()
-        if isinstance(data, list):
-            items = data
-        elif isinstance(data, dict):
-            items = data.get("data", data.get("items", data.get("value", [])))
-        else:
-            items = []
-        if not items:
-            break
-        results.extend(items)
-        if len(items) < 100:
-            break
-        page += 1
-    return results
-
-# Hent kunder
-customer_ep = next((e for e in working if "customer" in e.lower()), None)
-customers = get_paged(customer_ep) if customer_ep else []
-print(f"  → {len(customers)} kunder hentet")
-
-# Hent fakturaer
-invoice_ep = next((e for e in working if any(w in e.lower() for w in ["invoice","voucher"])), None)
-from_date = (datetime.now() - timedelta(days=548)).strftime("%Y-%m-%d")
-invoices = get_paged(invoice_ep, {"invoiceDateFrom": from_date}) if invoice_ep else []
-print(f"  → {len(invoices)} fakturaer hentet")
-
-# --- 4. Lagre som JSON ---
-output = {
-    "hentetTidspunkt": datetime.now().isoformat(),
-    "miljo": "demo",
-    "fungerendeEndepunkter": working,
-    "fakturaer": invoices,
-    "kunder": customers,
-}
-
-with open("poweroffice-data.json", "w", encoding="utf-8") as f:
-    json.dump(output, f, ensure_ascii=False, indent=2)
-
-print("Ferdig! Data lagret i poweroffice-data.json")
+print("\n=== DIAGNOSTIKK – parametrar for 'outgoinginvoices' ===")
+for pv in param_variants:
+    r = requests.get(f"{API_URL}/outgoinginvoices", headers=AUTH_HEADERS, params=pv)
+    print(f"  {r.status_code}  params={pv}")
+    if r.ok:
+        print(f"  Svar: {r.text[:300]}")
+    elif r.status_code == 400:
+        print(f"  400-melding: {r.text[:300]}")
