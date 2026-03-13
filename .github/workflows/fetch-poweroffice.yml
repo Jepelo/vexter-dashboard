@@ -1,0 +1,40 @@
+name: Hent data fra PowerOffice Go
+ 
+on:
+  schedule:
+    # Kjører hver dag kl. 06:00 UTC (08:00 norsk tid)
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    # Gjør det mulig å kjøre manuelt fra GitHub
+ 
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Sjekk ut repo
+        uses: actions/checkout@v4
+ 
+      - name: Sett opp Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+ 
+      - name: Installer biblioteker
+        run: pip install requests
+ 
+      - name: Hent data fra PowerOffice Go
+        env:
+          PO_APPLICATION_KEY: ${{ secrets.PO_APPLICATION_KEY }}
+          PO_CLIENT_KEY: ${{ secrets.PO_CLIENT_KEY }}
+          PO_SUBSCRIPTION_KEY: ${{ secrets.PO_SUBSCRIPTION_KEY }}
+        run: python fetch_poweroffice.py
+ 
+      - name: Lagre data i repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add poweroffice-data.json
+          git diff --staged --quiet || git commit -m "Oppdater PowerOffice-data $(date +'%Y-%m-%d')"
+          git push
+ 
