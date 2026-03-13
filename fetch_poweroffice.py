@@ -38,6 +38,8 @@ token_resp = requests.post(
     headers=TOKEN_HEADERS,
 )
 print(f"  Token-respons: {token_resp.status_code}")
+if not token_resp.ok:
+    print(f"  Feil: {token_resp.text}")
 token_resp.raise_for_status()
 access_token = token_resp.json()["access_token"]
 print("  Token hentet OK")
@@ -49,16 +51,25 @@ AUTH_HEADERS = {
 }
 
 def get_paged(endpoint, params=None):
-    """Henter alle sider fra et paginert endepunkt."""
+    """Henter alle sider fra et paginert endepunkt (side 0-basert)."""
     results = []
-    page = 1
+    page = 0
     while True:
         p = {"page": page, "pageSize": 100, **(params or {})}
-        r = requests.get(f"{API_URL}/{endpoint}", headers=AUTH_HEADERS, params=p)
+        url = f"{API_URL}/{endpoint}"
+        r = requests.get(url, headers=AUTH_HEADERS, params=p)
         print(f"  GET {endpoint} side {page}: {r.status_code}")
-        r.raise_for_status()
+        if not r.ok:
+            print(f"  Respons: {r.text[:500]}")
+            r.raise_for_status()
         data = r.json()
-        items = data.get("data", data) if isinstance(data, dict) else data
+        # v2 returnerer enten liste direkte, eller {data: [...]}
+        if isinstance(data, list):
+            items = data
+        elif isinstance(data, dict):
+            items = data.get("data", data.get("items", []))
+        else:
+            items = []
         if not items:
             break
         results.extend(items)
@@ -67,10 +78,10 @@ def get_paged(endpoint, params=None):
         page += 1
     return results
 
-# --- 3. Hent sendte fakturaer (siste 18 måneder) ---
+# --- 3. Hent utgående fakturaer (siste 18 måneder) ---
 from_date = (datetime.now() - timedelta(days=548)).strftime("%Y-%m-%d")
 print(f"Henter fakturaer fra {from_date}...")
-invoices = get_paged("SentInvoice", {"invoiceDateFrom": from_date})
+invoices = get_paged("OutgoingInvoice", {"invoiceDateFrom": from_date})
 print(f"  → {len(invoices)} fakturaer hentet")
 
 # --- 4. Hent kunder ---
