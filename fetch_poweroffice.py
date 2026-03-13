@@ -13,10 +13,11 @@ APP_KEY    = os.environ["PO_APPLICATION_KEY"]
 CLIENT_KEY = os.environ["PO_CLIENT_KEY"]
 SUB_KEY    = os.environ["PO_SUBSCRIPTION_KEY"]
 
-# Testmiljø – bytt til production-URL når du er klar
-BASE_URL   = "https://pogo-testing.poweroffice.net"
-TOKEN_URL  = f"{BASE_URL}/OAuth/token"
-API_URL    = f"{BASE_URL}/Api/v2"
+# Demo/testmiljø – bytt til produksjon når du er klar:
+#   Token:  https://goapi.poweroffice.net/OAuth/Token
+#   API:    https://goapi.poweroffice.net/v2
+TOKEN_URL  = "https://goapi.poweroffice.net/Demo/OAuth/Token"
+API_URL    = "https://goapi.poweroffice.net/Demo/v2"
 
 HEADERS_BASE = {
     "Ocp-Apim-Subscription-Key": SUB_KEY,
@@ -76,7 +77,7 @@ print(f"  → {len(customers)} kunder hentet")
 # --- 4. Lagre som JSON ---
 output = {
     "hentetTidspunkt": datetime.now().isoformat(),
-    "miljo": "test",
+    "miljo": "demo",
     "fakturaer": invoices,
     "kunder": customers,
 }
