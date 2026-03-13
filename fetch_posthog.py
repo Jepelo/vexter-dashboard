@@ -17,13 +17,12 @@ HEADERS = {
 }
 
 def run_query(label, hogql):
-    """Kjoer en HogQL-sporrring mot PostHog Query API."""
     print(f"  Kjoerer: {label}...")
     r = requests.post(
         f"{BASE_URL}/api/projects/{PROJECT_ID}/query/",
         headers=HEADERS,
         json={"query": {"kind": "HogQLQuery", "query": hogql}},
-        timeout=60,
+        timeout=120,
     )
     print(f"    Status: {r.status_code}")
     if not r.ok:
@@ -35,7 +34,23 @@ def run_query(label, hogql):
     print(f"    -> {len(rows)} rader")
     return [dict(zip(columns, row)) for row in rows]
 
-# --- 1. Sesjonssammendrag per bruker (siste 18 mnd) ---
+# --- 1. Individuelle sesjoner (siste 12 mnd) – for S.posthogSessions i dashboard ---
+sessions = run_query("Individuelle sesjoner", """
+    SELECT
+        person.properties.$email           AS email,
+        $session_id                         AS session_id,
+        toString(min(timestamp))            AS session_start,
+        dateDiff('minute', min(timestamp), max(timestamp)) AS duration_min
+    FROM events
+    WHERE timestamp >= now() - INTERVAL 12 MONTH
+      AND person.properties.$email IS NOT NULL
+      AND person.properties.$email != ''
+    GROUP BY person.properties.$email, $session_id
+    ORDER BY session_start DESC
+    LIMIT 50000
+""")
+
+# --- 2. Sesjonssammendrag per bruker ---
 user_summary = run_query("Sesjonssammendrag per bruker", """
     SELECT
         person.properties.$email           AS email,
@@ -50,7 +65,7 @@ user_summary = run_query("Sesjonssammendrag per bruker", """
     ORDER BY total_sessions DESC
 """)
 
-# --- 2. Ukentlig aktivitet per bruker (siste 12 uker) ---
+# --- 3. Ukentlig aktivitet per bruker (siste 12 uker) ---
 weekly_per_user = run_query("Ukentlig aktivitet per bruker", """
     SELECT
         toMonday(timestamp)                AS week,
@@ -64,7 +79,7 @@ weekly_per_user = run_query("Ukentlig aktivitet per bruker", """
     ORDER BY week, email
 """)
 
-# --- 3. Manedlig stickiness ---
+# --- 4. Manedlig stickiness ---
 monthly_stats = run_query("Manedlig stickiness", """
     SELECT
         toStartOfMonth(timestamp)                       AS month,
@@ -82,7 +97,7 @@ monthly_stats = run_query("Manedlig stickiness", """
     ORDER BY month
 """)
 
-# --- 4. Ukentlig stickiness ---
+# --- 5. Ukentlig stickiness ---
 weekly_stats = run_query("Ukentlig stickiness", """
     SELECT
         toMonday(timestamp)                             AS week,
@@ -100,10 +115,11 @@ weekly_stats = run_query("Ukentlig stickiness", """
     ORDER BY week
 """)
 
-# --- 5. Lagre ---
+# --- 6. Lagre ---
 output = {
     "hentetTidspunkt": datetime.now().isoformat(),
     "projectId": PROJECT_ID,
+    "sessions": sessions,
     "userSummary": user_summary,
     "weeklyPerUser": weekly_per_user,
     "monthlyStats": monthly_stats,
@@ -113,4 +129,4 @@ output = {
 with open("posthog-data.json", "w", encoding="utf-8") as f:
     json.dump(output, f, ensure_ascii=False, indent=2)
 
-print("Ferdig! Data lagret i posthog-data.json")
+print(f"Ferdig! {len(sessions)} sesjoner lagret i posthog-data.json")
