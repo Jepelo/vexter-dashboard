@@ -31,10 +31,15 @@ jobs:
           PO_SUBSCRIPTION_KEY: ${{ secrets.PO_SUBSCRIPTION_KEY }}
         run: python fetch_poweroffice.py
 
+      - name: Hent data fra PostHog
+        env:
+          POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
+        run: python fetch_posthog.py
+
       - name: Lagre data i repo
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add poweroffice-data.json
-          git diff --staged --quiet || git commit -m "Oppdater PowerOffice-data $(date +'%Y-%m-%d')"
+          git add poweroffice-data.json posthog-data.json
+          git diff --staged --quiet || git commit -m "Oppdater data $(date +'%Y-%m-%d')"
           git push
