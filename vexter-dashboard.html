@@ -756,37 +756,6 @@
       </div>
     </div>
 
-    <!-- Brukerstatus: 4 kategorier med definisjoner -->
-    <div style="margin-bottom:16px">
-      <div style="font-size:11px;font-weight:700;color:var(--muted2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px">Brukerstatus <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px">· basert på aktivitet over tid · nye brukere (&lt;2 mnd) vises separat</span></div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
-        <div style="background:rgba(99,102,241,.08);border:1.5px solid rgba(99,102,241,.5);border-radius:10px;padding:16px 18px">
-          <div style="font-size:32px;font-weight:800;color:rgba(99,102,241,1);line-height:1" id="act-cat-new">–</div>
-          <div style="font-size:13px;font-weight:700;color:rgba(99,102,241,1);margin-top:5px">Nye brukere</div>
-          <div style="font-size:11px;color:var(--text2);margin-top:5px;line-height:1.5">Registrert for under 2 måneder siden. I onboarding-fasen – kritisk periode for å oppleve verdi og bli en langsiktig bruker.</div>
-          <div style="font-size:10px;color:var(--muted2);margin-top:6px;font-style:italic">Kriterium: Første sesjon &lt; 60 dager siden</div>
-        </div>
-        <div style="background:var(--upbg);border:1.5px solid var(--up);border-radius:10px;padding:16px 18px">
-          <div style="font-size:32px;font-weight:800;color:var(--up);line-height:1" id="act-cat-active">–</div>
-          <div style="font-size:13px;font-weight:700;color:var(--up);margin-top:5px">Aktive brukere</div>
-          <div style="font-size:11px;color:var(--text2);margin-top:5px;line-height:1.5">Etablerte brukere som bruker Vexter jevnlig. Godt forankret i verktøyet og gir stabil, gjentakende inntekt.</div>
-          <div style="font-size:10px;color:var(--muted2);margin-top:6px;font-style:italic">Kriterium: Min. 1 gang/mnd · konto &gt; 2 mnd</div>
-        </div>
-        <div style="background:rgba(245,158,11,.08);border:1.5px solid #f59e0b;border-radius:10px;padding:16px 18px">
-          <div style="font-size:32px;font-weight:800;color:#f59e0b;line-height:1" id="act-cat-less">–</div>
-          <div style="font-size:13px;font-weight:700;color:#f59e0b;margin-top:5px">Mindre aktive</div>
-          <div style="font-size:11px;color:var(--text2);margin-top:5px;line-height:1.5">Bruker Vexter sporadisk – omtrent 1 gang annenhver måned. Økt churn-risiko og bør følges opp for å øke engasjementet.</div>
-          <div style="font-size:10px;color:var(--muted2);margin-top:6px;font-style:italic">Kriterium: 1 gang/2 mnd · konto &gt; 2 mnd</div>
-        </div>
-        <div style="background:var(--dnbg);border:1.5px solid var(--dn);border-radius:10px;padding:16px 18px">
-          <div style="font-size:32px;font-weight:800;color:var(--dn);line-height:1" id="act-cat-dormant">–</div>
-          <div style="font-size:13px;font-weight:700;color:var(--dn);margin-top:5px">Sovende brukere</div>
-          <div style="font-size:11px;color:var(--text2);margin-top:5px;line-height:1.5">Har i praksis sluttet å bruke Vexter. Høy churn-risiko – bør kontaktes proaktivt for å forhindre oppsigelse.</div>
-          <div style="font-size:10px;color:var(--muted2);margin-top:6px;font-style:italic">Kriterium: Under 1 gang/2 mnd · konto &gt; 2 mnd</div>
-        </div>
-      </div>
-    </div>
-
     <!-- Besøksfrekvens -->
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px">
       <div class="card" style="padding:16px">
@@ -825,17 +794,25 @@
     <!-- Individual user list -->
     <div class="sec">Brukerliste – mest til minst aktive</div>
     <div class="card" style="margin-bottom:12px">
-      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px">
-        <span style="font-size:11px;color:var(--muted2);font-weight:600">Filtrer på minimum aktivitet:</span>
-        <select id="user-freq-filter" onchange="applyUserFreqFilter()" style="background:var(--surface3);color:var(--text);border:1px solid var(--border2);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer">
-          <option value="0">Vis alle brukere</option>
-          <option value="0.23">Min. 1 gang/mnd</option>
-          <option value="0.5">Min. 2 ganger/mnd</option>
-          <option value="1">Min. 1 gang/uke</option>
-          <option value="2">Min. 2 ganger/uke</option>
-          <option value="3">Min. 3 ganger/uke</option>
-        </select>
-        <span style="font-size:11px;color:var(--muted2)" id="user-list-count">– brukere vises</span>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px">
+        <div style="display:flex;align-items:center;gap:14px;font-size:12px;flex-wrap:wrap">
+          <span style="color:rgba(99,102,241,1)">● Ny <strong id="act-cat-new">–</strong></span>
+          <span style="color:var(--up)">● Aktiv <strong id="act-cat-active">–</strong></span>
+          <span style="color:#f59e0b">● Mindre aktiv <strong id="act-cat-less">–</strong></span>
+          <span style="color:var(--dn)">● Sovende <strong id="act-cat-dormant">–</strong></span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:11px;color:var(--muted2)">Min. aktivitet:</span>
+          <select id="user-freq-filter" onchange="applyUserFreqFilter()" style="background:var(--surface3);color:var(--text);border:1px solid var(--border2);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer">
+            <option value="0">Vis alle</option>
+            <option value="0.23">Min. 1/mnd</option>
+            <option value="0.5">Min. 2/mnd</option>
+            <option value="1">Min. 1/uke</option>
+            <option value="2">Min. 2/uke</option>
+            <option value="3">Min. 3/uke</option>
+          </select>
+          <span style="font-size:11px;color:var(--muted2)" id="user-list-count">– vises</span>
+        </div>
       </div>
       <div class="table-scroll">
         <table>
