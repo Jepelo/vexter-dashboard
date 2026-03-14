@@ -712,7 +712,7 @@
 <!-- PAGE: BRUKERAKTIVITET -->
 <div class="page" id="page-aktivitet">
 <main>
-  <div class="sec">Brukeraktivitet – Stickiness</div>
+  <div class="sec">Brukeraktivitet</div>
   <div id="act-no-data" style="display:none;padding:40px;text-align:center;color:var(--muted2)">
     <div style="font-size:32px;margin-bottom:12px">📈</div>
     <div style="font-size:14px;font-weight:600;margin-bottom:6px">Ingen aktivitetsdata lastet</div>
@@ -722,42 +722,136 @@
     <!-- Filter tabs -->
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
       <div class="tabs" style="margin-bottom:0">
-        <button class="tab active" id="act-tab-all" onclick="setActFilter('all',this)">Alle bedrifter</button>
-        <button class="tab" id="act-tab-self" onclick="setActFilter('self',this)">Selvbetjent</button>
+        <button class="tab" id="act-tab-all" onclick="setActFilter('all',this)">Alle bedrifter</button>
+        <button class="tab active" id="act-tab-self" onclick="setActFilter('self',this)">Selvbetjent</button>
         <button class="tab" id="act-tab-dify" onclick="setActFilter('dify',this)">Do it for you</button>
       </div>
-      <span style="font-size:10px;color:var(--muted2)" id="act-filter-desc">Viser alle bedrifter</span>
+      <span style="font-size:10px;color:var(--muted2)" id="act-filter-desc">Viser kun selvbetjente brukere · DIFY ekskludert</span>
     </div>
 
-    <!-- KPI cards -->
-    <div class="kpi-grid" style="margin-bottom:20px">
-      <div class="kpi"><div class="kpi-lbl">MAU</div><div class="kpi-val" id="act-mau">–</div><div class="kpi-foot"><span class="kpi-sub2">Unike aktive brukere (30d)</span></div></div>
-      <div class="kpi"><div class="kpi-lbl">WAU</div><div class="kpi-val" id="act-wau">–</div><div class="kpi-foot"><span class="kpi-sub2">Unike aktive brukere (7d)</span></div></div>
-      <div class="kpi"><div class="kpi-lbl">DAU/MAU</div><div class="kpi-val" id="act-stickiness">–</div><div class="kpi-foot"><span class="kpi-sub2">Stickiness ratio</span></div></div>
-      <div class="kpi"><div class="kpi-lbl">Sesjoner/bruker/uke</div><div class="kpi-val" id="act-spu-week">–</div><div class="kpi-foot"><span class="kpi-sub2">snitt siste 4 uker</span></div></div>
-      <div class="kpi"><div class="kpi-lbl">Sesjoner/bruker/mnd</div><div class="kpi-val" id="act-spu-month">–</div><div class="kpi-foot"><span class="kpi-sub2">snitt siste 3 mnd</span></div></div>
-      <div class="kpi"><div class="kpi-lbl">Snitt sesjonstid</div><div class="kpi-val" id="act-avgdur">–</div><div class="kpi-foot"><span class="kpi-sub2">minutter (30d)</span></div></div>
+    <!-- Oversikt: store lesbare tall -->
+    <div class="card" style="margin-bottom:16px;padding:20px">
+      <div style="font-size:11px;font-weight:700;color:var(--muted2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px">Hvor mye brukes Vexter?</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+        <div>
+          <div style="font-size:30px;font-weight:800;color:var(--text);line-height:1" id="act-mau">–</div>
+          <div style="font-size:12px;font-weight:600;color:var(--text2);margin-top:4px">Aktive brukere siste 30 dager</div>
+          <div style="font-size:11px;color:var(--muted2)">Unike brukere</div>
+        </div>
+        <div>
+          <div style="font-size:30px;font-weight:800;color:var(--text);line-height:1" id="act-wau">–</div>
+          <div style="font-size:12px;font-weight:600;color:var(--text2);margin-top:4px">Aktive brukere siste 7 dager</div>
+          <div style="font-size:11px;color:var(--muted2)">Unike brukere</div>
+        </div>
+        <div>
+          <div style="font-size:30px;font-weight:800;color:var(--text);line-height:1" id="act-avgdur">–</div>
+          <div style="font-size:12px;font-weight:600;color:var(--text2);margin-top:4px">Minutter per besøk</div>
+          <div style="font-size:11px;color:var(--muted2)">Snitt sesjonstid</div>
+        </div>
+        <div>
+          <div style="font-size:30px;font-weight:800;color:var(--text);line-height:1" id="act-stickiness">–</div>
+          <div style="font-size:12px;font-weight:600;color:var(--text2);margin-top:4px">Daglig vs. månedlig bruk</div>
+          <div style="font-size:11px;color:var(--muted2)">DAU/MAU – jo høyere jo bedre</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brukerstatus: 4 kategorier med definisjoner -->
+    <div style="margin-bottom:16px">
+      <div style="font-size:11px;font-weight:700;color:var(--muted2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px">Brukerstatus <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px">· basert på aktivitet over tid · nye brukere (&lt;2 mnd) vises separat</span></div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        <div style="background:rgba(99,102,241,.08);border:1.5px solid rgba(99,102,241,.5);border-radius:10px;padding:16px 18px">
+          <div style="font-size:32px;font-weight:800;color:rgba(99,102,241,1);line-height:1" id="act-cat-new">–</div>
+          <div style="font-size:13px;font-weight:700;color:rgba(99,102,241,1);margin-top:5px">Nye brukere</div>
+          <div style="font-size:11px;color:var(--text2);margin-top:5px;line-height:1.5">Registrert for under 2 måneder siden. I onboarding-fasen – kritisk periode for å oppleve verdi og bli en langsiktig bruker.</div>
+          <div style="font-size:10px;color:var(--muted2);margin-top:6px;font-style:italic">Kriterium: Første sesjon &lt; 60 dager siden</div>
+        </div>
+        <div style="background:var(--upbg);border:1.5px solid var(--up);border-radius:10px;padding:16px 18px">
+          <div style="font-size:32px;font-weight:800;color:var(--up);line-height:1" id="act-cat-active">–</div>
+          <div style="font-size:13px;font-weight:700;color:var(--up);margin-top:5px">Aktive brukere</div>
+          <div style="font-size:11px;color:var(--text2);margin-top:5px;line-height:1.5">Etablerte brukere som bruker Vexter jevnlig. Godt forankret i verktøyet og gir stabil, gjentakende inntekt.</div>
+          <div style="font-size:10px;color:var(--muted2);margin-top:6px;font-style:italic">Kriterium: Min. 1 gang/mnd · konto &gt; 2 mnd</div>
+        </div>
+        <div style="background:rgba(245,158,11,.08);border:1.5px solid #f59e0b;border-radius:10px;padding:16px 18px">
+          <div style="font-size:32px;font-weight:800;color:#f59e0b;line-height:1" id="act-cat-less">–</div>
+          <div style="font-size:13px;font-weight:700;color:#f59e0b;margin-top:5px">Mindre aktive</div>
+          <div style="font-size:11px;color:var(--text2);margin-top:5px;line-height:1.5">Bruker Vexter sporadisk – omtrent 1 gang annenhver måned. Økt churn-risiko og bør følges opp for å øke engasjementet.</div>
+          <div style="font-size:10px;color:var(--muted2);margin-top:6px;font-style:italic">Kriterium: 1 gang/2 mnd · konto &gt; 2 mnd</div>
+        </div>
+        <div style="background:var(--dnbg);border:1.5px solid var(--dn);border-radius:10px;padding:16px 18px">
+          <div style="font-size:32px;font-weight:800;color:var(--dn);line-height:1" id="act-cat-dormant">–</div>
+          <div style="font-size:13px;font-weight:700;color:var(--dn);margin-top:5px">Sovende brukere</div>
+          <div style="font-size:11px;color:var(--text2);margin-top:5px;line-height:1.5">Har i praksis sluttet å bruke Vexter. Høy churn-risiko – bør kontaktes proaktivt for å forhindre oppsigelse.</div>
+          <div style="font-size:10px;color:var(--muted2);margin-top:6px;font-style:italic">Kriterium: Under 1 gang/2 mnd · konto &gt; 2 mnd</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Besøksfrekvens -->
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px">
+      <div class="card" style="padding:16px">
+        <div style="font-size:11px;color:var(--muted2);margin-bottom:2px;font-weight:600;text-transform:uppercase;letter-spacing:.04em">Hvor ofte er brukerne inne per uke?</div>
+        <div style="font-size:28px;font-weight:800;color:var(--text);margin-top:6px" id="act-spu-week">–</div>
+        <div style="font-size:11px;color:var(--muted2);margin-top:2px">besøk per bruker · snitt siste 4 uker</div>
+      </div>
+      <div class="card" style="padding:16px">
+        <div style="font-size:11px;color:var(--muted2);margin-bottom:2px;font-weight:600;text-transform:uppercase;letter-spacing:.04em">Hvor ofte er brukerne inne per måned?</div>
+        <div style="font-size:28px;font-weight:800;color:var(--text);margin-top:6px" id="act-spu-month">–</div>
+        <div style="font-size:11px;color:var(--muted2);margin-top:2px">besøk per bruker · snitt siste 3 måneder</div>
+      </div>
     </div>
 
     <!-- Charts row: MAU + ukentlig sesjoner/bruker -->
     <div class="chart-row crh" style="margin-bottom:12px">
       <div class="card">
-        <div class="ct">MAU-trend</div>
-        <div class="cs">Unike aktive brukere per måned</div>
+        <div class="ct">Aktive brukere per måned</div>
+        <div class="cs">Unike brukere som har brukt Vexter</div>
         <div style="height:200px"><canvas id="mauChart"></canvas></div>
       </div>
       <div class="card">
-        <div class="ct">Ukentlig sesjoner per bruker</div>
-        <div class="cs">Gjennomsnitt per aktiv bruker · siste 12 uker</div>
+        <div class="ct">Besøksfrekvens per uke</div>
+        <div class="cs">Gjennomsnittlig antall besøk per bruker · siste 12 uker</div>
         <div style="height:200px"><canvas id="weeklySpuChart"></canvas></div>
       </div>
     </div>
 
     <!-- Monthly sessions/user trend -->
     <div class="card" style="margin-bottom:12px">
-      <div class="ct">Månedlig sesjoner per bruker – trend</div>
-      <div class="cs">Gjennomsnitt sesjoner per aktiv bruker per måned · viser intensitet i bruken over tid</div>
+      <div class="ct">Besøksfrekvens per måned – trend</div>
+      <div class="cs">Gjennomsnittlig antall besøk per bruker per måned</div>
       <div style="height:200px"><canvas id="monthlySpuChart"></canvas></div>
+    </div>
+
+    <!-- Individual user list -->
+    <div class="sec">Brukerliste – mest til minst aktive</div>
+    <div class="card" style="margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px">
+        <span style="font-size:11px;color:var(--muted2);font-weight:600">Filtrer på minimum aktivitet:</span>
+        <select id="user-freq-filter" onchange="applyUserFreqFilter()" style="background:var(--surface3);color:var(--text);border:1px solid var(--border2);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer">
+          <option value="0">Vis alle brukere</option>
+          <option value="0.23">Min. 1 gang/mnd</option>
+          <option value="0.5">Min. 2 ganger/mnd</option>
+          <option value="1">Min. 1 gang/uke</option>
+          <option value="2">Min. 2 ganger/uke</option>
+          <option value="3">Min. 3 ganger/uke</option>
+        </select>
+        <span style="font-size:11px;color:var(--muted2)" id="user-list-count">– brukere vises</span>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr>
+            <th>Bruker</th>
+            <th>Bedrift</th>
+            <th>Status</th>
+            <th>Besøk (30d)</th>
+            <th>Snitt/uke</th>
+            <th>Snitt/mnd</th>
+            <th>Snitt tid</th>
+            <th>Sist aktiv</th>
+          </tr></thead>
+          <tbody id="act-user-table"></tbody>
+        </table>
+      </div>
     </div>
 
     <!-- Company table -->
@@ -768,14 +862,14 @@
         <table>
           <thead><tr>
             <th>Bedrift</th>
+            <th>Status</th>
             <th>Type</th>
             <th>Brukere</th>
-            <th>Sesjoner (30d)</th>
-            <th>Sesj/bruker/uke</th>
-            <th>Sesj/bruker/mnd</th>
-            <th>Snitt varighet</th>
+            <th>Besøk (30d)</th>
+            <th>Besøk/bruker/uke</th>
+            <th>Besøk/bruker/mnd</th>
+            <th>Snitt tid</th>
             <th>Sist aktiv</th>
-            <th>Engasjement</th>
           </tr></thead>
           <tbody id="act-table"></tbody>
         </table>
@@ -1722,8 +1816,28 @@ function parsePosthog(wb,filename,type){
   setSt(type,filename+' – '+sessions.length+' sesjoner · '+uniqueUsers+' brukere · '+domains+' bedrifter');
 }
 
-let _actFilter='all';
+let _actFilter='self';
 function setActFilter(f,btn){_actFilter=f;document.querySelectorAll('#act-tab-all,#act-tab-self,#act-tab-dify').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderActivityPage();}
+
+let _userListData=[];
+function applyUserFreqFilter(){
+  const minWk=parseFloat(document.getElementById('user-freq-filter')?.value||0);
+  const filtered=_userListData.filter(u=>u.avgPerWeek>=minWk);
+  document.getElementById('user-list-count').textContent=filtered.length+' brukere vises';
+  const catColors={ny:'rgba(99,102,241,1)',aktiv:'var(--up)',mindre:'#f59e0b',sovende:'var(--dn)'};
+  const catLabels={ny:'Ny',aktiv:'Aktiv',mindre:'Mindre aktiv',sovende:'Sovende'};
+  const tbody=document.getElementById('act-user-table');
+  if(!tbody)return;
+  tbody.innerHTML=filtered.map(u=>{
+    const col=catColors[u.cat]||'var(--muted2)';
+    const lbl=catLabels[u.cat]||u.cat;
+    const badge='<span style="font-size:10px;color:'+col+';font-weight:700">● '+lbl+'</span>';
+    const last=u.lastSeen?u.lastSeen.toLocaleDateString('nb-NO',{day:'numeric',month:'short',year:'numeric'}):'–';
+    const dur=u.avgDur>0?u.avgDur+' min':'–';
+    const emailShort=u.email.length>30?u.email.substring(0,28)+'…':u.email;
+    return'<tr><td><div style="font-weight:600;font-size:12px" title="'+u.email+'">'+emailShort+'</div></td><td style="font-size:11px;color:var(--muted2)">'+u.custName+'</td><td>'+badge+'</td><td style="text-align:center">'+u.recent30+'</td><td style="text-align:center">'+u.avgPerWeek+'</td><td style="text-align:center">'+u.avgPerMonth+'</td><td style="text-align:center">'+dur+'</td><td style="font-size:11px">'+last+'</td></tr>';
+  }).join('');
+}
 
 function isDIFYCustomer(domain){
   const dom=domain.split('.')[0].replace(/-/g,'').toLowerCase();
@@ -1800,7 +1914,42 @@ function getActivityMetrics(filter){
     return{name,domain:c.domain,dify:c.dify,users:c.emails.size,sessions30:recent.length,avgDuration:avgDur,weekSpu,monthSpu,lastActive:c.lastActive};
   }).sort((a,b)=>b.sessions30-a.sessions30);
   const activeCompanies=companies.filter(c=>c.sessions30>0).length;
-  return{mau,wau,dau,dauMauRatio,avgDuration,spuWeek,spuMonth,monthlyMAU,weeklyStats,monthlySpuStats,companies,activeCompanies};
+
+  // Per-user stats for individual list + status categories
+  const d60=new Date(now-60*86400000);  // 2 months ago
+  const d90=new Date(now-90*86400000);  // 3 months ago
+  const userMap={};
+  for(const s of sessions){
+    if(!userMap[s.email])userMap[s.email]={email:s.email,domain:s.domain,firstSeen:s.date,lastSeen:s.date,allSessions:[],dur:[]};
+    const u=userMap[s.email];
+    if(s.date<u.firstSeen)u.firstSeen=s.date;
+    if(s.date>u.lastSeen)u.lastSeen=s.date;
+    u.allSessions.push(s);
+    if(s.duration>0)u.dur.push(s.duration);
+  }
+  const userList=Object.values(userMap).map(u=>{
+    const isNew=u.firstSeen>=d60;
+    const last3m=u.allSessions.filter(s=>s.date>=d90);
+    const avgPerMonth=Math.round(last3m.length/3*10)/10;
+    const avgPerWeek=Math.round(avgPerMonth/4.3*10)/10;
+    const recent30=u.allSessions.filter(s=>s.date>=d30).length;
+    const avgDur=u.dur.length>0?Math.round(u.dur.reduce((a,v)=>a+v,0)/u.dur.length*10)/10:0;
+    let cat='sovende';
+    if(isNew)cat='ny';
+    else if(avgPerMonth>=1)cat='aktiv';
+    else if(avgPerMonth>=0.5)cat='mindre';
+    let custName=u.domain;
+    const cust=S.customers.find(cu=>{const cn=cu.name.toLowerCase().replace(/\s+as$|\s+aps$|\s+sa$/,'').replace(/\s+/g,'');const dom=u.domain.split('.')[0].replace(/-/g,'');return cn.includes(dom)||dom.includes(cn.substring(0,5));});
+    if(cust)custName=cust.name;
+    return{email:u.email,domain:u.domain,custName,cat,avgPerWeek,avgPerMonth,recent30,avgDur,lastSeen:u.lastSeen,firstSeen:u.firstSeen};
+  }).sort((a,b)=>b.avgPerMonth-a.avgPerMonth||b.recent30-a.recent30);
+
+  const catNew=userList.filter(u=>u.cat==='ny').length;
+  const catActive=userList.filter(u=>u.cat==='aktiv').length;
+  const catLess=userList.filter(u=>u.cat==='mindre').length;
+  const catDormant=userList.filter(u=>u.cat==='sovende').length;
+
+  return{mau,wau,dau,dauMauRatio,avgDuration,spuWeek,spuMonth,monthlyMAU,weeklyStats,monthlySpuStats,companies,activeCompanies,catNew,catActive,catLess,catDormant,userList};
 }
 
 function renderActivityPage(){
@@ -1809,7 +1958,7 @@ function renderActivityPage(){
   const noData=document.getElementById('act-no-data');
   if(!m){if(content)content.style.display='none';if(noData)noData.style.display='block';return;}
   if(content)content.style.display='block';if(noData)noData.style.display='none';
-  const filterDesc=_actFilter==='dify'?'Viser kun Do it for you-bedrifter':_actFilter==='self'?'Viser kun selvbetjente bedrifter':'Viser alle bedrifter';
+  const filterDesc=_actFilter==='dify'?'Viser kun Do it for you-bedrifter':_actFilter==='self'?'Viser kun selvbetjente brukere · DIFY ekskludert':'Viser alle bedrifter inkl. DIFY';
   document.getElementById('act-filter-desc').textContent=filterDesc;
   document.getElementById('act-mau').textContent=m.mau;
   document.getElementById('act-wau').textContent=m.wau;
@@ -1817,6 +1966,12 @@ function renderActivityPage(){
   document.getElementById('act-spu-week').textContent=m.spuWeek;
   document.getElementById('act-spu-month').textContent=m.spuMonth;
   document.getElementById('act-avgdur').textContent=m.avgDuration+' min';
+  document.getElementById('act-cat-new').textContent=m.catNew;
+  document.getElementById('act-cat-active').textContent=m.catActive;
+  document.getElementById('act-cat-less').textContent=m.catLess;
+  document.getElementById('act-cat-dormant').textContent=m.catDormant;
+  _userListData=m.userList||[];
+  applyUserFreqFilter();
   const t=tc();
   // MAU chart
   if(CH.mau)CH.mau.destroy();
@@ -1838,12 +1993,14 @@ function renderActivityPage(){
   });
   // Company table
   const tbody=document.getElementById('act-table');
+  const now2=new Date();
   tbody.innerHTML=m.companies.map(c=>{
     const difyBadge=c.dify?'<span style="font-size:9px;background:rgba(245,158,11,.15);color:#f59e0b;padding:1px 5px;border-radius:3px;font-weight:700">DIFY</span>':'<span style="font-size:9px;background:var(--surface3);color:var(--muted2);padding:1px 5px;border-radius:3px;font-weight:700">Selv</span>';
-    const eng=c.monthSpu>=8?'<span style="color:var(--up);font-weight:700">● Høy</span>':c.monthSpu>=3?'<span style="color:#f59e0b;font-weight:700">● Middels</span>':'<span style="color:var(--muted2);font-weight:700">● Lav</span>';
+    const daysSince=c.lastActive?Math.floor((now2-c.lastActive)/86400000):999;
+    const statusBadge=daysSince<=14?'<span style="font-size:10px;color:var(--up);font-weight:700">● Aktiv</span>':daysSince<=30?'<span style="font-size:10px;color:#f59e0b;font-weight:700">● Mindre aktiv</span>':'<span style="font-size:10px;color:var(--dn);font-weight:700">● Sovende</span>';
     const last=c.lastActive?c.lastActive.toLocaleDateString('nb-NO',{day:'numeric',month:'short'}):'–';
     const dur=c.avgDuration>0?c.avgDuration+' min':'–';
-    return'<tr><td><div style="font-weight:600">'+c.name+'</div><div style="font-size:10px;color:var(--muted2)">'+c.domain+'</div></td><td>'+difyBadge+'</td><td>'+c.users+'</td><td>'+c.sessions30+'</td><td>'+c.weekSpu+'</td><td>'+c.monthSpu+'</td><td>'+dur+'</td><td style="font-size:11px">'+last+'</td><td>'+eng+'</td></tr>';
+    return'<tr><td><div style="font-weight:600">'+c.name+'</div><div style="font-size:10px;color:var(--muted2)">'+c.domain+'</div></td><td>'+statusBadge+'</td><td>'+difyBadge+'</td><td>'+c.users+'</td><td>'+c.sessions30+'</td><td>'+c.weekSpu+'</td><td>'+c.monthSpu+'</td><td>'+dur+'</td><td style="font-size:11px">'+last+'</td></tr>';
   }).join('');
 }
 
