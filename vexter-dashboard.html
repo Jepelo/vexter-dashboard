@@ -1930,7 +1930,7 @@ function getActivityMetrics(filter){
   const catLess=userList.filter(u=>u.cat==='mindre').length;
   const catDormant=userList.filter(u=>u.cat==='sovende').length;
 
-  return{mau,wau,dau,dauMauRatio,avgDuration,spuWeek,spuMonth,monthlyMAU,weeklyStats,monthlySpuStats,companies,activeCompanies,catNew,catActive,catLess,catDormant,userList};
+  return{mau,wau,dau:avgDau,dauMauRatio,avgDuration,spuWeek,spuMonth,monthlyMAU,weeklyStats,monthlySpuStats,companies,activeCompanies,catNew,catActive,catLess,catDormant,userList};
 }
 
 function renderActivityPage(){
