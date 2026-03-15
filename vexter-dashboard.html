@@ -240,6 +240,10 @@
         <input type="file" id="f-spp" accept=".csv,.xlsx,.xls" onchange="hf(event,'spp')">
         <div class="uz-icon">📦</div><div class="uz-info"><div class="uz-title">Salg per produkt</div><div class="uz-desc">Inntekt og volum per produktlinje</div><div class="uz-st" id="s-spp">Ikke lastet</div></div><div style="color:var(--muted);font-size:12px">›</div>
       </div>
+      <div class="uz" id="z-kunder" ondragover="dov(event,'z-kunder')" ondragleave="dol('z-kunder')" ondrop="dod(event,'kunder')" onclick="document.getElementById('f-kunder').click()">
+        <input type="file" id="f-kunder" accept=".csv" onchange="hf(event,'kunder')">
+        <div class="uz-icon">🏢</div><div class="uz-info"><div class="uz-title">Kunder (PowerOffice)</div><div class="uz-desc">Kundenavn · Kunde siden · avtaletype</div><div class="uz-st" id="s-kunder">Ikke lastet</div></div><div style="color:var(--muted);font-size:12px">›</div>
+      </div>
       <div class="uz" id="z-phog" ondragover="dov(event,'z-phog')" ondragleave="dol('z-phog')" ondrop="dod(event,'phog')" onclick="document.getElementById('f-phog').click()">
         <input type="file" id="f-phog" accept=".csv" onchange="hf(event,'phog')">
         <div class="uz-icon">📈</div><div class="uz-info"><div class="uz-title">Brukeraktivitet (PostHog)</div><div class="uz-desc">Sesjoner · stickiness · aktivitet per bedrift</div><div class="uz-st" id="s-phog">Ikke lastet</div></div><div style="color:var(--muted);font-size:12px">›</div>
@@ -1223,7 +1227,7 @@ function pf(file,type){
         const nComma=(firstLine.match(/,/g)||[]).length;
         const delim=nSemi>=nComma?';':',';
         const wb=XLSX.read(txt,{type:'string',FS:delim,raw:true,cellDates:false});
-        ({rec:parseRec,res:parseRes,inv:parseInv,usr:parseUsr,recdet:parseRecDet,bal:parseBal,spp:parseSpp,phog:parsePosthog})[type](wb,file.name,type);
+        ({rec:parseRec,res:parseRes,inv:parseInv,usr:parseUsr,recdet:parseRecDet,bal:parseBal,spp:parseSpp,phog:parsePosthog,kunder:parseKunder})[type](wb,file.name,type);
         S.lastUpdated=new Date().toLocaleString('nb-NO');save();renderAll();
         document.getElementById('dataBadge').style.display='inline-block';
         document.getElementById('updatedDate').textContent=S.lastUpdated;
@@ -1236,7 +1240,7 @@ function pf(file,type){
     reader.onload=e=>{
       try{
         const wb=XLSX.read(new Uint8Array(e.target.result),{type:'array',cellDates:true,raw:false});
-        ({rec:parseRec,res:parseRes,inv:parseInv,usr:parseUsr,recdet:parseRecDet,bal:parseBal,spp:parseSpp,phog:parsePosthog})[type](wb,file.name,type);
+        ({rec:parseRec,res:parseRes,inv:parseInv,usr:parseUsr,recdet:parseRecDet,bal:parseBal,spp:parseSpp,phog:parsePosthog,kunder:parseKunder})[type](wb,file.name,type);
         S.lastUpdated=new Date().toLocaleString('nb-NO');save();renderAll();
         document.getElementById('dataBadge').style.display='inline-block';
         document.getElementById('updatedDate').textContent=S.lastUpdated;
@@ -1917,6 +1921,27 @@ function isDIFYCustomer(domain){
   if(!cust)return false;
   const prod=(cust.product||'').toLowerCase();
   return prod.includes('outbound')||prod.includes('done-for-you')||prod.includes('dify');
+}
+
+function parseKunder(wb,filename,type){
+  const ws=wb.Sheets[wb.SheetNames[0]];
+  const rows=XLSX.utils.sheet_to_json(ws,{defval:''});
+  if(!rows.length)throw new Error('Tom fil');
+  let count=0;
+  for(const row of rows){
+    const name=(row['Navn']||row['navn']||'').toString().trim().replace(/^"|"$/g,'');
+    const sinceRaw=(row['Kunde siden']||row['kunde siden']||row['KundeSiden']||'').toString().trim().replace(/^"|"$/g,'');
+    const nr=(row['Kundenr.']||row['Kundenr']||'').toString().trim();
+    if(!name||!sinceRaw||nr==='50000'||nr==='10000')continue;
+    // Parse dd.mm.yyyy to ISO
+    const parts=sinceRaw.split('.');
+    if(parts.length!==3)continue;
+    const iso=`${parts[2]}-${parts[1].padStart(2,'0')}-${parts[0].padStart(2,'0')}`;
+    if(!CUSTOMER_META[name]){CUSTOMER_META[name]={since:iso,type:'monthly',dify:false};}
+    else{CUSTOMER_META[name].since=iso;}
+    count++;
+  }
+  setSt(type,filename+' – '+count+' kunder oppdatert');
 }
 
 const INTERNAL_DOMAINS=['vexter.no','vexter.io'];
