@@ -751,7 +751,7 @@
         <div>
           <div style="font-size:30px;font-weight:800;color:var(--text);line-height:1" id="act-stickiness">–</div>
           <div style="font-size:12px;font-weight:600;color:var(--text2);margin-top:4px">Daglig vs. månedlig bruk</div>
-          <div style="font-size:11px;color:var(--muted2)">DAU/MAU – jo høyere jo bedre</div>
+          <div style="font-size:11px;color:var(--muted2)">Snitt DAU/MAU siste 30 dager</div>
         </div>
       </div>
     </div>
@@ -1842,11 +1842,15 @@ function getActivityMetrics(filter){
   const sessions=allSessions.filter(s=>allowedDomains.has(s.domain));
   if(!sessions.length)return{mau:0,wau:0,dau:0,dauMauRatio:0,avgDuration:0,spuWeek:0,spuMonth:0,monthlyMAU:[],weeklyStats:[],monthlySpuStats:[],companies:[],activeCompanies:0};
 
-  const r30=sessions.filter(s=>s.date>=d30),r7=sessions.filter(s=>s.date>=d7),r1=sessions.filter(s=>s.date>=d1);
+  const r30=sessions.filter(s=>s.date>=d30),r7=sessions.filter(s=>s.date>=d7);
   const mau=new Set(r30.map(s=>s.email)).size;
   const wau=new Set(r7.map(s=>s.email)).size;
-  const dau=new Set(r1.map(s=>s.email)).size;
-  const dauMauRatio=mau>0?Math.round(dau/mau*100):0;
+  // Average DAU over last 30 days (total user-days / 30) – more meaningful than "last 24h"
+  const dayUserMap={};
+  for(const s of r30){const dk=s.date.toISOString().slice(0,10);if(!dayUserMap[dk])dayUserMap[dk]=new Set();dayUserMap[dk].add(s.email);}
+  const totalUserDays=Object.values(dayUserMap).reduce((a,set)=>a+set.size,0);
+  const avgDau=Math.round(totalUserDays/30*10)/10;
+  const dauMauRatio=mau>0?Math.round(avgDau/mau*100):0;
   const avgDuration=r30.length>0?Math.round(r30.reduce((a,s)=>a+s.duration,0)/r30.length*10)/10:0;
 
   // Weekly trend (last 12 weeks): avg sessions/user/week
