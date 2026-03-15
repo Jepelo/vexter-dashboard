@@ -293,6 +293,7 @@
   <button class="page-tab" onclick="switchPage('regnskap',this)">Regnskap</button>
   <button class="page-tab" onclick="switchPage('kunder',this)">Kunder</button>
     <button class="page-tab" onclick="switchPage('rapport',this)">Rapport</button>
+  <button class="page-tab" onclick="switchPage('salg',this)">Salg</button>
   <button class="page-tab" onclick="switchPage('aktivitet',this)">Brukeraktivitet</button>
 </nav>
 
@@ -756,7 +757,7 @@
         <div>
           <div style="font-size:30px;font-weight:800;color:var(--text);line-height:1" id="act-stickiness">–</div>
           <div style="font-size:12px;font-weight:600;color:var(--text2);margin-top:4px">Daglig vs. månedlig bruk</div>
-          <div style="font-size:11px;color:var(--muted2)">Snitt DAU/MAU siste 30 dager</div>
+          <div style="font-size:11px;color:var(--muted2)">Av <span id="act-stickiness-mau">–</span> aktive brukere er <span id="act-stickiness-dau">–</span> inne en tilfeldig dag</div>
         </div>
       </div>
     </div>
@@ -856,6 +857,71 @@
           <tbody id="act-table"></tbody>
         </table>
       </div>
+    </div>
+  </div>
+</main>
+</div>
+
+<!-- PAGE: SALG -->
+<div class="page" id="page-salg">
+<main>
+  <div class="sec">Salg</div>
+
+  <!-- KPI row -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px">
+    <div class="card" style="padding:16px">
+      <div style="font-size:11px;color:var(--muted2);font-weight:600;text-transform:uppercase;letter-spacing:.04em">Nye kunder denne måneden</div>
+      <div style="font-size:36px;font-weight:800;color:var(--text);line-height:1.1;margin-top:6px" id="salg-new-month">–</div>
+      <div style="font-size:11px;color:var(--muted2);margin-top:2px" id="salg-new-month-mrr">–</div>
+    </div>
+    <div class="card" style="padding:16px">
+      <div style="font-size:11px;color:var(--muted2);font-weight:600;text-transform:uppercase;letter-spacing:.04em">Nye kunder siste 7 dager</div>
+      <div style="font-size:36px;font-weight:800;color:var(--text);line-height:1.1;margin-top:6px" id="salg-new-week">–</div>
+      <div style="font-size:11px;color:var(--muted2);margin-top:2px" id="salg-new-week-mrr">–</div>
+    </div>
+    <div class="card" style="padding:16px">
+      <div style="font-size:11px;color:var(--muted2);font-weight:600;text-transform:uppercase;letter-spacing:.04em">Månedlig abonnement</div>
+      <div style="font-size:36px;font-weight:800;color:var(--text);line-height:1.1;margin-top:6px" id="salg-cnt-monthly">–</div>
+      <div style="font-size:11px;color:var(--muted2);margin-top:2px" id="salg-mrr-monthly">–</div>
+    </div>
+    <div class="card" style="padding:16px">
+      <div style="font-size:11px;color:var(--muted2);font-weight:600;text-transform:uppercase;letter-spacing:.04em">Årlig abonnement</div>
+      <div style="font-size:36px;font-weight:800;color:rgba(99,102,241,1);line-height:1.1;margin-top:6px" id="salg-cnt-annual">–</div>
+      <div style="font-size:11px;color:var(--muted2);margin-top:2px" id="salg-mrr-annual">–</div>
+    </div>
+  </div>
+
+  <!-- Chart -->
+  <div class="card" style="margin-bottom:16px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <div>
+        <div class="ct" id="salg-chart-title">Nye kunder per måned</div>
+        <div class="cs">Basert på første fakturadato</div>
+      </div>
+      <div style="display:flex;gap:4px">
+        <button class="tab active" id="salg-view-month" onclick="setSalgView('month',this)" style="padding:4px 12px;font-size:11px">Måneder</button>
+        <button class="tab" id="salg-view-week" onclick="setSalgView('week',this)" style="padding:4px 12px;font-size:11px">Uker</button>
+      </div>
+    </div>
+    <div style="height:220px"><canvas id="salgChart"></canvas></div>
+  </div>
+
+  <!-- New customers list -->
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <div>
+        <div class="ct">Alle salg</div>
+        <div class="cs">Sortert etter oppstartsdato – nyeste øverst</div>
+      </div>
+      <span id="salg-list-count" style="font-size:11px;color:var(--muted2)"></span>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr>
+          <th>#</th><th>Bedrift</th><th>Avtale</th><th>Første faktura</th><th>Tid som kunde</th><th style="text-align:right">MRR/mnd</th>
+        </tr></thead>
+        <tbody id="salg-table"></tbody>
+      </table>
     </div>
   </div>
 </main>
@@ -965,6 +1031,7 @@ function switchPage(name,btn){
     else if(name==='vekst'){renderUserGrowthChart();renderUsersPerCompanyChart();renderCustChart();renderNewCustChart();renderChurnChart();renderSppCharts();}
     else if(name==='regnskap'){renderRevChart('all');renderResultChart();}
     else if(name==='rapport'){renderRapport();}
+    else if(name==='salg'){renderSalg();}
   },30);
 }
 
@@ -1852,8 +1919,9 @@ function isDIFYCustomer(domain){
   return prod.includes('outbound')||prod.includes('done-for-you')||prod.includes('dify');
 }
 
+const INTERNAL_DOMAINS=['vexter.no','vexter.io'];
 function getActivityMetrics(filter){
-  const allSessions=S.posthogSessions||[];
+  const allSessions=(S.posthogSessions||[]).filter(s=>!INTERNAL_DOMAINS.includes(s.domain));
   if(!allSessions.length)return null;
   const now=new Date();
   const d30=new Date(now-30*86400000),d7=new Date(now-7*86400000),d1=new Date(now-86400000);
@@ -1972,6 +2040,9 @@ function renderActivityPage(){
   document.getElementById('act-mau').textContent=m.mau;
   document.getElementById('act-wau').textContent=m.wau;
   document.getElementById('act-stickiness').textContent=m.dauMauRatio+'%';
+  const avgDauCount=m.mau>0?Math.round(m.dau*10)/10:0;
+  document.getElementById('act-stickiness-mau').textContent=m.mau+' mnd-aktive';
+  document.getElementById('act-stickiness-dau').textContent='~'+Math.round(avgDauCount)+' brukere';
   document.getElementById('act-spu-week').textContent=m.spuWeek;
   document.getElementById('act-spu-month').textContent=m.spuMonth;
   document.getElementById('act-avgdur').textContent=m.avgDuration+' min';
@@ -2512,6 +2583,137 @@ function renderCustomerTable(){
   });
 }
 
+
+// ── SALG PAGE ─────────────────────────────────────────────────────────────
+let _salgView='month';
+let _salgChartInst=null;
+
+function getSalgData(){
+  const now=new Date();
+  const thisMonthKey=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+  const weekAgo=new Date(now-7*86400000);
+
+  // Build entries from CUSTOMER_META matched against S.customers for MRR
+  const entries=Object.entries(CUSTOMER_META)
+    .filter(([,v])=>v.since)
+    .map(([name,v])=>{
+      const cust=S.customers.find(c=>c.name.toLowerCase()===name.toLowerCase())||
+                 S.churnedCustomers?.find(c=>c.name.toLowerCase()===name.toLowerCase());
+      return{name,since:new Date(v.since),type:v.type,dify:v.dify,mrr:cust?.mrr||0};
+    })
+    .sort((a,b)=>b.since-a.since);
+
+  // KPIs
+  const newThisMonth=entries.filter(e=>{
+    const k=e.since.getFullYear()+'-'+String(e.since.getMonth()+1).padStart(2,'0');
+    return k===thisMonthKey;
+  });
+  const newThisWeek=entries.filter(e=>e.since>=weekAgo);
+  const monthly=S.customers.filter(c=>{const m=getCustMeta(c.name);return m&&m.type==='monthly';});
+  const annual=S.customers.filter(c=>{const m=getCustMeta(c.name);return m&&m.type==='annual';});
+
+  // Monthly buckets (last 14 months)
+  const monthBuckets={};
+  for(let i=13;i>=0;i--){
+    const d=new Date(now.getFullYear(),now.getMonth()-i,1);
+    const k=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
+    monthBuckets[k]={label:NOM[d.getMonth()]+' '+d.getFullYear(),count:0,mrr:0};
+  }
+  entries.forEach(e=>{
+    const k=e.since.getFullYear()+'-'+String(e.since.getMonth()+1).padStart(2,'0');
+    if(monthBuckets[k]){monthBuckets[k].count++;monthBuckets[k].mrr+=e.mrr;}
+  });
+
+  // Weekly buckets (last 16 weeks)
+  const weekBuckets=[];
+  for(let i=15;i>=0;i--){
+    const ws=new Date(now-(i+1)*7*86400000),we=new Date(now-i*7*86400000);
+    const lbl=ws.toLocaleDateString('nb-NO',{day:'numeric',month:'short'});
+    const hits=entries.filter(e=>e.since>=ws&&e.since<we);
+    weekBuckets.push({label:lbl,count:hits.length,mrr:hits.reduce((a,h)=>a+h.mrr,0)});
+  }
+
+  return{entries,newThisMonth,newThisWeek,monthly,annual,monthBuckets,weekBuckets};
+}
+
+function setSalgView(v,btn){
+  _salgView=v;
+  document.getElementById('salg-view-month').classList.toggle('active',v==='month');
+  document.getElementById('salg-view-week').classList.toggle('active',v==='week');
+  document.getElementById('salg-chart-title').textContent=v==='month'?'Nye kunder per måned':'Nye kunder per uke';
+  renderSalgChart();
+}
+
+function renderSalgChart(){
+  const d=getSalgData();
+  const t=tc();
+  const buckets=_salgView==='month'?Object.values(d.monthBuckets):d.weekBuckets;
+  const labels=buckets.map(b=>b.label);
+  const counts=buckets.map(b=>b.count);
+  const mrrs=buckets.map(b=>b.mrr);
+  if(_salgChartInst){_salgChartInst.destroy();_salgChartInst=null;}
+  const ctx=document.getElementById('salgChart')?.getContext('2d');
+  if(!ctx)return;
+  _salgChartInst=new Chart(ctx,{
+    data:{
+      labels,
+      datasets:[
+        {type:'bar',label:'Nye kunder',data:counts,backgroundColor:'rgba(99,102,241,0.7)',borderRadius:4,yAxisID:'y',order:2},
+        {type:'line',label:'Ny MRR',data:mrrs,borderColor:'rgba(16,185,129,0.8)',backgroundColor:'transparent',borderWidth:2,pointRadius:3,pointBackgroundColor:'rgba(16,185,129,0.8)',tension:.3,yAxisID:'y2',order:1}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{display:true,labels:{color:t.tick,font:{size:11},boxWidth:12}},
+        tooltip:{backgroundColor:t.ttBg,borderColor:t.ttBr,borderWidth:1,titleColor:t.tick,bodyColor:t.tick,
+          callbacks:{label:c=>c.dataset.label==='Ny MRR'?' '+fmt(c.raw):' '+c.raw+' kunde'+(c.raw!==1?'r':'')}}
+      },
+      scales:{
+        x:{grid:{display:false},ticks:{color:t.tick,font:{size:10},maxRotation:45}},
+        y:{grid:{color:t.grid},ticks:{color:t.tick,font:{size:10},stepSize:1},title:{display:true,text:'Kunder',color:t.tick,font:{size:10}}},
+        y2:{position:'right',grid:{display:false},ticks:{color:t.tick,font:{size:10},callback:v=>'kr '+(v/1000).toFixed(0)+'k'},title:{display:true,text:'MRR',color:t.tick,font:{size:10}}}
+      }
+    }
+  });
+}
+
+function renderSalg(){
+  const d=getSalgData();
+  // KPIs
+  const nmMrr=d.newThisMonth.reduce((a,e)=>a+e.mrr,0);
+  const nwMrr=d.newThisWeek.reduce((a,e)=>a+e.mrr,0);
+  const mMrr=d.monthly.reduce((a,c)=>a+c.mrr,0);
+  const aMrr=d.annual.reduce((a,c)=>a+c.mrr,0);
+  document.getElementById('salg-new-month').textContent=d.newThisMonth.length||'0';
+  document.getElementById('salg-new-month-mrr').textContent=nmMrr>0?'+ '+fmt(nmMrr)+' MRR':'ingen MRR registrert';
+  document.getElementById('salg-new-week').textContent=d.newThisWeek.length||'0';
+  document.getElementById('salg-new-week-mrr').textContent=nwMrr>0?'+ '+fmt(nwMrr)+' MRR':'ingen MRR registrert';
+  document.getElementById('salg-cnt-monthly').textContent=d.monthly.length||'0';
+  document.getElementById('salg-mrr-monthly').textContent=fmt(mMrr)+' MRR';
+  document.getElementById('salg-cnt-annual').textContent=d.annual.length||'0';
+  document.getElementById('salg-mrr-annual').textContent=fmt(aMrr)+' MRR';
+  // Chart
+  renderSalgChart();
+  // Table
+  const tbody=document.getElementById('salg-table');
+  tbody.innerHTML='';
+  document.getElementById('salg-list-count').textContent=d.entries.length+' kunder totalt';
+  d.entries.forEach((e,i)=>{
+    const sinceStr=e.since.toLocaleDateString('nb-NO',{day:'numeric',month:'short',year:'numeric'});
+    const tenure=tenureLabel(e.since.toISOString().slice(0,10));
+    const badge=subTypeBadge(e.type);
+    const mrrStr=e.mrr>0?fmt(e.mrr):'<span style="color:var(--muted)">–</span>';
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td style="color:var(--muted);font-size:11px;font-weight:600">${i+1}</td>
+      <td><div style="font-weight:600;font-size:13px">${e.name}</div>${e.dify?'<span style="font-size:10px;color:var(--muted2)">Do it for you</span>':''}</td>
+      <td>${badge}</td>
+      <td style="font-size:12px">${sinceStr}</td>
+      <td style="font-size:12px;font-weight:600;color:var(--text2)">${tenure}</td>
+      <td class="tm">${mrrStr}</td>`;
+    tbody.appendChild(tr);
+  });
+}
 
 // ── RAPPORT PAGE ──────────────────────────────────────────────────────────
 const RPT_CH={};
