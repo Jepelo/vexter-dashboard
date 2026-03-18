@@ -1,8 +1,1430 @@
 {
-  "hentetTidspunkt": "2026-03-17T06:54:15.524496",
+  "hentetTidspunkt": "2026-03-18T06:53:15.891336",
   "projectId": "19751",
   "emailField": "person.properties.email",
   "sessions": [
+    {
+      "email": "shehab@vexter.no",
+      "session_id": "019cffac-5608-70e5-984c-c34cd74ed58f",
+      "session_start": "2026-03-18 07:40:10.301000",
+      "duration_min": 1
+    },
+    {
+      "email": "stina@vexter.no",
+      "session_id": "019cff97-259c-73aa-a651-db4dc4d65e73",
+      "session_start": "2026-03-18 07:17:01.684000",
+      "duration_min": 3
+    },
+    {
+      "email": "stina@vexter.no",
+      "session_id": "019cff97-258f-7b88-9546-fc88f3b61127",
+      "session_start": "2026-03-18 07:17:01.677000",
+      "duration_min": 0
+    },
+    {
+      "email": "lotte@svenn.com",
+      "session_id": "019cfe5c-7fda-7ac9-80c9-e5b04287be3e",
+      "session_start": "2026-03-18 01:33:21.622000",
+      "duration_min": 0
+    },
+    {
+      "email": "shehab@vexter.no",
+      "session_id": "019cfe35-fde8-7fa2-b71f-dc0c1047dbe6",
+      "session_start": "2026-03-18 00:51:20.689000",
+      "duration_min": 0
+    },
+    {
+      "email": "jorgen@vexter.no",
+      "session_id": "019cfda9-8c7a-778e-88eb-c2b1185aa7d3",
+      "session_start": "2026-03-17 22:17:53.633000",
+      "duration_min": 0
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfda8-ed73-7d40-af60-85d759e7de9d",
+      "session_start": "2026-03-17 22:17:12.557000",
+      "duration_min": 0
+    },
+    {
+      "email": "salg@salgspartneren.no",
+      "session_id": "019cfda7-142a-7755-b7e4-b098bd27c27c",
+      "session_start": "2026-03-17 22:15:11.474000",
+      "duration_min": 2
+    },
+    {
+      "email": "henning@elvebyenregnskap.no",
+      "session_id": "019cfd9d-4f6d-7e7b-a3a9-47b0d44fad5a",
+      "session_start": "2026-03-17 22:04:31.563000",
+      "duration_min": 7
+    },
+    {
+      "email": "henning@elvebyenregnskap.no",
+      "session_id": "019cfd9a-c56e-711c-af29-0646b891152a",
+      "session_start": "2026-03-17 22:01:44.564000",
+      "duration_min": 0
+    },
+    {
+      "email": "henning@elvebyenregnskap.no",
+      "session_id": "019cfd9a-c58e-7463-829e-01e479bbd21e",
+      "session_start": "2026-03-17 22:01:44.562000",
+      "duration_min": 10
+    },
+    {
+      "email": "jens@vexter.no",
+      "session_id": "019cfd6f-7668-7f47-9248-7b7cb4545e1b",
+      "session_start": "2026-03-17 21:14:26.522000",
+      "duration_min": 0
+    },
+    {
+      "email": "salg@salgspartneren.no",
+      "session_id": "019cfd53-fe9d-7c0d-af0a-737038b7524c",
+      "session_start": "2026-03-17 20:44:26.375000",
+      "duration_min": 0
+    },
+    {
+      "email": "salg@salgspartneren.no",
+      "session_id": "019cfd53-edd7-7d0a-9553-c021572d5c1e",
+      "session_start": "2026-03-17 20:44:25.311000",
+      "duration_min": 0
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfd25-2dd8-7abd-9fae-23c8ad7d6c89",
+      "session_start": "2026-03-17 19:53:18.247000",
+      "duration_min": 0
+    },
+    {
+      "email": "jorgen@vexter.no",
+      "session_id": "019cfd0c-74a4-7824-a0df-b5279031a198",
+      "session_start": "2026-03-17 19:26:18.055000",
+      "duration_min": 20
+    },
+    {
+      "email": "steffen.torsberg@ntt.no",
+      "session_id": "019cfd08-7afe-7c1c-b24b-a96e5fba3268",
+      "session_start": "2026-03-17 19:21:57.447000",
+      "duration_min": 1
+    },
+    {
+      "email": "post@kreatek.no",
+      "session_id": "019cfd08-49b9-7627-a628-05e11190d7ce",
+      "session_start": "2026-03-17 19:21:44.833000",
+      "duration_min": 0
+    },
+    {
+      "email": "perespen@sportperformance.no",
+      "session_id": "019cfd08-197c-79da-af72-4cfbb3bab039",
+      "session_start": "2026-03-17 19:21:32.484000",
+      "duration_min": 0
+    },
+    {
+      "email": "morten@unmo.no",
+      "session_id": "019cfd07-f0ee-7a91-a7e7-bc5d4d5e8403",
+      "session_start": "2026-03-17 19:21:22.106000",
+      "duration_min": 0
+    },
+    {
+      "email": "mansour.rashidi@thevit.no",
+      "session_id": "019cfd07-c9e7-75d9-9a38-b73587b7f064",
+      "session_start": "2026-03-17 19:21:12.112000",
+      "duration_min": 0
+    },
+    {
+      "email": "jan@propos.no",
+      "session_id": "019cfd07-9d03-719c-b27a-cbb35c67d363",
+      "session_start": "2026-03-17 19:21:00.618000",
+      "duration_min": 0
+    },
+    {
+      "email": "harald@osvold.no",
+      "session_id": "019cfd07-6eff-7455-a1b9-10ac96a7c1c0",
+      "session_start": "2026-03-17 19:20:48.842000",
+      "duration_min": 1
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfd07-3f86-7b2d-bbfb-53b8005d876f",
+      "session_start": "2026-03-17 19:20:36.684000",
+      "duration_min": 0
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfd06-c3e8-71d3-8a23-06d3a08156c5",
+      "session_start": "2026-03-17 19:20:05.035000",
+      "duration_min": 0
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfcf9-1ea8-7642-bd65-119d1e8137d2",
+      "session_start": "2026-03-17 19:05:10.788000",
+      "duration_min": 0
+    },
+    {
+      "email": "jorgen@vexter.no",
+      "session_id": "019cfce0-9aad-796c-acb1-20e084f62a81",
+      "session_start": "2026-03-17 18:38:24.162000",
+      "duration_min": 3
+    },
+    {
+      "email": "salg@salgspartneren.no",
+      "session_id": "019cfcd8-e425-79e9-8c53-cdacf01e980d",
+      "session_start": "2026-03-17 18:29:58.666000",
+      "duration_min": 84
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfcd8-69e6-7c4e-bf24-4eab71d0c88f",
+      "session_start": "2026-03-17 18:29:27.421000",
+      "duration_min": 0
+    },
+    {
+      "email": "steffen.torsberg@ntt.no",
+      "session_id": "019cfcba-fd90-7e12-99a1-0944229f4814",
+      "session_start": "2026-03-17 17:57:19.049000",
+      "duration_min": 0
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfcba-b878-7e5a-9a9e-bb2544cc13ff",
+      "session_start": "2026-03-17 17:57:01.357000",
+      "duration_min": 0
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfcb3-aaa3-79fe-bc9b-4b2c04f69782",
+      "session_start": "2026-03-17 17:49:20.286000",
+      "duration_min": 0
+    },
+    {
+      "email": "mansour.rashidi@thevit.no",
+      "session_id": "019cfca9-e0a6-7205-9e11-50e1af9186b5",
+      "session_start": "2026-03-17 17:38:37.556000",
+      "duration_min": 3
+    },
+    {
+      "email": "karsten@elitemedia.no",
+      "session_id": "019cfca9-bbd1-74e6-a322-77a0507d726d",
+      "session_start": "2026-03-17 17:38:28.126000",
+      "duration_min": 0
+    },
+    {
+      "email": "jan@propos.no",
+      "session_id": "019cfca9-9210-773b-a645-784381d0c424",
+      "session_start": "2026-03-17 17:38:17.438000",
+      "duration_min": 0
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfca9-639a-7dcf-a6ca-c73eb112563f",
+      "session_start": "2026-03-17 17:38:05.546000",
+      "duration_min": 0
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfca9-070c-7fff-9a2e-d29c66591141",
+      "session_start": "2026-03-17 17:37:41.844000",
+      "duration_min": 1
+    },
+    {
+      "email": "jorgen@vexter.no",
+      "session_id": "019cfca8-cac6-75e5-a5dc-503a80f559a2",
+      "session_start": "2026-03-17 17:37:26.521000",
+      "duration_min": 14
+    },
+    {
+      "email": "salg@salgspartneren.no",
+      "session_id": "019cfca3-cb66-7e37-9c92-c4d60c1819b6",
+      "session_start": "2026-03-17 17:31:58.988000",
+      "duration_min": 25
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfc96-c7a7-738e-a108-cf64a0b0c9df",
+      "session_start": "2026-03-17 17:17:47.116000",
+      "duration_min": 0
+    },
+    {
+      "email": "mathilde@vexter.no",
+      "session_id": "019cfc86-9d4a-7d78-869d-98be3efc762d",
+      "session_start": "2026-03-17 17:00:06.561000",
+      "duration_min": 6
+    },
+    {
+      "email": "steffen.torsberg@ntt.no",
+      "session_id": "019cfc84-4c1e-7942-9b2a-f84d902016f6",
+      "session_start": "2026-03-17 16:57:34.750000",
+      "duration_min": 1
+    },
+    {
+      "email": "mansour.rashidi@thevit.no",
+      "session_id": "019cfc84-1de7-7c7d-bab0-74cf982d92e7",
+      "session_start": "2026-03-17 16:57:22.921000",
+      "duration_min": 0
+    },
+    {
+      "email": "harald@osvold.no",
+      "session_id": "019cfc83-f25f-701f-b446-8db154db6672",
+      "session_start": "2026-03-17 16:57:11.778000",
+      "duration_min": 0
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfc83-af83-75ff-9147-c510a05e63a8",
+      "session_start": "2026-03-17 16:56:54.661000",
+      "duration_min": 1
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfc83-763f-7416-a708-b3f88bc741eb",
+      "session_start": "2026-03-17 16:56:39.997000",
+      "duration_min": 0
+    },
+    {
+      "email": "salg@salgspartneren.no",
+      "session_id": "019cfc82-f687-774c-9095-604689ecbc1d",
+      "session_start": "2026-03-17 16:56:07.309000",
+      "duration_min": 2
+    },
+    {
+      "email": "jorgen@vexter.no",
+      "session_id": "019cfc82-f317-7c21-a0cc-9d8764f7452a",
+      "session_start": "2026-03-17 16:56:06.425000",
+      "duration_min": 2
+    },
+    {
+      "email": "salg@salgspartneren.no",
+      "session_id": "019cfc82-f16f-7c53-88d2-a231437db48f",
+      "session_start": "2026-03-17 16:56:06.097000",
+      "duration_min": 0
+    },
+    {
+      "email": "jorgen@vexter.no",
+      "session_id": "019cfc82-e356-7e8c-8170-a8576be1ce07",
+      "session_start": "2026-03-17 16:56:02.459000",
+      "duration_min": 0
+    },
+    {
+      "email": "eldar@venturetime.no",
+      "session_id": "019cfc82-a835-7ffb-883a-0ae83070cba6",
+      "session_start": "2026-03-17 16:55:49.027000",
+      "duration_min": 1
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfc61-f981-7343-ba5d-4d5687a26e82",
+      "session_start": "2026-03-17 16:20:06.560000",
+      "duration_min": 0
+    },
+    {
+      "email": "jorgen@vexter.no",
+      "session_id": "019cfc48-0bda-73a4-8ace-33c37c285add",
+      "session_start": "2026-03-17 16:07:40.548000",
+      "duration_min": 0
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfc54-4984-7ba1-85bb-c5bbca96f275",
+      "session_start": "2026-03-17 16:05:08.451000",
+      "duration_min": 0
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfc4f-bc55-77b7-bb1a-16f6e56eb28f",
+      "session_start": "2026-03-17 16:00:10.148000",
+      "duration_min": 0
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfc4a-df62-7694-8900-341e49cdd2db",
+      "session_start": "2026-03-17 15:54:51.347000",
+      "duration_min": 1
+    },
+    {
+      "email": "ola@heiglo.no",
+      "session_id": "019cfc48-46aa-7c57-9095-0022dfbc1000",
+      "session_start": "2026-03-17 15:52:05.406000",
+      "duration_min": 0
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfc47-8a26-7656-9b3b-431a30be750f",
+      "session_start": "2026-03-17 15:51:12.915000",
+      "duration_min": 1
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfc45-c582-7d03-90a6-298075bd7191",
+      "session_start": "2026-03-17 15:49:17.041000",
+      "duration_min": 0
+    },
+    {
+      "email": "mansour.rashidi@thevit.no",
+      "session_id": "019cfc45-a1c4-778f-add8-3d98c858ff77",
+      "session_start": "2026-03-17 15:49:07.892000",
+      "duration_min": 0
+    },
+    {
+      "email": "jan@propos.no",
+      "session_id": "019cfc45-79de-7098-8760-a2cd170aa32d",
+      "session_start": "2026-03-17 15:48:57.676000",
+      "duration_min": 1
+    },
+    {
+      "email": "harald@osvold.no",
+      "session_id": "019cfc45-549b-764c-a3e1-7b9ebd63ddfc",
+      "session_start": "2026-03-17 15:48:48.137000",
+      "duration_min": 0
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfc45-20ad-7c2b-a9d0-ed988e52fcdf",
+      "session_start": "2026-03-17 15:48:34.844000",
+      "duration_min": 0
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfc44-d266-71ef-b832-71d02309871f",
+      "session_start": "2026-03-17 15:48:14.800000",
+      "duration_min": 0
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfc35-cca6-7e79-949b-f4c51235bccc",
+      "session_start": "2026-03-17 15:31:51.274000",
+      "duration_min": 0
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfc2e-b90e-7e4d-a8cf-d3447034dcfe",
+      "session_start": "2026-03-17 15:24:06.513000",
+      "duration_min": 20
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfc27-2e71-7e9d-8c12-b89874c9aeff",
+      "session_start": "2026-03-17 15:15:52.267000",
+      "duration_min": 1
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfc25-4595-7133-abb9-7151377e3305",
+      "session_start": "2026-03-17 15:13:47.119000",
+      "duration_min": 0
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfc25-1903-76cf-8ca1-24bfb16e06ae",
+      "session_start": "2026-03-17 15:13:35.711000",
+      "duration_min": 0
+    },
+    {
+      "email": "jan@propos.no",
+      "session_id": "019cfc24-ea24-7f06-bb2e-db33c1118a9f",
+      "session_start": "2026-03-17 15:13:23.712000",
+      "duration_min": 0
+    },
+    {
+      "email": "ola@heiglo.no",
+      "session_id": "019cfc24-aa6d-70c8-a4a9-dec5ee0534e3",
+      "session_start": "2026-03-17 15:13:09.621000",
+      "duration_min": 1
+    },
+    {
+      "email": "mansour.rashidi@thevit.no",
+      "session_id": "019cfc24-a4fc-7da8-98f3-b6d81c563a4e",
+      "session_start": "2026-03-17 15:13:06.010000",
+      "duration_min": 0
+    },
+    {
+      "email": "perespen@sportperformance.no",
+      "session_id": "019cfc24-76c2-7770-8c47-a6772b7ec562",
+      "session_start": "2026-03-17 15:12:54.174000",
+      "duration_min": 1
+    },
+    {
+      "email": "post@kreatek.no",
+      "session_id": "019cfc24-5188-7adc-b2ad-10d00d70a0a1",
+      "session_start": "2026-03-17 15:12:44.646000",
+      "duration_min": 0
+    },
+    {
+      "email": "steffen.torsberg@ntt.no",
+      "session_id": "019cfc24-0cfb-70b5-9df7-155e8afb1326",
+      "session_start": "2026-03-17 15:12:27.095000",
+      "duration_min": 0
+    },
+    {
+      "email": "janolav@bidsystem.no",
+      "session_id": "019cfc1f-8ddb-71c5-895d-bf42930bcadb",
+      "session_start": "2026-03-17 15:07:32.420000",
+      "duration_min": 1
+    },
+    {
+      "email": "harald@osvold.no",
+      "session_id": "019cfc1f-67c0-7640-89e1-c7ba62403293",
+      "session_start": "2026-03-17 15:07:22.665000",
+      "duration_min": 0
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfc1f-3534-721b-8da3-5a202a6f939c",
+      "session_start": "2026-03-17 15:07:09.722000",
+      "duration_min": 0
+    },
+    {
+      "email": "jens@vexter.no",
+      "session_id": "019cfc1d-ac08-79a4-a858-853fa30d4b37",
+      "session_start": "2026-03-17 15:05:29.055000",
+      "duration_min": 14
+    },
+    {
+      "email": "thomas.ortega@forenom.com",
+      "session_id": "019cfc1d-abfb-7d1c-a4d2-2a09658b18f2",
+      "session_start": "2026-03-17 15:05:29.044000",
+      "duration_min": 0
+    },
+    {
+      "email": "erik.mellebye-giertsen@sperton.com",
+      "session_id": "019cfc0d-8484-7995-8fda-dcf4cce529d8",
+      "session_start": "2026-03-17 14:47:52.349000",
+      "duration_min": 0
+    },
+    {
+      "email": "karsten@elitemedia.no",
+      "session_id": "019cfc0d-0f86-74c4-bbaf-9952aa8d1c71",
+      "session_start": "2026-03-17 14:47:20.408000",
+      "duration_min": 0
+    },
+    {
+      "email": "mathilde@vexter.no",
+      "session_id": "019cfc0b-760a-73f1-a8d7-e491d498d3ee",
+      "session_start": "2026-03-17 14:45:35.585000",
+      "duration_min": 3
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfc09-fad8-74d1-8440-5efefb67bab3",
+      "session_start": "2026-03-17 14:43:58.499000",
+      "duration_min": 4
+    },
+    {
+      "email": "doh@smartwaves.cloud",
+      "session_id": "019cfc05-94bf-7bb2-bd27-2d2477267d3a",
+      "session_start": "2026-03-17 14:39:09.923000",
+      "duration_min": 9
+    },
+    {
+      "email": "shehab@vexter.no",
+      "session_id": "019cfc04-ab16-710b-b22f-ec84c38191f9",
+      "session_start": "2026-03-17 14:38:17.474000",
+      "duration_min": 159
+    },
+    {
+      "email": "lotte@svenn.com",
+      "session_id": "019cfc02-d5db-727e-bc93-02a0b66c0487",
+      "session_start": "2026-03-17 14:36:10.314000",
+      "duration_min": 4
+    },
+    {
+      "email": "mithuna@hornmedia.no",
+      "session_id": "019cfbfd-7fb5-78a5-9d87-0531f7c0b5be",
+      "session_start": "2026-03-17 14:30:20.530000",
+      "duration_min": 12
+    },
+    {
+      "email": "steffen.espelid@verji.com",
+      "session_id": "019cfbf6-eec2-77fe-8a38-d22b12fd967d",
+      "session_start": "2026-03-17 14:23:10.205000",
+      "duration_min": 0
+    },
+    {
+      "email": "steffen.torsberg@ntt.no",
+      "session_id": "019cfbf2-59c8-7918-acc2-c5894190949c",
+      "session_start": "2026-03-17 14:18:09.923000",
+      "duration_min": 0
+    },
+    {
+      "email": "post@kreatek.no",
+      "session_id": "019cfbf2-342e-72e4-9fdb-f1252b6687ad",
+      "session_start": "2026-03-17 14:18:00.297000",
+      "duration_min": 0
+    },
+    {
+      "email": "morten@unmo.no",
+      "session_id": "019cfbf2-073e-7617-93d5-a11196f1ff46",
+      "session_start": "2026-03-17 14:17:48.797000",
+      "duration_min": 1
+    },
+    {
+      "email": "mansour.rashidi@thevit.no",
+      "session_id": "019cfbf1-7a30-703e-8e30-1eddf6c4642b",
+      "session_start": "2026-03-17 14:17:12.686000",
+      "duration_min": 0
+    },
+    {
+      "email": "janolav@bidsystem.no",
+      "session_id": "019cfbf1-434c-77b6-bb0b-6d494934ba3e",
+      "session_start": "2026-03-17 14:16:58.630000",
+      "duration_min": 1
+    },
+    {
+      "email": "jan@propos.no",
+      "session_id": "019cfbf1-17f0-7817-bd4f-e2c28a320b89",
+      "session_start": "2026-03-17 14:16:47.529000",
+      "duration_min": 0
+    },
+    {
+      "email": "harald@osvold.no",
+      "session_id": "019cfbf0-ecbc-7975-b1cd-079cde47f40e",
+      "session_start": "2026-03-17 14:16:36.471000",
+      "duration_min": 0
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfbf0-c2aa-7847-bc01-1dd7934ee671",
+      "session_start": "2026-03-17 14:16:25.700000",
+      "duration_min": 0
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfbf0-67f8-749a-8f95-4e3f0a1aa5d6",
+      "session_start": "2026-03-17 14:16:02.478000",
+      "duration_min": 0
+    },
+    {
+      "email": "salg@salgspartneren.no",
+      "session_id": "019cfbec-7cf4-79d6-8b63-d27cff380572",
+      "session_start": "2026-03-17 14:11:45.944000",
+      "duration_min": 52
+    },
+    {
+      "email": "lotte@svenn.com",
+      "session_id": "019cfbeb-ed09-7b3e-9b51-e0ad6d8d9c0c",
+      "session_start": "2026-03-17 14:11:08.600000",
+      "duration_min": 4
+    },
+    {
+      "email": "lotte@svenn.com",
+      "session_id": "019cfbeb-ecfc-729c-8742-2a0d6ab10622",
+      "session_start": "2026-03-17 14:11:08.590000",
+      "duration_min": 0
+    },
+    {
+      "email": "post@kreatek.no",
+      "session_id": "019cfbe7-25e8-75d9-a999-10e2ef808709",
+      "session_start": "2026-03-17 14:05:55.776000",
+      "duration_min": 1
+    },
+    {
+      "email": "jan@propos.no",
+      "session_id": "019cfbe6-fbde-7fb8-ba3c-b814ef8c49eb",
+      "session_start": "2026-03-17 14:05:45.013000",
+      "duration_min": 0
+    },
+    {
+      "email": "harald@osvold.no",
+      "session_id": "019cfbe6-d7f4-737d-a6da-e9d84705de3e",
+      "session_start": "2026-03-17 14:05:35.819000",
+      "duration_min": 0
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfbe6-a6ce-725d-91e1-21550fdc7916",
+      "session_start": "2026-03-17 14:05:23.283000",
+      "duration_min": 0
+    },
+    {
+      "email": "mansour.rashidi@thevit.no",
+      "session_id": "019cfbe4-e437-7a95-8575-e443ac92433c",
+      "session_start": "2026-03-17 14:03:27.880000",
+      "duration_min": 2
+    },
+    {
+      "email": "stina@vexter.no",
+      "session_id": "019cfbdd-f1df-7c74-b353-ef179f47eefe",
+      "session_start": "2026-03-17 13:55:52.628000",
+      "duration_min": 4
+    },
+    {
+      "email": "hei@industrivaskemaskin.no",
+      "session_id": "019cfbdb-a5d3-726d-bb98-2bc12537ffef",
+      "session_start": "2026-03-17 13:53:22.002000",
+      "duration_min": 0
+    },
+    {
+      "email": "stina@vexter.no",
+      "session_id": "019cfbd1-9a66-75d2-9261-0616f9a9c6dc",
+      "session_start": "2026-03-17 13:42:23.821000",
+      "duration_min": 13
+    },
+    {
+      "email": "lotte@svenn.com",
+      "session_id": "019cfbcf-4957-725a-9783-04df8f2e1c31",
+      "session_start": "2026-03-17 13:39:52.130000",
+      "duration_min": 0
+    },
+    {
+      "email": "doh@smartwaves.cloud",
+      "session_id": "019cfbcd-4122-740e-a7be-3f6ab10ee678",
+      "session_start": "2026-03-17 13:37:40.041000",
+      "duration_min": 37
+    },
+    {
+      "email": "perespen@sportperformance.no",
+      "session_id": "019cfbc4-a1ae-7c9c-8845-55a603f55b12",
+      "session_start": "2026-03-17 13:28:13.687000",
+      "duration_min": 0
+    },
+    {
+      "email": "thomas.ortega@forenom.com",
+      "session_id": "019cfbbd-e14a-78c7-82d7-ffb4726d818c",
+      "session_start": "2026-03-17 13:20:51.171000",
+      "duration_min": 1
+    },
+    {
+      "email": "thomas.ortega@forenom.com",
+      "session_id": "019cfbbc-ad0a-7adc-bc9c-ad5337811258",
+      "session_start": "2026-03-17 13:19:32.257000",
+      "duration_min": 2
+    },
+    {
+      "email": "thomas.ortega@forenom.com",
+      "session_id": "019cfbbb-004a-70e5-8745-ccd52774e49e",
+      "session_start": "2026-03-17 13:17:42.566000",
+      "duration_min": 2
+    },
+    {
+      "email": "mathilde@vexter.no",
+      "session_id": "019cfbb5-ba97-7965-bf9d-a73c378824f4",
+      "session_start": "2026-03-17 13:11:56.979000",
+      "duration_min": 43
+    },
+    {
+      "email": "shehab63363@gmail.com",
+      "session_id": "019cfbb3-b040-7483-850f-06e7fd7999f3",
+      "session_start": "2026-03-17 13:09:43.343000",
+      "duration_min": 0
+    },
+    {
+      "email": "perespen@sportperformance.no",
+      "session_id": "019cfbb3-6a9c-78c2-af41-9f5c7253cac6",
+      "session_start": "2026-03-17 13:09:25.449000",
+      "duration_min": 0
+    },
+    {
+      "email": "karsten@elitemedia.no",
+      "session_id": "019cfbb3-43d8-7aa8-a005-db69f5e35db3",
+      "session_start": "2026-03-17 13:09:15.525000",
+      "duration_min": 0
+    },
+    {
+      "email": "jan@propos.no",
+      "session_id": "019cfbb3-1ed2-7a62-97b3-edd0593987d4",
+      "session_start": "2026-03-17 13:09:06.048000",
+      "duration_min": 0
+    },
+    {
+      "email": "harald@osvold.no",
+      "session_id": "019cfbb2-f83f-779d-b750-223e371fddf1",
+      "session_start": "2026-03-17 13:08:56.173000",
+      "duration_min": 1
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfbb2-c480-7a0a-a28d-0c2c76968fe3",
+      "session_start": "2026-03-17 13:08:42.925000",
+      "duration_min": 0
+    },
+    {
+      "email": "olechristian@re-boot.life",
+      "session_id": "019cfbad-cbac-719b-b8a0-5c93efffac20",
+      "session_start": "2026-03-17 13:03:17.104000",
+      "duration_min": 70
+    },
+    {
+      "email": "mathilde@vexter.no",
+      "session_id": "019cfba8-4538-7fb2-a357-f06ed8093b95",
+      "session_start": "2026-03-17 12:57:14.959000",
+      "duration_min": 14
+    },
+    {
+      "email": "mithuna@hornmedia.no",
+      "session_id": "019cfba8-3fbe-7461-abee-2c95022b324f",
+      "session_start": "2026-03-17 12:57:13.963000",
+      "duration_min": 0
+    },
+    {
+      "email": "mathilde@vexter.no",
+      "session_id": "019cfba7-0f21-7fb4-be79-301422dc7fab",
+      "session_start": "2026-03-17 12:55:55.615000",
+      "duration_min": 2
+    },
+    {
+      "email": "post@kreatek.no",
+      "session_id": "019cfba4-d305-7d49-ad54-e4b8f52c2765",
+      "session_start": "2026-03-17 12:53:29.137000",
+      "duration_min": 0
+    },
+    {
+      "email": "morten@unmo.no",
+      "session_id": "019cfba4-a52d-70ed-b2ef-0737bcac66ee",
+      "session_start": "2026-03-17 12:53:17.400000",
+      "duration_min": 0
+    },
+    {
+      "email": "mansour.rashidi@thevit.no",
+      "session_id": "019cfba4-6814-7760-ab2f-ca662a6ed5c3",
+      "session_start": "2026-03-17 12:53:01.762000",
+      "duration_min": 0
+    },
+    {
+      "email": "jan@propos.no",
+      "session_id": "019cfba4-4616-7d85-9d57-379c3f07c063",
+      "session_start": "2026-03-17 12:52:53.058000",
+      "duration_min": 1
+    },
+    {
+      "email": "harald@osvold.no",
+      "session_id": "019cfba4-184d-784c-b6f1-def5cdf74cbd",
+      "session_start": "2026-03-17 12:52:41.337000",
+      "duration_min": 0
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfba3-df20-709c-9bbe-84bdb00637be",
+      "session_start": "2026-03-17 12:52:26.697000",
+      "duration_min": 0
+    },
+    {
+      "email": "jorgen@vexter.no",
+      "session_id": "019cfba3-5785-778c-a2b1-cf8aa4a8ac45",
+      "session_start": "2026-03-17 12:51:51.985000",
+      "duration_min": 146
+    },
+    {
+      "email": "stina@vexter.no",
+      "session_id": "019cfb9e-040c-7d52-86be-0e5bbffbcd04",
+      "session_start": "2026-03-17 12:46:03.020000",
+      "duration_min": 2
+    },
+    {
+      "email": "stina@vexter.no",
+      "session_id": "019cfb9e-0403-7ab6-8890-9d2a09dcc369",
+      "session_start": "2026-03-17 12:46:03.015000",
+      "duration_min": 0
+    },
+    {
+      "email": "sondre@myprofil.no",
+      "session_id": "019cfb96-acf8-78de-8c55-c028ab45de11",
+      "session_start": "2026-03-17 12:41:22.701000",
+      "duration_min": 0
+    },
+    {
+      "email": "eldar@venturetime.no",
+      "session_id": "019cfb99-7c4c-781d-98f6-8f5b84e039b3",
+      "session_start": "2026-03-17 12:41:06.008000",
+      "duration_min": 38
+    },
+    {
+      "email": "lotte@svenn.com",
+      "session_id": "019cfb92-ba58-74f6-9a31-b4b787a8cd3e",
+      "session_start": "2026-03-17 12:33:42.950000",
+      "duration_min": 13
+    },
+    {
+      "email": "lotte@svenn.com",
+      "session_id": "019cfb90-16be-729b-a1d6-32a607e1be93",
+      "session_start": "2026-03-17 12:30:49.998000",
+      "duration_min": 3
+    },
+    {
+      "email": "eldar@venturetime.no",
+      "session_id": "019cfb8f-748f-756b-a61c-918c3e32bd74",
+      "session_start": "2026-03-17 12:30:08.849000",
+      "duration_min": 10
+    },
+    {
+      "email": "morten@unmo.no",
+      "session_id": "019cfb8d-24d8-7b3d-97c7-3f2307c75ca1",
+      "session_start": "2026-03-17 12:27:37.220000",
+      "duration_min": 1
+    },
+    {
+      "email": "steffen.torsberg@ntt.no",
+      "session_id": "019cfb8c-de89-73b5-9005-cb871c2c40a8",
+      "session_start": "2026-03-17 12:27:19.222000",
+      "duration_min": 0
+    },
+    {
+      "email": "post@kreatek.no",
+      "session_id": "019cfb8c-7398-7fe9-9a24-01dd8b1a8ea3",
+      "session_start": "2026-03-17 12:26:51.845000",
+      "duration_min": 1
+    },
+    {
+      "email": "mansour.rashidi@thevit.no",
+      "session_id": "019cfb8c-12bd-7f5b-bfc1-1036dcc8f475",
+      "session_start": "2026-03-17 12:26:27.051000",
+      "duration_min": 0
+    },
+    {
+      "email": "janolav@bidsystem.no",
+      "session_id": "019cfb8b-c3fe-77a8-b90f-da5e863762d0",
+      "session_start": "2026-03-17 12:26:06.892000",
+      "duration_min": 0
+    },
+    {
+      "email": "jan@propos.no",
+      "session_id": "019cfb8b-8062-704f-a251-bcdf1a9ed8ad",
+      "session_start": "2026-03-17 12:25:49.584000",
+      "duration_min": 1
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfb8b-384a-78e2-af19-ced180d17b48",
+      "session_start": "2026-03-17 12:25:31.128000",
+      "duration_min": 0
+    },
+    {
+      "email": "hei@industrivaskemaskin.no",
+      "session_id": "019cfb82-2e4d-7706-ac03-8eb8b2e25c96",
+      "session_start": "2026-03-17 12:15:40.116000",
+      "duration_min": 10
+    },
+    {
+      "email": "hei@industrivaskemaskin.no",
+      "session_id": "019cfb82-2e21-72b6-9fbe-9a690f9708e3",
+      "session_start": "2026-03-17 12:15:40.100000",
+      "duration_min": 0
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfb5c-2712-7d12-9e43-54302b72edfd",
+      "session_start": "2026-03-17 12:14:24.103000",
+      "duration_min": 75
+    },
+    {
+      "email": "jens@vexter.no",
+      "session_id": "019cfb7a-c531-72a7-859b-b40313d2423e",
+      "session_start": "2026-03-17 12:07:33.063000",
+      "duration_min": 33
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfb77-8127-7e1c-a0ae-2c77e5db268d",
+      "session_start": "2026-03-17 12:03:59.079000",
+      "duration_min": 5
+    },
+    {
+      "email": "harald@osvold.no",
+      "session_id": "019cfb77-1b49-76fe-926e-a99dca0fc1e9",
+      "session_start": "2026-03-17 12:03:32.997000",
+      "duration_min": 0
+    },
+    {
+      "email": "jens.loe@vexter.ai",
+      "session_id": "019cfb77-15b1-712d-bc83-cb8b2e626166",
+      "session_start": "2026-03-17 12:03:31.533000",
+      "duration_min": 4
+    },
+    {
+      "email": "stina@vexter.no",
+      "session_id": "019cfb75-be82-72f1-b236-893054abc7da",
+      "session_start": "2026-03-17 12:02:03.761000",
+      "duration_min": 0
+    },
+    {
+      "email": "jens@vexter.no",
+      "session_id": "019cfb73-d8b7-7fee-9321-a0a7d3ea2b0d",
+      "session_start": "2026-03-17 11:59:59.337000",
+      "duration_min": 4
+    },
+    {
+      "email": "jens.loe@vexter.ai",
+      "session_id": "019cfb73-cc93-7436-9f79-d4203510b9cd",
+      "session_start": "2026-03-17 11:59:58.272000",
+      "duration_min": 0
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfb6f-dac0-7f18-82da-859bbf0c36f1",
+      "session_start": "2026-03-17 11:55:37.734000",
+      "duration_min": 1
+    },
+    {
+      "email": "perespen@sportperformance.no",
+      "session_id": "019cfb6f-85cb-7d88-bb33-01f77d7305bf",
+      "session_start": "2026-03-17 11:55:15.978000",
+      "duration_min": 0
+    },
+    {
+      "email": "post@kreatek.no",
+      "session_id": "019cfb6d-f412-7a44-9dc8-fa05c1cc5851",
+      "session_start": "2026-03-17 11:53:33.200000",
+      "duration_min": 1
+    },
+    {
+      "email": "lotte@svenn.com",
+      "session_id": "019cfb6d-c987-7597-aac4-0868cc826162",
+      "session_start": "2026-03-17 11:53:22.138000",
+      "duration_min": 37
+    },
+    {
+      "email": "mansour.rashidi@thevit.no",
+      "session_id": "019cfb6d-9c84-76a7-9bdc-50269b42662a",
+      "session_start": "2026-03-17 11:53:10.797000",
+      "duration_min": 0
+    },
+    {
+      "email": "janolav@bidsystem.no",
+      "session_id": "019cfb6d-45ba-74ae-a622-579242a44544",
+      "session_start": "2026-03-17 11:52:48.572000",
+      "duration_min": 1
+    },
+    {
+      "email": "jan@propos.no",
+      "session_id": "019cfb6c-6a0c-7b88-9275-fa15f774bafa",
+      "session_start": "2026-03-17 11:51:52.323000",
+      "duration_min": 1
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfb6a-98aa-7c38-b4f0-d4e519046c1c",
+      "session_start": "2026-03-17 11:49:52.604000",
+      "duration_min": 1
+    },
+    {
+      "email": "jan@propos.no",
+      "session_id": "019cfb69-179c-7acb-8091-c4ae5b17a01e",
+      "session_start": "2026-03-17 11:48:14.654000",
+      "duration_min": 0
+    },
+    {
+      "email": "mathias@vexter.no",
+      "session_id": "019cfb67-7055-784d-8352-ea0b6f5b5afc",
+      "session_start": "2026-03-17 11:46:26.871000",
+      "duration_min": 0
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfb61-e4f7-7ef2-b135-5f32a3a712f8",
+      "session_start": "2026-03-17 11:40:22.890000",
+      "duration_min": 8
+    },
+    {
+      "email": "lotte@svenn.com",
+      "session_id": "019cfb5f-a966-7415-81bd-427ea2b1d552",
+      "session_start": "2026-03-17 11:37:56.552000",
+      "duration_min": 30
+    },
+    {
+      "email": "lotte@svenn.com",
+      "session_id": "019cfb5d-5d45-7e3c-84d1-a72ac81ea4ba",
+      "session_start": "2026-03-17 11:35:25.991000",
+      "duration_min": 2
+    },
+    {
+      "email": "lotte@svenn.com",
+      "session_id": "019cfb5d-5703-7e57-b505-6be018cfb102",
+      "session_start": "2026-03-17 11:35:24.491000",
+      "duration_min": 0
+    },
+    {
+      "email": "morten@unmo.no",
+      "session_id": "019cfb5b-e3ae-757d-b555-639568bc27e6",
+      "session_start": "2026-03-17 11:33:49.336000",
+      "duration_min": 7
+    },
+    {
+      "email": "doh@smartwaves.cloud",
+      "session_id": "019cfb53-5b60-7888-b365-599bc1c462ca",
+      "session_start": "2026-03-17 11:24:32.298000",
+      "duration_min": 37
+    },
+    {
+      "email": "salg@salgspartneren.no",
+      "session_id": "019cfb49-2799-7778-9343-52eaa802f0b2",
+      "session_start": "2026-03-17 11:13:21.629000",
+      "duration_min": 294
+    },
+    {
+      "email": "steffen.torsberg@ntt.no",
+      "session_id": "019cfb44-9788-7535-acb8-3d9f121f40ac",
+      "session_start": "2026-03-17 11:08:22.520000",
+      "duration_min": 6
+    },
+    {
+      "email": "karsten@elitemedia.no",
+      "session_id": "019cfb41-e214-7aa1-8cd4-8fe6d300dac1",
+      "session_start": "2026-03-17 11:05:15.915000",
+      "duration_min": 1
+    },
+    {
+      "email": "karsten@elitemedia.no",
+      "session_id": "019cfb41-df58-7aed-8873-c30e6e692fb8",
+      "session_start": "2026-03-17 11:05:15.558000",
+      "duration_min": 0
+    },
+    {
+      "email": "post@kreatek.no",
+      "session_id": "019cfb40-377e-75e9-a1fe-b1e14444a7f1",
+      "session_start": "2026-03-17 11:03:35.785000",
+      "duration_min": 5
+    },
+    {
+      "email": "post@kreatek.no",
+      "session_id": "019cfb3f-8a16-7bae-b988-07e43bf19d23",
+      "session_start": "2026-03-17 11:02:51.395000",
+      "duration_min": 1
+    },
+    {
+      "email": "jens.loe@vexter.ai",
+      "session_id": "019cfb3e-9638-732c-adaf-4bc86b811e23",
+      "session_start": "2026-03-17 11:01:48.984000",
+      "duration_min": 25
+    },
+    {
+      "email": "jan@propos.no",
+      "session_id": "019cfb3b-0f0c-7985-878a-408ea5375481",
+      "session_start": "2026-03-17 10:57:57.755000",
+      "duration_min": 5
+    },
+    {
+      "email": "harald@osvold.no",
+      "session_id": "019cfb3a-2ef7-71ef-9582-074a39ae1c62",
+      "session_start": "2026-03-17 10:57:00.377000",
+      "duration_min": 0
+    },
+    {
+      "email": "lotte@svenn.com",
+      "session_id": "019cfb3a-0e5c-7224-9d1f-f89e78cd7b8a",
+      "session_start": "2026-03-17 10:56:51.867000",
+      "duration_min": 0
+    },
+    {
+      "email": "thomas.ortega@forenom.com",
+      "session_id": "019cfb2f-0ae0-7546-962b-8b7e54c4cc5d",
+      "session_start": "2026-03-17 10:44:50.179000",
+      "duration_min": 1
+    },
+    {
+      "email": "thomas.ortega@forenom.com",
+      "session_id": "019cfb29-0323-76df-bd6f-640b2959ba60",
+      "session_start": "2026-03-17 10:38:14.982000",
+      "duration_min": 2
+    },
+    {
+      "email": "thomas.ortega@forenom.com",
+      "session_id": "019cfb27-beaf-7851-b6d4-d47f027dc27c",
+      "session_start": "2026-03-17 10:36:51.995000",
+      "duration_min": 2
+    },
+    {
+      "email": "salg@salgspartneren.no",
+      "session_id": "019cfb25-347b-71c7-87a9-8951fe73b2bb",
+      "session_start": "2026-03-17 10:34:05.599000",
+      "duration_min": 0
+    },
+    {
+      "email": "kasper.kjaerstad@mobino.no",
+      "session_id": "019cfb23-c51c-7290-be1e-846b4f267ef4",
+      "session_start": "2026-03-17 10:32:31.497000",
+      "duration_min": 1
+    },
+    {
+      "email": "kasper.kjaerstad@mobino.no",
+      "session_id": "019cfb23-c513-79cc-9699-0777b008ca92",
+      "session_start": "2026-03-17 10:32:31.490000",
+      "duration_min": 0
+    },
+    {
+      "email": "janolav@bidsystem.no",
+      "session_id": "019cfb1c-4c93-7fcf-bf25-cb1cadf27881",
+      "session_start": "2026-03-17 10:24:21.857000",
+      "duration_min": 4
+    },
+    {
+      "email": "jorgen@vexter.no",
+      "session_id": "019cfb13-50b6-7541-9f2f-1f483e822838",
+      "session_start": "2026-03-17 10:14:33.094000",
+      "duration_min": 157
+    },
+    {
+      "email": "janolav@bidsystem.no",
+      "session_id": "019cfb13-1451-731a-bf0c-a9d075c29a87",
+      "session_start": "2026-03-17 10:14:17.907000",
+      "duration_min": 177
+    },
+    {
+      "email": "mithuna@hornmedia.no",
+      "session_id": "019cfb01-6ca2-7423-91ab-403fc3746fbc",
+      "session_start": "2026-03-17 09:55:00.605000",
+      "duration_min": 1
+    },
+    {
+      "email": "mithuna@hornmedia.no",
+      "session_id": "019cfb01-6868-7ff9-8547-2a4c9f1235eb",
+      "session_start": "2026-03-17 09:54:59.615000",
+      "duration_min": 0
+    },
+    {
+      "email": "sondre@myprofil.no",
+      "session_id": "019cfafe-8279-742d-b150-9c898da408d2",
+      "session_start": "2026-03-17 09:51:49.502000",
+      "duration_min": 20
+    },
+    {
+      "email": "jens.loe@vexter.ai",
+      "session_id": "019cfaf5-c313-7ed9-818c-b9add44a878a",
+      "session_start": "2026-03-17 09:48:59.045000",
+      "duration_min": 48
+    },
+    {
+      "email": "sondre@myprofil.no",
+      "session_id": "019cfafa-72d7-7a59-88c1-e1c8755c89fc",
+      "session_start": "2026-03-17 09:47:23.388000",
+      "duration_min": 0
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfaf9-cc3f-703e-a115-04ea61b20f54",
+      "session_start": "2026-03-17 09:46:41.450000",
+      "duration_min": 24
+    },
+    {
+      "email": "stian@vexter.io",
+      "session_id": "019cfaf8-b4a3-7423-89e5-bc3a695c8aad",
+      "session_start": "2026-03-17 09:45:29.670000",
+      "duration_min": 7
+    },
+    {
+      "email": "mansour.rashidi@thevit.no",
+      "session_id": "019cfaf6-e761-7040-8720-26710c60d2fa",
+      "session_start": "2026-03-17 09:43:31.128000",
+      "duration_min": 7
+    },
+    {
+      "email": "shehab@vexter.no",
+      "session_id": "019cfaf5-246c-717b-bc83-3be14236eb62",
+      "session_start": "2026-03-17 09:41:47.100000",
+      "duration_min": 231
+    },
+    {
+      "email": "lotte@svenn.com",
+      "session_id": "019cfaea-982c-76fd-be7c-6d709431f16b",
+      "session_start": "2026-03-17 09:30:04.431000",
+      "duration_min": 86
+    },
+    {
+      "email": "lotte@svenn.com",
+      "session_id": "019cfaea-9821-7088-8955-3728c68c8db2",
+      "session_start": "2026-03-17 09:30:04.425000",
+      "duration_min": 0
+    },
+    {
+      "email": "doh@smartwaves.cloud",
+      "session_id": "019cfaea-6eba-7834-9b38-485238a391ad",
+      "session_start": "2026-03-17 09:29:54.354000",
+      "duration_min": 25
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfae7-e5c9-7258-a190-012b69615ebe",
+      "session_start": "2026-03-17 09:27:07.673000",
+      "duration_min": 7
+    },
+    {
+      "email": "salg@salgspartneren.no",
+      "session_id": "019cfae5-bcec-79a1-8c9d-35d433f94054",
+      "session_start": "2026-03-17 09:24:46.164000",
+      "duration_min": 31
+    },
+    {
+      "email": "simon.berhane@nki.no",
+      "session_id": "019cfae3-b99d-77be-a02d-67f528021110",
+      "session_start": "2026-03-17 09:22:33.182000",
+      "duration_min": 0
+    },
+    {
+      "email": "janolav@bidsystem.no",
+      "session_id": "019cfae0-17d1-712e-9c64-0025fcf3c653",
+      "session_start": "2026-03-17 09:18:36.534000",
+      "duration_min": 56
+    },
+    {
+      "email": "ola@heiglo.no",
+      "session_id": "019cfad8-98b5-7d13-b77a-99f2a222cfaa",
+      "session_start": "2026-03-17 09:10:24.952000",
+      "duration_min": 11
+    },
+    {
+      "email": "ola@heiglo.no",
+      "session_id": "019cfad8-988e-7033-9507-ffb2dba24fa9",
+      "session_start": "2026-03-17 09:10:24.937000",
+      "duration_min": 0
+    },
+    {
+      "email": "glen@grossman.no",
+      "session_id": "019cfad6-4e3e-7614-913b-5a8c046f5927",
+      "session_start": "2026-03-17 09:07:55.385000",
+      "duration_min": 0
+    },
+    {
+      "email": "christian.fredrik.borgen@folq.no",
+      "session_id": "019cfad3-1322-7a28-86b9-f0cdcaa8165c",
+      "session_start": "2026-03-17 09:04:23.079000",
+      "duration_min": 0
+    },
+    {
+      "email": "karsten@elitemedia.no",
+      "session_id": "019cfad2-f18a-7d55-810b-5eedd6e740b2",
+      "session_start": "2026-03-17 09:04:14.478000",
+      "duration_min": 0
+    },
+    {
+      "email": "steffen.torsberg@ntt.no",
+      "session_id": "019cfad1-4e7a-787c-a2cf-42211ac9133e",
+      "session_start": "2026-03-17 09:02:27.204000",
+      "duration_min": 0
+    },
+    {
+      "email": "post@kreatek.no",
+      "session_id": "019cfad1-11b5-7689-b137-419693d4db11",
+      "session_start": "2026-03-17 09:02:11.642000",
+      "duration_min": 0
+    },
+    {
+      "email": "perespen@sportperformance.no",
+      "session_id": "019cfad0-ebd5-7d5d-8da6-4bb106f1a78c",
+      "session_start": "2026-03-17 09:02:01.952000",
+      "duration_min": 0
+    },
+    {
+      "email": "morten@unmo.no",
+      "session_id": "019cfad0-baf5-7355-9765-46664e8a9a27",
+      "session_start": "2026-03-17 09:01:49.435000",
+      "duration_min": 1
+    },
+    {
+      "email": "mansour.rashidi@thevit.no",
+      "session_id": "019cfacf-acf4-7807-b225-27c546a0219d",
+      "session_start": "2026-03-17 09:00:40.307000",
+      "duration_min": 1
+    },
+    {
+      "email": "jan@propos.no",
+      "session_id": "019cfacf-779c-7dbe-8bcf-15e0f6c4d5c0",
+      "session_start": "2026-03-17 09:00:26.652000",
+      "duration_min": 0
+    },
+    {
+      "email": "stina@vexter.no",
+      "session_id": "019cface-cf59-79d1-81c9-b3e9273e1a6e",
+      "session_start": "2026-03-17 08:59:44.206000",
+      "duration_min": 49
+    },
+    {
+      "email": "stina@vexter.no",
+      "session_id": "019cface-cf49-7126-a61e-5a57f2bd5d3e",
+      "session_start": "2026-03-17 08:59:44.198000",
+      "duration_min": 0
+    },
+    {
+      "email": "harald@osvold.no",
+      "session_id": "019cface-7080-7b5b-a97d-f0618ddd6456",
+      "session_start": "2026-03-17 08:59:19.280000",
+      "duration_min": 1
+    },
+    {
+      "email": "jorgen@vexter.no",
+      "session_id": "019cfacd-c65d-7778-9aa8-b97ade4c7b00",
+      "session_start": "2026-03-17 08:58:35.805000",
+      "duration_min": 76
+    },
+    {
+      "email": "doh@smartwaves.cloud",
+      "session_id": "019cfacb-ef80-7b68-9412-b893bdec0fb3",
+      "session_start": "2026-03-17 08:56:33.882000",
+      "duration_min": 1
+    },
+    {
+      "email": "oliver@vexter.no",
+      "session_id": "019cfac7-dbac-76e9-a312-555ac88277b7",
+      "session_start": "2026-03-17 08:52:07.878000",
+      "duration_min": 159
+    },
+    {
+      "email": "oliver@vexter.no",
+      "session_id": "019cfac7-d2f8-7e34-b37b-596b6fbe710d",
+      "session_start": "2026-03-17 08:52:06.089000",
+      "duration_min": 0
+    },
+    {
+      "email": "jens.loe@vexter.ai",
+      "session_id": "019cfac4-fc0e-7231-8d85-2f66bf2f0bee",
+      "session_start": "2026-03-17 08:48:59.627000",
+      "duration_min": 1
+    },
+    {
+      "email": "jens.loe@vexter.ai",
+      "session_id": "019cfac4-fbfd-7969-a037-c868c1b3350d",
+      "session_start": "2026-03-17 08:48:59.612000",
+      "duration_min": 0
+    },
+    {
+      "email": "janolav@bidsystem.no",
+      "session_id": "019cfac0-e4f5-7633-947d-7b4a4ce2d92c",
+      "session_start": "2026-03-17 08:44:31.794000",
+      "duration_min": 0
+    },
+    {
+      "email": "salg@salgspartneren.no",
+      "session_id": "019cfabf-8f9c-7a33-be18-61f3db62ba4e",
+      "session_start": "2026-03-17 08:43:04.302000",
+      "duration_min": 41
+    },
+    {
+      "email": "gaute@diri.no",
+      "session_id": "019cfaa5-ef2e-74e1-b7f2-b6416fcbb9b5",
+      "session_start": "2026-03-17 08:15:04.643000",
+      "duration_min": 14
+    },
+    {
+      "email": "salg@salgspartneren.no",
+      "session_id": "019cfaa0-0280-7fe6-b5ff-e33777cb03a9",
+      "session_start": "2026-03-17 08:08:36.403000",
+      "duration_min": 0
+    },
+    {
+      "email": "jorgen@vexter.no",
+      "session_id": "019cfaa0-0251-77cf-b5c0-3a7797426aea",
+      "session_start": "2026-03-17 08:08:36.369000",
+      "duration_min": 0
+    },
+    {
+      "email": "salg@salgspartneren.no",
+      "session_id": "019cfa9f-fc86-746b-bf63-b896cb006bb4",
+      "session_start": "2026-03-17 08:08:34.950000",
+      "duration_min": 0
+    },
+    {
+      "email": "jorgen@vexter.no",
+      "session_id": "019cfa9f-f50d-74c0-b7b1-32df1c87ac2e",
+      "session_start": "2026-03-17 08:08:33.034000",
+      "duration_min": 0
+    },
+    {
+      "email": "shehab@vexter.no",
+      "session_id": "019cfa97-249e-7684-88d1-93aff9f50efb",
+      "session_start": "2026-03-17 07:58:59.016000",
+      "duration_min": 9
+    },
+    {
+      "email": "shehab@vexter.no",
+      "session_id": "019cfa8e-1ff6-7b72-9c7d-a4f76137320a",
+      "session_start": "2026-03-17 07:57:35.839000",
+      "duration_min": 0
+    },
     {
       "email": "stian@vexter.io",
       "session_id": "019cf922-189e-751e-ac17-7b17d4d2ab60",
@@ -854,6 +2276,12 @@
       "session_id": "019cf66e-f607-74b7-a89c-f113d011831b",
       "session_start": "2026-03-16 12:36:34.308000",
       "duration_min": 101
+    },
+    {
+      "email": "doh@smartwaves.cloud",
+      "session_id": "019cf66e-0b62-7857-bd39-31023ac88a95",
+      "session_start": "2026-03-16 12:35:28.482000",
+      "duration_min": 0
     },
     {
       "email": "perespen@sportperformance.no",
@@ -7466,6 +8894,12 @@
       "session_id": "019cd275-4cd6-7d8e-8914-ea1d82da3cd8",
       "session_start": "2026-03-09 12:57:08.790000",
       "duration_min": 0
+    },
+    {
+      "email": "hei@industrivaskemaskin.no",
+      "session_id": "019cd273-1f37-7dc3-b9c4-07f8c4e604f7",
+      "session_start": "2026-03-09 12:54:48.614000",
+      "duration_min": 3
     },
     {
       "email": "jens.loe@vexter.ai",
@@ -39859,68 +41293,74 @@
   "userSummary": [
     {
       "email": "jorgen@vexter.no",
-      "total_sessions": 603,
-      "last_session": "2026-03-16T22:18:51.401000+01:00",
+      "total_sessions": 615,
+      "last_session": "2026-03-17T22:17:53.633000+01:00",
       "first_session": "2026-01-06T10:08:35.643000+01:00"
     },
     {
       "email": "salg@salgspartneren.no",
-      "total_sessions": 518,
-      "last_session": "2026-03-16T22:18:51.152000+01:00",
+      "total_sessions": 532,
+      "last_session": "2026-03-17T22:17:53.556000+01:00",
       "first_session": "2026-01-09T12:29:38.469000+01:00"
     },
     {
       "email": "mansour.rashidi@thevit.no",
-      "total_sessions": 431,
-      "last_session": "2026-03-16T21:59:19.767000+01:00",
+      "total_sessions": 443,
+      "last_session": "2026-03-17T19:21:22.087000+01:00",
       "first_session": "2025-11-27T10:40:08.419000+01:00"
     },
     {
       "email": "shehab@vexter.no",
-      "total_sessions": 399,
-      "last_session": "2026-03-16T19:56:51.960000+01:00",
+      "total_sessions": 405,
+      "last_session": "2026-03-18T07:41:33.230000+01:00",
       "first_session": "2025-11-18T12:45:35.342000+01:00"
     },
     {
       "email": "harald@osvold.no",
-      "total_sessions": 384,
-      "last_session": "2026-03-16T21:58:28.791000+01:00",
+      "total_sessions": 395,
+      "last_session": "2026-03-17T19:21:00.602000+01:00",
       "first_session": "2025-12-05T15:11:42.106000+01:00"
     },
     {
       "email": "jens.loe@vexter.ai",
-      "total_sessions": 361,
-      "last_session": "2026-03-16T14:14:07.365000+01:00",
+      "total_sessions": 367,
+      "last_session": "2026-03-17T12:07:33.054000+01:00",
       "first_session": "2025-11-20T08:38:19.923000+01:00"
     },
     {
       "email": "stina@vexter.no",
-      "total_sessions": 243,
-      "last_session": "2026-03-16T11:55:42.783000+01:00",
+      "total_sessions": 252,
+      "last_session": "2026-03-18T07:20:16.042000+01:00",
       "first_session": "2025-12-30T10:14:08.066000+01:00"
     },
     {
       "email": "post@kreatek.no",
-      "total_sessions": 213,
-      "last_session": "2026-03-16T22:00:22.438000+01:00",
+      "total_sessions": 223,
+      "last_session": "2026-03-17T19:21:57.433000+01:00",
       "first_session": "2026-02-11T14:28:23.068000+01:00"
     },
     {
       "email": "jan@propos.no",
-      "total_sessions": 207,
-      "last_session": "2026-03-16T21:58:42.708000+01:00",
+      "total_sessions": 220,
+      "last_session": "2026-03-17T19:21:12.096000+01:00",
       "first_session": "2026-01-26T12:30:35.995000+01:00"
     },
     {
       "email": "stian@vexter.io",
-      "total_sessions": 189,
-      "last_session": "2026-03-17T01:29:17.260000+01:00",
+      "total_sessions": 190,
+      "last_session": "2026-03-17T09:52:01.149000+01:00",
       "first_session": "2024-10-08T14:13:32.520000+02:00"
     },
     {
+      "email": "christian.fredrik.borgen@folq.no",
+      "total_sessions": 186,
+      "last_session": "2026-03-17T22:17:15.049000+01:00",
+      "first_session": "2026-02-11T21:40:24.462000+01:00"
+    },
+    {
       "email": "mathias@vexter.no",
-      "total_sessions": 176,
-      "last_session": "2026-03-16T20:12:44.948000+01:00",
+      "total_sessions": 177,
+      "last_session": "2026-03-17T11:46:26.871000+01:00",
       "first_session": "2026-01-06T10:31:22.663000+01:00"
     },
     {
@@ -39930,16 +41370,16 @@
       "first_session": "2026-01-06T11:05:16.990000+01:00"
     },
     {
-      "email": "christian.fredrik.borgen@folq.no",
-      "total_sessions": 166,
-      "last_session": "2026-03-16T21:58:12.897000+01:00",
-      "first_session": "2026-02-11T21:40:24.462000+01:00"
+      "email": "steffen.torsberg@ntt.no",
+      "total_sessions": 140,
+      "last_session": "2026-03-17T19:22:09.235000+01:00",
+      "first_session": "2026-02-03T09:39:35.936000+01:00"
     },
     {
-      "email": "steffen.torsberg@ntt.no",
-      "total_sessions": 132,
-      "last_session": "2026-03-16T22:00:35.212000+01:00",
-      "first_session": "2026-02-03T09:39:35.936000+01:00"
+      "email": "morten@unmo.no",
+      "total_sessions": 131,
+      "last_session": "2026-03-17T19:21:32.470000+01:00",
+      "first_session": "2026-02-13T13:31:27.501000+01:00"
     },
     {
       "email": "toringe@rydd.no",
@@ -39948,33 +41388,27 @@
       "first_session": "2025-11-20T10:26:22.031000+01:00"
     },
     {
-      "email": "morten@unmo.no",
-      "total_sessions": 125,
-      "last_session": "2026-03-16T21:59:34.025000+01:00",
-      "first_session": "2026-02-13T13:31:27.501000+01:00"
-    },
-    {
       "email": "perespen@sportperformance.no",
-      "total_sessions": 120,
-      "last_session": "2026-03-16T21:59:53.009000+01:00",
+      "total_sessions": 126,
+      "last_session": "2026-03-17T19:21:44.819000+01:00",
       "first_session": "2026-01-19T14:25:09.862000+01:00"
     },
     {
       "email": "karsten@elitemedia.no",
-      "total_sessions": 111,
-      "last_session": "2026-03-16T21:58:59.358000+01:00",
+      "total_sessions": 117,
+      "last_session": "2026-03-17T17:38:37.538000+01:00",
       "first_session": "2026-02-24T14:23:50.752000+01:00"
     },
     {
       "email": "oliver@vexter.no",
-      "total_sessions": 105,
-      "last_session": "2026-03-16T14:23:34.630000+01:00",
+      "total_sessions": 107,
+      "last_session": "2026-03-17T11:31:00.066000+01:00",
       "first_session": "2026-02-12T10:39:33.530000+01:00"
     },
     {
       "email": "janolav@bidsystem.no",
-      "total_sessions": 96,
-      "last_session": "2026-03-16T15:00:21.615000+01:00",
+      "total_sessions": 104,
+      "last_session": "2026-03-17T15:08:30.238000+01:00",
       "first_session": "2026-02-23T10:25:46.282000+01:00"
     },
     {
@@ -39982,6 +41416,12 @@
       "total_sessions": 83,
       "last_session": "2026-03-11T09:51:41.159000+01:00",
       "first_session": "2026-02-03T13:17:33.133000+01:00"
+    },
+    {
+      "email": "lotte@svenn.com",
+      "total_sessions": 75,
+      "last_session": "2026-03-18T01:33:22.161000+01:00",
+      "first_session": "2026-02-12T13:38:37.594000+01:00"
     },
     {
       "email": "vivian@vexter.no",
@@ -39996,16 +41436,16 @@
       "first_session": "2025-11-20T08:47:52.703000+01:00"
     },
     {
-      "email": "kasper.kjaerstad@mobino.no",
-      "total_sessions": 66,
-      "last_session": "2026-03-16T15:33:35.598000+01:00",
-      "first_session": "2026-02-10T13:17:37.260000+01:00"
+      "email": "sondre@myprofil.no",
+      "total_sessions": 69,
+      "last_session": "2026-03-17T12:41:22.701000+01:00",
+      "first_session": "2025-12-01T08:46:07.462000+01:00"
     },
     {
-      "email": "sondre@myprofil.no",
-      "total_sessions": 66,
-      "last_session": "2026-03-16T09:45:53.856000+01:00",
-      "first_session": "2025-12-01T08:46:07.462000+01:00"
+      "email": "kasper.kjaerstad@mobino.no",
+      "total_sessions": 68,
+      "last_session": "2026-03-17T10:33:29.070000+01:00",
+      "first_session": "2026-02-10T13:17:37.260000+01:00"
     },
     {
       "email": "hallvard@pitchpeak.no",
@@ -40014,22 +41454,16 @@
       "first_session": "2025-12-15T11:24:08.972000+01:00"
     },
     {
-      "email": "lotte@svenn.com",
-      "total_sessions": 61,
-      "last_session": "2026-03-16T14:17:48.253000+01:00",
-      "first_session": "2026-02-12T13:38:37.594000+01:00"
+      "email": "phuong.phan@nki.no",
+      "total_sessions": 54,
+      "last_session": "2026-03-16T10:28:37.003000+01:00",
+      "first_session": "2026-02-24T09:43:49.698000+01:00"
     },
     {
       "email": "ulf@talentsourcing.no",
       "total_sessions": 54,
       "last_session": "2026-02-06T09:56:09.622000+01:00",
       "first_session": "2026-01-08T11:00:59.617000+01:00"
-    },
-    {
-      "email": "phuong.phan@nki.no",
-      "total_sessions": 54,
-      "last_session": "2026-03-16T10:28:37.003000+01:00",
-      "first_session": "2026-02-24T09:43:49.698000+01:00"
     },
     {
       "email": "erlend@britannia.no",
@@ -40039,21 +41473,21 @@
     },
     {
       "email": "olechristian@re-boot.life",
-      "total_sessions": 43,
-      "last_session": "2026-03-12T09:48:18.314000+01:00",
+      "total_sessions": 44,
+      "last_session": "2026-03-17T14:13:41.435000+01:00",
       "first_session": "2026-02-13T13:15:44.595000+01:00"
     },
     {
-      "email": "shehab63363@gmail.com",
-      "total_sessions": 37,
-      "last_session": "2026-03-13T16:49:11.657000+01:00",
-      "first_session": "2025-11-28T14:08:19.230000+01:00"
+      "email": "glen@grossman.no",
+      "total_sessions": 42,
+      "last_session": "2026-03-17T19:20:48.821000+01:00",
+      "first_session": "2026-03-02T11:52:54.279000+01:00"
     },
     {
-      "email": "truls@vexter.no",
-      "total_sessions": 36,
-      "last_session": "2026-02-09T14:20:45.649000+01:00",
-      "first_session": "2026-01-06T10:37:37.722000+01:00"
+      "email": "shehab63363@gmail.com",
+      "total_sessions": 38,
+      "last_session": "2026-03-17T13:09:43.343000+01:00",
+      "first_session": "2025-11-28T14:08:19.230000+01:00"
     },
     {
       "email": "isak.solem@nki.no",
@@ -40062,16 +41496,34 @@
       "first_session": "2026-02-24T12:05:45.072000+01:00"
     },
     {
+      "email": "truls@vexter.no",
+      "total_sessions": 36,
+      "last_session": "2026-02-09T14:20:45.649000+01:00",
+      "first_session": "2026-01-06T10:37:37.722000+01:00"
+    },
+    {
+      "email": "steffen.espelid@verji.com",
+      "total_sessions": 35,
+      "last_session": "2026-03-17T14:23:53.296000+01:00",
+      "first_session": "2026-02-17T14:12:19.278000+01:00"
+    },
+    {
+      "email": "mithuna@hornmedia.no",
+      "total_sessions": 34,
+      "last_session": "2026-03-17T14:42:31.104000+01:00",
+      "first_session": "2026-03-05T10:03:18.449000+01:00"
+    },
+    {
       "email": "birger@aiflow.no",
       "total_sessions": 34,
       "last_session": "2025-12-11T00:40:37.511000+01:00",
       "first_session": "2025-11-20T11:13:47.363000+01:00"
     },
     {
-      "email": "steffen.espelid@verji.com",
-      "total_sessions": 34,
-      "last_session": "2026-03-16T15:03:06.815000+01:00",
-      "first_session": "2026-02-17T14:12:19.278000+01:00"
+      "email": "jens@vexter.no",
+      "total_sessions": 32,
+      "last_session": "2026-03-17T21:14:26.522000+01:00",
+      "first_session": "2026-01-06T08:57:32.196000+01:00"
     },
     {
       "email": "linda.skagerberg@toptemp.no",
@@ -40080,22 +41532,10 @@
       "first_session": "2025-11-20T08:17:55.911000+01:00"
     },
     {
-      "email": "mithuna@hornmedia.no",
-      "total_sessions": 30,
-      "last_session": "2026-03-16T15:01:20.175000+01:00",
-      "first_session": "2026-03-05T10:03:18.449000+01:00"
-    },
-    {
       "email": "patrik@concom.no",
       "total_sessions": 30,
       "last_session": "2026-03-02T12:55:34.301000+01:00",
       "first_session": "2025-12-15T15:07:44.132000+01:00"
-    },
-    {
-      "email": "jens@vexter.no",
-      "total_sessions": 28,
-      "last_session": "2026-02-10T13:09:18.722000+01:00",
-      "first_session": "2026-01-06T08:57:32.196000+01:00"
     },
     {
       "email": "jon.petter.andersen@comfycom.com",
@@ -40111,15 +41551,27 @@
     },
     {
       "email": "gaute@diri.no",
-      "total_sessions": 21,
-      "last_session": "2026-03-16T18:41:26.136000+01:00",
+      "total_sessions": 22,
+      "last_session": "2026-03-17T08:29:10.957000+01:00",
       "first_session": "2026-03-10T09:06:50.206000+01:00"
+    },
+    {
+      "email": "ola@heiglo.no",
+      "total_sessions": 21,
+      "last_session": "2026-03-17T15:52:05.406000+01:00",
+      "first_session": "2026-03-04T11:28:41.210000+01:00"
     },
     {
       "email": "bastian@workmove.no",
       "total_sessions": 21,
       "last_session": "2025-12-23T12:17:25.064000+01:00",
       "first_session": "2025-11-20T09:56:14.998000+01:00"
+    },
+    {
+      "email": "anton.j@jobzone.no",
+      "total_sessions": 20,
+      "last_session": "2026-03-12T13:52:19.175000+01:00",
+      "first_session": "2025-11-20T08:14:39.301000+01:00"
     },
     {
       "email": "anders@cloudahead.no",
@@ -40132,24 +41584,6 @@
       "total_sessions": 20,
       "last_session": "2025-12-16T12:46:30.165000+01:00",
       "first_session": "2025-11-20T09:57:33.330000+01:00"
-    },
-    {
-      "email": "anton.j@jobzone.no",
-      "total_sessions": 20,
-      "last_session": "2026-03-12T13:52:19.175000+01:00",
-      "first_session": "2025-11-20T08:14:39.301000+01:00"
-    },
-    {
-      "email": "glen@grossman.no",
-      "total_sessions": 19,
-      "last_session": "2026-03-16T17:39:32.063000+01:00",
-      "first_session": "2026-03-02T11:52:54.279000+01:00"
-    },
-    {
-      "email": "ola@heiglo.no",
-      "total_sessions": 17,
-      "last_session": "2026-03-07T22:12:08.073000+01:00",
-      "first_session": "2026-03-04T11:28:41.210000+01:00"
     },
     {
       "email": "roger@nell.no",
@@ -40170,16 +41604,34 @@
       "first_session": "2025-12-01T10:17:03.733000+01:00"
     },
     {
-      "email": "morten@re-boot.life",
+      "email": "simon.berhane@nki.no",
+      "total_sessions": 16,
+      "last_session": "2026-03-17T09:22:34.949000+01:00",
+      "first_session": "2026-03-04T14:17:18.664000+01:00"
+    },
+    {
+      "email": "ingrid-mazeppa.group@clickyardly.co",
       "total_sessions": 15,
-      "last_session": "2026-03-11T16:51:10.753000+01:00",
-      "first_session": "2026-02-23T11:26:20.812000+01:00"
+      "last_session": "2025-12-09T10:27:58.755000+01:00",
+      "first_session": "2025-12-01T09:05:16.959000+01:00"
+    },
+    {
+      "email": "eldar@venturetime.no",
+      "total_sessions": 15,
+      "last_session": "2026-03-17T16:56:12.126000+01:00",
+      "first_session": "2026-03-09T16:42:23.832000+01:00"
     },
     {
       "email": "peli@godik.no",
       "total_sessions": 15,
       "last_session": "2026-02-17T12:57:57.945000+01:00",
       "first_session": "2025-11-25T09:23:18.037000+01:00"
+    },
+    {
+      "email": "morten@re-boot.life",
+      "total_sessions": 15,
+      "last_session": "2026-03-11T16:51:10.753000+01:00",
+      "first_session": "2026-02-23T11:26:20.812000+01:00"
     },
     {
       "email": "daniel.oseth@igaidi.no",
@@ -40192,18 +41644,6 @@
       "total_sessions": 15,
       "last_session": "2026-02-17T12:29:56.609000+01:00",
       "first_session": "2025-12-02T08:16:53.329000+01:00"
-    },
-    {
-      "email": "ingrid-mazeppa.group@clickyardly.co",
-      "total_sessions": 15,
-      "last_session": "2025-12-09T10:27:58.755000+01:00",
-      "first_session": "2025-12-01T09:05:16.959000+01:00"
-    },
-    {
-      "email": "simon.berhane@nki.no",
-      "total_sessions": 15,
-      "last_session": "2026-03-16T15:31:15.850000+01:00",
-      "first_session": "2026-03-04T14:17:18.664000+01:00"
     },
     {
       "email": "paal@energihuset.net",
@@ -40224,28 +41664,16 @@
       "first_session": "2025-11-26T14:18:46.774000+01:00"
     },
     {
+      "email": "henning@elvebyenregnskap.no",
+      "total_sessions": 13,
+      "last_session": "2026-03-17T22:11:18.198000+01:00",
+      "first_session": "2025-12-04T13:22:24.556000+01:00"
+    },
+    {
       "email": "julie.remen@fortytwo.io",
       "total_sessions": 12,
       "last_session": "2026-03-09T12:57:08.790000+01:00",
       "first_session": "2026-02-25T13:06:08.148000+01:00"
-    },
-    {
-      "email": "eldar@venturetime.no",
-      "total_sessions": 12,
-      "last_session": "2026-03-13T16:49:49.932000+01:00",
-      "first_session": "2026-03-09T16:42:23.832000+01:00"
-    },
-    {
-      "email": "ove@easyreq.no",
-      "total_sessions": 12,
-      "last_session": "2026-02-26T14:59:03.173000+01:00",
-      "first_session": "2026-02-12T14:29:48.843000+01:00"
-    },
-    {
-      "email": "havard.ellingsen@expandia.no",
-      "total_sessions": 12,
-      "last_session": "2026-01-08T07:58:52.009000+01:00",
-      "first_session": "2025-11-20T08:30:43.224000+01:00"
     },
     {
       "email": "robin@vexter.no",
@@ -40254,16 +41682,16 @@
       "first_session": "2026-01-07T13:16:03.281000+01:00"
     },
     {
-      "email": "ali@rupanicom.no",
-      "total_sessions": 11,
-      "last_session": "2026-03-10T12:12:29.869000+01:00",
-      "first_session": "2026-02-10T13:09:56.336000+01:00"
+      "email": "havard.ellingsen@expandia.no",
+      "total_sessions": 12,
+      "last_session": "2026-01-08T07:58:52.009000+01:00",
+      "first_session": "2025-11-20T08:30:43.224000+01:00"
     },
     {
-      "email": "fredrik.rasmussen@energihuset.net",
-      "total_sessions": 11,
-      "last_session": "2026-02-18T13:04:58.451000+01:00",
-      "first_session": "2025-11-21T10:48:51.684000+01:00"
+      "email": "ove@easyreq.no",
+      "total_sessions": 12,
+      "last_session": "2026-02-26T14:59:03.173000+01:00",
+      "first_session": "2026-02-12T14:29:48.843000+01:00"
     },
     {
       "email": "marcus@indexa.no",
@@ -40272,16 +41700,34 @@
       "first_session": "2026-03-02T23:35:11.854000+01:00"
     },
     {
-      "email": "henning@elvebyenregnskap.no",
-      "total_sessions": 10,
-      "last_session": "2026-03-16T22:33:55.333000+01:00",
-      "first_session": "2025-12-04T13:22:24.556000+01:00"
+      "email": "erik.mellebye-giertsen@sperton.com",
+      "total_sessions": 11,
+      "last_session": "2026-03-17T14:47:52.349000+01:00",
+      "first_session": "2026-03-02T14:20:17.166000+01:00"
     },
     {
-      "email": "erik.mellebye-giertsen@sperton.com",
-      "total_sessions": 10,
-      "last_session": "2026-03-10T10:39:32.518000+01:00",
-      "first_session": "2026-03-02T14:20:17.166000+01:00"
+      "email": "ali@rupanicom.no",
+      "total_sessions": 11,
+      "last_session": "2026-03-10T12:12:29.869000+01:00",
+      "first_session": "2026-02-10T13:09:56.336000+01:00"
+    },
+    {
+      "email": "doh@smartwaves.cloud",
+      "total_sessions": 11,
+      "last_session": "2026-03-17T14:48:16.174000+01:00",
+      "first_session": "2026-03-16T12:33:56.376000+01:00"
+    },
+    {
+      "email": "fredrik.rasmussen@energihuset.net",
+      "total_sessions": 11,
+      "last_session": "2026-02-18T13:04:58.451000+01:00",
+      "first_session": "2025-11-21T10:48:51.684000+01:00"
+    },
+    {
+      "email": "thomas.ortega@forenom.com",
+      "total_sessions": 9,
+      "last_session": "2026-03-17T15:05:29.044000+01:00",
+      "first_session": "2026-03-16T11:12:48.661000+01:00"
     },
     {
       "email": "joel@homni.no",
@@ -40290,16 +41736,16 @@
       "first_session": "2026-02-26T15:48:02.997000+01:00"
     },
     {
-      "email": "ashkan@anbudstorget.no",
-      "total_sessions": 9,
-      "last_session": "2026-01-22T10:04:21.199000+01:00",
-      "first_session": "2025-11-20T13:06:41.837000+01:00"
-    },
-    {
       "email": "hanne.grydeland@sildre.as",
       "total_sessions": 9,
       "last_session": "2025-12-10T17:06:46.950000+01:00",
       "first_session": "2025-12-03T13:14:06.166000+01:00"
+    },
+    {
+      "email": "ashkan@anbudstorget.no",
+      "total_sessions": 9,
+      "last_session": "2026-01-22T10:04:21.199000+01:00",
+      "first_session": "2025-11-20T13:06:41.837000+01:00"
     },
     {
       "email": "lasse@pitch.no",
@@ -40314,22 +41760,16 @@
       "first_session": "2025-12-04T12:38:06.944000+01:00"
     },
     {
-      "email": "fredrik@digr.no",
-      "total_sessions": 7,
-      "last_session": "2026-02-11T09:56:47.653000+01:00",
-      "first_session": "2026-01-11T07:29:02.615000+01:00"
-    },
-    {
       "email": "jakob@amidays.com",
       "total_sessions": 7,
       "last_session": "2026-01-16T16:17:15.270000+01:00",
       "first_session": "2026-01-13T16:53:08.845000+01:00"
     },
     {
-      "email": "nils.magne@invisi.no",
-      "total_sessions": 6,
-      "last_session": "2026-01-06T15:33:38.913000+01:00",
-      "first_session": "2025-12-11T11:05:28.781000+01:00"
+      "email": "fredrik@digr.no",
+      "total_sessions": 7,
+      "last_session": "2026-02-11T09:56:47.653000+01:00",
+      "first_session": "2026-01-11T07:29:02.615000+01:00"
     },
     {
       "email": "viktor@tjenestetorvet.dk",
@@ -40338,22 +41778,10 @@
       "first_session": "2026-01-15T14:38:26.250000+01:00"
     },
     {
-      "email": "kristian.borseth1@gmail.com",
-      "total_sessions": 6,
-      "last_session": "2026-02-18T09:15:00.704000+01:00",
-      "first_session": "2026-02-14T08:15:47.144000+01:00"
-    },
-    {
       "email": "shantanu.phadke@gmail.com",
       "total_sessions": 6,
       "last_session": "2026-02-20T09:03:07.249000+01:00",
       "first_session": "2026-02-17T10:03:03.784000+01:00"
-    },
-    {
-      "email": "olai@homesourcing.no",
-      "total_sessions": 6,
-      "last_session": "2025-12-11T15:58:27.720000+01:00",
-      "first_session": "2025-12-10T10:40:45.705000+01:00"
     },
     {
       "email": "oyvind.fritzen@noova.no",
@@ -40362,34 +41790,40 @@
       "first_session": "2026-02-16T09:47:29.155000+01:00"
     },
     {
-      "email": "sf@thebrave.no",
-      "total_sessions": 6,
-      "last_session": "2025-12-12T14:38:30.817000+01:00",
-      "first_session": "2025-12-10T13:49:15.059000+01:00"
-    },
-    {
       "email": "rizwan.rupani@mobino.no",
       "total_sessions": 6,
       "last_session": "2026-03-11T20:55:33.894000+01:00",
       "first_session": "2026-03-09T14:13:58.667000+01:00"
     },
     {
-      "email": "jens@vexter.io",
-      "total_sessions": 5,
-      "last_session": "2025-12-15T09:38:41.235000+01:00",
-      "first_session": "2025-12-01T13:55:35.171000+01:00"
+      "email": "kristian.borseth1@gmail.com",
+      "total_sessions": 6,
+      "last_session": "2026-02-18T09:15:00.704000+01:00",
+      "first_session": "2026-02-14T08:15:47.144000+01:00"
     },
     {
-      "email": "doh@smartwaves.cloud",
-      "total_sessions": 5,
-      "last_session": "2026-03-16T16:43:18.555000+01:00",
-      "first_session": "2026-03-16T12:33:56.376000+01:00"
+      "email": "nils.magne@invisi.no",
+      "total_sessions": 6,
+      "last_session": "2026-01-06T15:33:38.913000+01:00",
+      "first_session": "2025-12-11T11:05:28.781000+01:00"
     },
     {
-      "email": "kenhygienesystems@gmail.com",
+      "email": "olai@homesourcing.no",
+      "total_sessions": 6,
+      "last_session": "2025-12-11T15:58:27.720000+01:00",
+      "first_session": "2025-12-10T10:40:45.705000+01:00"
+    },
+    {
+      "email": "sf@thebrave.no",
+      "total_sessions": 6,
+      "last_session": "2025-12-12T14:38:30.817000+01:00",
+      "first_session": "2025-12-10T13:49:15.059000+01:00"
+    },
+    {
+      "email": "ferdinand.moe@frontpayment.no",
       "total_sessions": 5,
-      "last_session": "2026-02-12T09:13:34.814000+01:00",
-      "first_session": "2026-02-11T10:02:05.287000+01:00"
+      "last_session": "2026-02-26T14:26:26.377000+01:00",
+      "first_session": "2026-02-25T12:42:06.004000+01:00"
     },
     {
       "email": "eva.alette@re-boot.life",
@@ -40398,22 +41832,52 @@
       "first_session": "2026-02-23T10:24:13.308000+01:00"
     },
     {
+      "email": "jens@vexter.io",
+      "total_sessions": 5,
+      "last_session": "2025-12-15T09:38:41.235000+01:00",
+      "first_session": "2025-12-01T13:55:35.171000+01:00"
+    },
+    {
+      "email": "kenhygienesystems@gmail.com",
+      "total_sessions": 5,
+      "last_session": "2026-02-12T09:13:34.814000+01:00",
+      "first_session": "2026-02-11T10:02:05.287000+01:00"
+    },
+    {
+      "email": "ingvild.kristiansen@jobzone.no",
+      "total_sessions": 5,
+      "last_session": "2026-01-28T14:50:07.862000+01:00",
+      "first_session": "2026-01-08T12:26:02.222000+01:00"
+    },
+    {
+      "email": "diyana@anbudstorget.no",
+      "total_sessions": 5,
+      "last_session": "2025-12-11T08:45:02.437000+01:00",
+      "first_session": "2025-11-21T08:34:24.759000+01:00"
+    },
+    {
       "email": "lars@webscaleflow.com",
       "total_sessions": 5,
       "last_session": "2026-02-18T10:10:59.686000+01:00",
       "first_session": "2026-02-17T16:05:59.178000+01:00"
     },
     {
-      "email": "ashenafi.abdissa@noova.no",
+      "email": "mathilde@vexter.no",
       "total_sessions": 5,
-      "last_session": "2026-01-19T09:39:22.410000+01:00",
-      "first_session": "2025-12-15T08:53:38.179000+01:00"
+      "last_session": "2026-03-17T17:06:30.891000+01:00",
+      "first_session": "2026-03-17T12:55:55.615000+01:00"
     },
     {
-      "email": "ferdinand.moe@frontpayment.no",
+      "email": "anna@cloudahead.no",
       "total_sessions": 5,
-      "last_session": "2026-02-26T14:26:26.377000+01:00",
-      "first_session": "2026-02-25T12:42:06.004000+01:00"
+      "last_session": "2025-12-18T23:24:18.735000+01:00",
+      "first_session": "2025-12-18T11:35:30.781000+01:00"
+    },
+    {
+      "email": "bacabos824@imfaya.com",
+      "total_sessions": 5,
+      "last_session": "2026-01-16T12:21:31.869000+01:00",
+      "first_session": "2026-01-14T11:13:28.307000+01:00"
     },
     {
       "email": "kafil.ahmed@bring.com",
@@ -40426,44 +41890,9 @@
       "total_sessions": 5,
       "last_session": "2025-12-04T11:41:34.821000+01:00",
       "first_session": "2025-11-20T07:41:02.185000+01:00"
-    },
-    {
-      "email": "bacabos824@imfaya.com",
-      "total_sessions": 5,
-      "last_session": "2026-01-16T12:21:31.869000+01:00",
-      "first_session": "2026-01-14T11:13:28.307000+01:00"
-    },
-    {
-      "email": "anna@cloudahead.no",
-      "total_sessions": 5,
-      "last_session": "2025-12-18T23:24:18.735000+01:00",
-      "first_session": "2025-12-18T11:35:30.781000+01:00"
-    },
-    {
-      "email": "diyana@anbudstorget.no",
-      "total_sessions": 5,
-      "last_session": "2025-12-11T08:45:02.437000+01:00",
-      "first_session": "2025-11-21T08:34:24.759000+01:00"
-    },
-    {
-      "email": "ingvild.kristiansen@jobzone.no",
-      "total_sessions": 5,
-      "last_session": "2026-01-28T14:50:07.862000+01:00",
-      "first_session": "2026-01-08T12:26:02.222000+01:00"
-    },
-    {
-      "email": "kristian@stratechy.co",
-      "total_sessions": 4,
-      "last_session": "2026-03-15T16:53:08.685000+01:00",
-      "first_session": "2026-03-08T16:40:18.664000+01:00"
     }
   ],
   "weeklyPerUser": [
-    {
-      "week": "2025-12-22",
-      "email": "bastian@workmove.no",
-      "sessions": 1
-    },
     {
       "week": "2025-12-29",
       "email": "anders@cloudahead.no",
@@ -40958,6 +42387,11 @@
       "week": "2026-01-26",
       "email": "john@vexter.no",
       "sessions": 28
+    },
+    {
+      "week": "2026-01-26",
+      "email": "jorgen@vexter.no",
+      "sessions": 87
     }
   ],
   "monthlyStats": [
@@ -40993,18 +42427,12 @@
     },
     {
       "month": "2026-03-01",
-      "mau": 66,
-      "total_sessions": 2255,
-      "sessions_per_user": 34.17
+      "mau": 69,
+      "total_sessions": 2494,
+      "sessions_per_user": 36.14
     }
   ],
   "weeklyStats": [
-    {
-      "week": "2025-12-22",
-      "wau": 1,
-      "total_sessions": 1,
-      "sessions_per_user": 1.0
-    },
     {
       "week": "2025-12-29",
       "wau": 7,
@@ -41067,15 +42495,15 @@
     },
     {
       "week": "2026-03-09",
-      "wau": 48,
-      "total_sessions": 1047,
-      "sessions_per_user": 21.81
+      "wau": 49,
+      "total_sessions": 1048,
+      "sessions_per_user": 21.39
     },
     {
       "week": "2026-03-16",
-      "wau": 36,
-      "total_sessions": 267,
-      "sessions_per_user": 7.42
+      "wau": 44,
+      "total_sessions": 505,
+      "sessions_per_user": 11.48
     }
   ]
 }
