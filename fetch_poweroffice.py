@@ -1,5 +1,5 @@
 """
-Vexter Dashboard – PowerOffice datafetcher
+Vexter Dashboard – PowerOffice datafetcher (debug)
 """
 import requests
 import json
@@ -40,57 +40,16 @@ hdrs = {
     'Ocp-Apim-Subscription-Key': SUB_KEY
 }
 
-# 2. Finn riktig basis-URL
-for base in ['https://goapi.poweroffice.net/v2', 'https://goapi.poweroffice.net']:
-    r = requests.get(f'{base}/Customer?pageSize=1', headers=hdrs, timeout=15)
-    print(f'Test {base}/Customer -> {r.status_code}')
-    if r.ok:
-        PO_BASE = base
-        print(f'Bruker base: {PO_BASE}')
-        break
-else:
-    print('Fant ikke riktig basis-URL!')
-    sys.exit(1)
+# 2. Test ulike URL-varianter med full respons
+urls = [
+    'https://goapi.poweroffice.net/v2/Customer',
+    'https://goapi.poweroffice.net/v2/customer',
+    'https://goapi.poweroffice.net/Customer',
+    'https://goapi.poweroffice.net/customer',
+    'https://goapi.poweroffice.net/v2/OutgoingInvoice',
+    'https://goapi.poweroffice.net/v2/outgoinginvoice',
+]
 
-# 3. Hent kunder
-customers = []
-r = requests.get(f'{PO_BASE}/Customer?pageSize=1000', headers=hdrs, timeout=30)
-if r.ok:
-    customers = r.json().get('data', [])
-    print(f'Kunder: {len(customers)}')
-
-# 4. Hent fakturaer
-all_invoices = []
-page = 1
-while True:
-    r = requests.get(f'{PO_BASE}/OutgoingInvoice?page={page}&pageSize=1000', headers=hdrs, timeout=60)
-    if not r.ok:
-        print(f'Faktura-feil: {r.status_code} {r.text[:200]}')
-        break
-    data = r.json()
-    batch = data.get('data', data) if isinstance(data, dict) else data
-    if not isinstance(batch, list) or not batch:
-        break
-    all_invoices.extend(batch)
-    print(f'Side {page}: {len(batch)} fakturaer')
-    if len(batch) < 1000:
-        break
-    page += 1
-
-# 5. Hent kundefordringer
-ledger_entries = []
-r = requests.get(f'{PO_BASE}/CustomerLedger?pageSize=1000', headers=hdrs, timeout=60)
-if r.ok:
-    ledger_entries = r.json().get('data', [])
-    print(f'Posteringer: {len(ledger_entries)}')
-
-# 6. Lagre
-output = {
-    'generert': datetime.utcnow().isoformat() + 'Z',
-    'fakturaer': all_invoices,
-    'kunder': customers,
-    'kundefordringer': ledger_entries
-}
-with open('poweroffice-data.json', 'w', encoding='utf-8') as f:
-    json.dump(output, f, ensure_ascii=False, default=str, indent=2)
-print(f'Ferdig! {len(all_invoices)} fakturaer, {len(customers)} kunder')
+for url in urls:
+    r = requests.get(url + '?pageSize=1', headers=hdrs, timeout=15)
+    print(f'{r.status_code} | {url} | {r.text[:150]}')
