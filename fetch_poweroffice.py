@@ -24,8 +24,7 @@ print('Henter tilgangstoken...')
 token_resp = requests.post(
     PO_AUTH,
     headers={
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Ocp-Apim-Subscription-Key': SUB_KEY
+        'Content-Type': 'application/x-www-form-urlencoded'
     },
     data={
         'grant_type': 'client_credentials',
@@ -34,7 +33,9 @@ token_resp = requests.post(
     },
     timeout=30
 )
-token_resp.raise_for_status()
+if not token_resp.ok:
+    print(f'Token-feil {token_resp.status_code}: {token_resp.text[:500]}')
+    token_resp.raise_for_status()
 token = token_resp.json()['access_token']
 print('Token OK')
 
