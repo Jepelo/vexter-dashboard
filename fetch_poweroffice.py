@@ -1,103 +1,102 @@
 """
-Henter faktura- og kundedata fra PowerOffice Go API v2 (demomiljø)
-og lagrer som poweroffice-data.json i repoet.
+Vexter Dashboard – PowerOffice datafetcher
+Kjøres av GitHub Actions og lagrer poweroffice-data.json i repoet.
 """
-
-import os
-import json
-import base64
 import requests
-from datetime import datetime, timedelta
+import json
+import os
+import sys
+from datetime import datetime
 
-# --- Konfigurasjon ---
-APP_KEY    = os.environ["PO_APPLICATION_KEY"]
-CLIENT_KEY = os.environ["PO_CLIENT_KEY"]
-SUB_KEY    = os.environ["PO_SUBSCRIPTION_KEY"]
+APP_KEY    = os.environ.get('PO_APP_KEY', '')
+CLIENT_KEY = os.environ.get('PO_CLIENT_KEY', '')
+SUB_KEY    = os.environ.get('PO_SUB_KEY', '')
 
-TOKEN_URL = "https://goapi.poweroffice.net/Demo/OAuth/Token"
-API_URL   = "https://goapi.poweroffice.net/Demo/v2"
+PO_AUTH = 'https://goapi.poweroffice.net/OAuth/Token'
+PO_BASE = 'https://goapi.poweroffice.net/v2'
 
-# --- 1. Hent OAuth2 access token ---
-credentials = f"{APP_KEY}:{CLIENT_KEY}"
-basic_token = base64.b64encode(credentials.encode("utf-8")).decode("utf-8")
+if not all([APP_KEY, CLIENT_KEY, SUB_KEY]):
+    print('FEIL: Mangler en eller flere nøkler (PO_APP_KEY, PO_CLIENT_KEY, PO_SUB_KEY)')
+    sys.exit(1)
 
-TOKEN_HEADERS = {
-    "Authorization": f"Basic {basic_token}",
-    "Ocp-Apim-Subscription-Key": SUB_KEY,
-    "Content-Type": "application/x-www-form-urlencoded",
-}
-
-print("Henter access token...")
-token_resp = requests.post(TOKEN_URL, data="grant_type=client_credentials", headers=TOKEN_HEADERS)
+# 1. Hent OAuth-token
+print('Henter tilgangstoken...')
+token_resp = requests.post(
+    PO_AUTH,
+    headers={
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Ocp-Apim-Subscription-Key': SUB_KEY
+    },
+    data={
+        'grant_type': 'client_credentials',
+        'client_id': APP_KEY,
+        'client_secret': CLIENT_KEY
+    },
+    timeout=30
+)
 token_resp.raise_for_status()
-access_token = token_resp.json()["access_token"]
-print("  Token hentet OK")
+token = token_resp.json()['access_token']
+print('Token OK')
 
-AUTH_HEADERS = {
-    "Authorization": f"Bearer {access_token}",
-    "Ocp-Apim-Subscription-Key": SUB_KEY,
-    "Accept": "application/json",
+hdrs = {
+    'Authorization': f'Bearer {token}',
+    'Ocp-Apim-Subscription-Key': SUB_KEY
 }
 
-def get_paged(endpoint, extra_params=None):
-    """Henter alle sider med PageNumber/PageSize-paginering."""
-    results = []
-    page = 1
-    while True:
-        params = {"PageNumber": page, "PageSize": 100}
-        if extra_params:
-            params.update(extra_params)
-        r = requests.get(f"{API_URL}/{endpoint}", headers=AUTH_HEADERS, params=params)
-        print(f"  GET {endpoint} side {page}: {r.status_code}")
-        if not r.ok:
-            print(f"  Feil: {r.text[:400]}")
-            break
-        data = r.json()
-        if isinstance(data, list):
-            items = data
-        elif isinstance(data, dict):
-            items = data.get("data", data.get("items", data.get("value", [])))
-        else:
-            items = []
-        if not items:
-            break
-        results.extend(items)
-        print(f"    → {len(items)} poster på denne siden (totalt: {len(results)})")
-        if len(items) < 100:
-            break
-        page += 1
-    return results
+# 2. Hent kunder
+print('Henter kunder...')
+cust_resp = requests.get(f'{PO_BASE}/Customer?pageSize=1000', headers=hdrs, timeout=30)
+cust_resp.raise_for_status()
+customers = cust_resp.json().get('data', [])
+print(f'  -> {len(customers)} kunder')
 
-# --- 2. Hent kunder ---
-print("\nHenter kunder...")
-customers = get_paged("customers")
-print(f"  → Totalt {len(customers)} kunder hentet")
+# 3. Hent utgaende fakturaer (paginert)
+print('Henter fakturaer...')
+all_invoices = []
+page = 1
+while True:
+    resp = requests.get(
+        f'{PO_BASE}/OutgoingInvoice?page={page}&pageSize=1000',
+        headers=hdrs,
+        timeout=60
+    )
+    resp.raise_for_status()
+    data = resp.json()
+    batch = data.get('data', data) if isinstance(data, dict) else data
+    if not isinstance(batch, list) or len(batch) == 0:
+        break
+    all_invoices.extend(batch)
+    print(f'  -> Side {page}: {len(batch)} fakturaer (totalt {len(all_invoices)})')
+    if len(batch) < 1000:
+        break
+    page += 1
 
-# --- 3. Hent utgående fakturaer ---
-# Prøv med datofilter; API-et ignorerer ukjente parametrar, så det er trygt
-print("\nHenter fakturaer...")
-from_date = (datetime.now() - timedelta(days=548)).strftime("%Y-%m-%d")
-invoices = get_paged("outgoinginvoices", {"createdDateFrom": from_date})
-print(f"  → Totalt {len(invoices)} fakturaer hentet")
+# 4. Hent kundefordringer (betalingsstatus)
+print('Henter kundefordringer...')
+ledger_entries = []
+try:
+    ledger_resp = requests.get(
+        f'{PO_BASE}/CustomerLedger?pageSize=1000',
+        headers=hdrs,
+        timeout=60
+    )
+    if ledger_resp.ok:
+        ledger_entries = ledger_resp.json().get('data', [])
+        print(f'  -> {len(ledger_entries)} posteringer')
+except Exception as e:
+    print(f'  Kunne ikke hente kundefordringer: {e}')
 
-# Skriv ut første faktura for å se feltnavnene
-if invoices:
-    print("\nEksempel faktura-felt:")
-    print(json.dumps(list(invoices[0].keys()), indent=2))
-
-if customers:
-    print("\nEksempel kunde-felt:")
-    print(json.dumps(list(customers[0].keys()), indent=2))
-
-# --- 4. Lagre som JSON ---
+# 5. Lagre JSON
 output = {
-    "hentetTidspunkt": datetime.now().isoformat(),
-    "miljo": "demo",
-    "fakturaer": invoices,
-    "kunder": customers,
+    'generert': datetime.utcnow().isoformat() + 'Z',
+    'fakturaer': all_invoices,
+    'kunder': customers,
+    'kundefordringer': ledger_entries
 }
 
-with open("poweroffice-data.json", "w", encoding="utf-8") as f:
-    json.dump(output, f, ensure_ascii=False, indent=2)
+with open('poweroffice-data.json', 'w', encoding='utf-8') as f:
+    json.dump(output, f, ensure_ascii=False, default=str, indent=2)
 
-print("\nFerdig! Data lagret i poweroffice-data.json")
+size_kb = os.path.getsize('poweroffice-data.json') / 1024
+print(f'\nFerdig! {len(all_invoices)} fakturaer, {len(customers)} kunder, {len(ledger_entries)} posteringer')
+print(f'Fil: poweroffice-data.json ({size_kb:.1f} KB)')
