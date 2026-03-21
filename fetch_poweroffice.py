@@ -43,10 +43,9 @@ hdrs = {
     'Ocp-Apim-Subscription-Key': SUB_KEY
 }
 
-def safe_get(endpoint, label=None):
+def safe_get(endpoint):
     """Henter data fra endepunkt. Returnerer liste, printer status."""
     url = f'{PO_BASE}/{endpoint}'
-    lbl = label or endpoint
     try:
         r = requests.get(url, headers=hdrs, timeout=60)
         if r.ok:
@@ -56,7 +55,7 @@ def safe_get(endpoint, label=None):
                 print(f'  ✓ /{endpoint}: {len(result)} poster')
                 return result
             else:
-                print(f'  /{endpoint}: ukjent format ({type(result).__name__})')
+                print(f'  /{endpoint}: ukjent format ({type(result).__name__}): {str(result)[:100]}')
                 return []
         elif r.status_code == 404:
             print(f'  /{endpoint}: ikke funnet (404)')
@@ -79,56 +78,30 @@ customers = safe_get('Customers')
 print('\nHenter utgående fakturaer...')
 outgoing_invoices = safe_get('OutgoingInvoices')
 
-# 4. Gjentagende/repeterende ordrer (MRR-kilde)
-print('\nHenter gjentagende ordrer...')
-recurring_orders = []
-for ep in ['RecurringInvoice', 'SalesOrder', 'RecurringOrder', 'SubscriptionOrder']:
-    data = safe_get(ep)
-    if data:
-        recurring_orders = data
-        print(f'  -> Bruker /{ep} som kilde for gjentagende ordrer')
-        break
+# 4. Gjentagende ordrer – MRR-kilde
+#    Riktig sti: SalesOrder (ikke Reporting/)
+print('\nHenter gjentagende/repeterende ordrer...')
+recurring_orders = safe_get('SalesOrders') or safe_get('SalesOrder')
 
-# 5. Innkommende fakturaer / leverandørfakturaer (kostnader)
-print('\nHenter leverandørfakturaer (kostnader)...')
-supplier_invoices = []
-for ep in ['SupplierInvoice', 'IncomingInvoice', 'PurchaseInvoice', 'SupplierInvoices']:
-    data = safe_get(ep)
-    if data:
-        supplier_invoices = data
-        break
+# 5. Innkommende fakturaer (kostnader) – under Reporting/
+print('\nHenter innkommende fakturaer (kostnader)...')
+incoming_invoices = safe_get('Reporting/IncomingInvoices')
 
-# 6. Kontopostinger / bilag (fullt regnskap)
-print('\nHenter kontopostinger...')
-account_transactions = []
-for ep in ['VoucherTransaction', 'AccountTransaction', 'GeneralLedgerTransaction',
-           'Voucher', 'JournalEntry', 'LedgerTransaction']:
-    data = safe_get(ep)
-    if data:
-        account_transactions = data
-        break
+# 6. Kontopostinger – under Reporting/
+print('\nHenter kontopostinger (regnskap)...')
+account_transactions = safe_get('Reporting/AccountTransactions')
 
-# 7. Banktransaksjoner
-print('\nHenter banktransaksjoner...')
-bank_transactions = []
-for ep in ['BankStatementEntry', 'BankStatement', 'BankTransaction', 'BankJournal']:
-    data = safe_get(ep)
-    if data:
-        bank_transactions = data
-        break
+# 7. Kundekonto – under Reporting/
+print('\nHenter kundekonto...')
+customer_ledger = safe_get('Reporting/CustomerLedger')
 
-# 8. Produkter
+# 8. Leverandørkonto – under Reporting/
+print('\nHenter leverandørkonto...')
+supplier_ledger = safe_get('Reporting/SupplierLedger')
+
+# 9. Produkter
 print('\nHenter produkter...')
-products = safe_get('Product') or safe_get('Products')
-
-# 9. Kundefordringer (åpne poster)
-print('\nHenter åpne poster / kundefordringer...')
-open_entries = []
-for ep in ['CustomerLedger', 'OutstandingInvoice', 'OpenEntry', 'AccountReceivable']:
-    data = safe_get(ep)
-    if data:
-        open_entries = data
-        break
+products = safe_get('Products')
 
 # 10. Lagre JSON
 print('\n=== Lagrer poweroffice-data.json ===')
@@ -137,11 +110,11 @@ output = {
     'kunder': customers,
     'fakturaer': outgoing_invoices,
     'gjentagendeOrdre': recurring_orders,
-    'leverandorfakturaer': supplier_invoices,
+    'innkommendeFakturaer': incoming_invoices,
     'kontopostinger': account_transactions,
-    'banktransaksjoner': bank_transactions,
+    'kundekonto': customer_ledger,
+    'leverandorkonto': supplier_ledger,
     'produkter': products,
-    'apnePostinger': open_entries,
 }
 
 with open('poweroffice-data.json', 'w', encoding='utf-8') as f:
@@ -149,11 +122,11 @@ with open('poweroffice-data.json', 'w', encoding='utf-8') as f:
 
 size_kb = os.path.getsize('poweroffice-data.json') / 1024
 print(f'\n✓ Ferdig! poweroffice-data.json ({size_kb:.1f} KB)')
-print(f'  Kunder:              {len(customers)}')
-print(f'  Utgående fakturaer:  {len(outgoing_invoices)}')
-print(f'  Gjentagende ordrer:  {len(recurring_orders)}')
-print(f'  Leverandørfakturaer: {len(supplier_invoices)}')
-print(f'  Kontopostinger:      {len(account_transactions)}')
-print(f'  Banktransaksjoner:   {len(bank_transactions)}')
-print(f'  Produkter:           {len(products)}')
-print(f'  Åpne poster:         {len(open_entries)}')
+print(f'  Kunder:                {len(customers)}')
+print(f'  Utgående fakturaer:    {len(outgoing_invoices)}')
+print(f'  Gjentagende ordrer:    {len(recurring_orders)}')
+print(f'  Innkommende fakturaer: {len(incoming_invoices)}')
+print(f'  Kontopostinger:        {len(account_transactions)}')
+print(f'  Kundekonto:            {len(customer_ledger)}')
+print(f'  Leverandørkonto:       {len(supplier_ledger)}')
+print(f'  Produkter:             {len(products)}')
