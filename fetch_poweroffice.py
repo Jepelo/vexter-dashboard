@@ -1,6 +1,5 @@
 """
 Vexter Dashboard – PowerOffice datafetcher
-Kjøres av GitHub Actions og lagrer poweroffice-data.json i repoet.
 """
 import requests
 import json
@@ -13,14 +12,13 @@ CLIENT_KEY = os.environ.get('PO_CLIENT_KEY', '')
 SUB_KEY    = os.environ.get('PO_SUB_KEY', '')
 
 PO_AUTH = 'https://goapi.poweroffice.net/OAuth/Token'
-PO_BASE = 'https://goapi.poweroffice.net/v2'
 
 if not all([APP_KEY, CLIENT_KEY, SUB_KEY]):
-    print('FEIL: Mangler en eller flere nøkler (PO_APP_KEY, PO_CLIENT_KEY, PO_SUB_KEY)')
+    print('FEIL: Mangler nøkler')
     sys.exit(1)
 
-# 1. Hent OAuth-token (Basic Auth)
-print('Henter tilgangstoken...')
+# 1. Token
+print('Henter token...')
 token_resp = requests.post(
     PO_AUTH,
     headers={
@@ -32,8 +30,8 @@ token_resp = requests.post(
     timeout=30
 )
 if not token_resp.ok:
-    print(f'Token-feil {token_resp.status_code}: {token_resp.text[:500]}')
-    token_resp.raise_for_status()
+    print(f'Token-feil: {token_resp.status_code} {token_resp.text[:300]}')
+    sys.exit(1)
 token = token_resp.json()['access_token']
 print('Token OK')
 
@@ -42,60 +40,57 @@ hdrs = {
     'Ocp-Apim-Subscription-Key': SUB_KEY
 }
 
-# 2. Hent kunder
-print('Henter kunder...')
-cust_resp = requests.get(f'{PO_BASE}/Customer?pageSize=1000', headers=hdrs, timeout=30)
-cust_resp.raise_for_status()
-customers = cust_resp.json().get('data', [])
-print(f'  -> {len(customers)} kunder')
+# 2. Finn riktig basis-URL
+for base in ['https://goapi.poweroffice.net/v2', 'https://goapi.poweroffice.net']:
+    r = requests.get(f'{base}/Customer?pageSize=1', headers=hdrs, timeout=15)
+    print(f'Test {base}/Customer -> {r.status_code}')
+    if r.ok:
+        PO_BASE = base
+        print(f'Bruker base: {PO_BASE}')
+        break
+else:
+    print('Fant ikke riktig basis-URL!')
+    sys.exit(1)
 
-# 3. Hent utgaende fakturaer (paginert)
-print('Henter fakturaer...')
+# 3. Hent kunder
+customers = []
+r = requests.get(f'{PO_BASE}/Customer?pageSize=1000', headers=hdrs, timeout=30)
+if r.ok:
+    customers = r.json().get('data', [])
+    print(f'Kunder: {len(customers)}')
+
+# 4. Hent fakturaer
 all_invoices = []
 page = 1
 while True:
-    resp = requests.get(
-        f'{PO_BASE}/OutgoingInvoice?page={page}&pageSize=1000',
-        headers=hdrs,
-        timeout=60
-    )
-    resp.raise_for_status()
-    data = resp.json()
+    r = requests.get(f'{PO_BASE}/OutgoingInvoice?page={page}&pageSize=1000', headers=hdrs, timeout=60)
+    if not r.ok:
+        print(f'Faktura-feil: {r.status_code} {r.text[:200]}')
+        break
+    data = r.json()
     batch = data.get('data', data) if isinstance(data, dict) else data
-    if not isinstance(batch, list) or len(batch) == 0:
+    if not isinstance(batch, list) or not batch:
         break
     all_invoices.extend(batch)
-    print(f'  -> Side {page}: {len(batch)} fakturaer (totalt {len(all_invoices)})')
+    print(f'Side {page}: {len(batch)} fakturaer')
     if len(batch) < 1000:
         break
     page += 1
 
-# 4. Hent kundefordringer (betalingsstatus)
-print('Henter kundefordringer...')
+# 5. Hent kundefordringer
 ledger_entries = []
-try:
-    ledger_resp = requests.get(
-        f'{PO_BASE}/CustomerLedger?pageSize=1000',
-        headers=hdrs,
-        timeout=60
-    )
-    if ledger_resp.ok:
-        ledger_entries = ledger_resp.json().get('data', [])
-        print(f'  -> {len(ledger_entries)} posteringer')
-except Exception as e:
-    print(f'  Kunne ikke hente kundefordringer: {e}')
+r = requests.get(f'{PO_BASE}/CustomerLedger?pageSize=1000', headers=hdrs, timeout=60)
+if r.ok:
+    ledger_entries = r.json().get('data', [])
+    print(f'Posteringer: {len(ledger_entries)}')
 
-# 5. Lagre JSON
+# 6. Lagre
 output = {
     'generert': datetime.utcnow().isoformat() + 'Z',
     'fakturaer': all_invoices,
     'kunder': customers,
     'kundefordringer': ledger_entries
 }
-
 with open('poweroffice-data.json', 'w', encoding='utf-8') as f:
     json.dump(output, f, ensure_ascii=False, default=str, indent=2)
-
-size_kb = os.path.getsize('poweroffice-data.json') / 1024
-print(f'\nFerdig! {len(all_invoices)} fakturaer, {len(customers)} kunder, {len(ledger_entries)} posteringer')
-print(f'Fil: poweroffice-data.json ({size_kb:.1f} KB)')
+print(f'Ferdig! {len(all_invoices)} fakturaer, {len(customers)} kunder')
