@@ -26,16 +26,19 @@ BASE = 'https://goapi.poweroffice.net/v2'
 customers = []
 r = requests.get(f'{BASE}/Customers?pageSize=1000', headers=hdrs, timeout=30)
 if r.ok:
-    customers = r.json() if isinstance(r.json(), list) else r.json().get('data', r.json())
+    d = r.json()
+    customers = d if isinstance(d, list) else d.get('data', [])
     print(f'Kunder: {len(customers)}')
 
 # Fakturaer (paginert)
 all_invoices, page = [], 1
 while True:
     r = requests.get(f'{BASE}/OutgoingInvoices?page={page}&pageSize=1000', headers=hdrs, timeout=60)
-    if not r.ok: print(f'Faktura-feil {r.status_code}'); break
-    data = r.json()
-    batch = data if isinstance(data, list) else data.get('data', [])
+    if not r.ok:
+        print(f'Faktura-feil {r.status_code}: {r.text[:200]}')
+        break
+    d = r.json()
+    batch = d if isinstance(d, list) else d.get('data', [])
     if not batch: break
     all_invoices.extend(batch)
     print(f'Side {page}: {len(batch)} fakturaer')
