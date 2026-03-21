@@ -52,45 +52,15 @@ if not isinstance(customers, list):
     customers = []
 print(f'  -> {len(customers)} kunder')
 
-# 3. Hent utgående fakturaer (paginert med $skip/$top OData-stil)
+# 3. Hent utgående fakturaer (ingen paginering – API returnerer alle)
 print('Henter fakturaer...')
-all_invoices = []
-skip = 0
-top = 1000
-
-while True:
-    url = f'{PO_BASE}/OutgoingInvoices?$top={top}&$skip={skip}'
-    resp = requests.get(url, headers=hdrs, timeout=60)
-
-    if not resp.ok:
-        print(f'  Faktura-feil {resp.status_code}: {resp.text[:300]}')
-        # Prøv uten paginering som fallback
-        print('  Prøver uten paginering...')
-        resp2 = requests.get(f'{PO_BASE}/OutgoingInvoices', headers=hdrs, timeout=60)
-        if resp2.ok:
-            data2 = resp2.json()
-            batch2 = data2.get('data', data2) if isinstance(data2, dict) else data2
-            if isinstance(batch2, list):
-                all_invoices.extend(batch2)
-                print(f'  -> {len(batch2)} fakturaer (ingen paginering)')
-        else:
-            print(f'  Fallback feilet også: {resp2.status_code}: {resp2.text[:300]}')
-        break
-
-    data = resp.json()
-    batch = data.get('data', data) if isinstance(data, dict) else data
-
-    if not isinstance(batch, list) or len(batch) == 0:
-        break
-
-    all_invoices.extend(batch)
-    print(f'  -> $skip={skip}: {len(batch)} fakturaer (totalt {len(all_invoices)})')
-
-    if len(batch) < top:
-        break
-    skip += top
-
-print(f'  Totalt {len(all_invoices)} fakturaer')
+inv_resp = requests.get(f'{PO_BASE}/OutgoingInvoices', headers=hdrs, timeout=120)
+inv_resp.raise_for_status()
+inv_data = inv_resp.json()
+all_invoices = inv_data.get('data', inv_data) if isinstance(inv_data, dict) else inv_data
+if not isinstance(all_invoices, list):
+    all_invoices = []
+print(f'  -> {len(all_invoices)} fakturaer')
 
 # 4. Hent kundefordringer (betalingsstatus)
 print('Henter kundefordringer...')
