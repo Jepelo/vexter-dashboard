@@ -19,7 +19,7 @@ if not all([APP_KEY, CLIENT_KEY, SUB_KEY]):
     print('FEIL: Mangler en eller flere nøkler (PO_APP_KEY, PO_CLIENT_KEY, PO_SUB_KEY)')
     sys.exit(1)
 
-# 1. Hent OAuth-token
+# 1. Hent OAuth-token (Basic Auth)
 print('Henter tilgangstoken...')
 token_resp = requests.post(
     PO_AUTH,
@@ -27,11 +27,8 @@ token_resp = requests.post(
         'Content-Type': 'application/x-www-form-urlencoded',
         'Ocp-Apim-Subscription-Key': SUB_KEY
     },
-    data={
-        'grant_type': 'client_credentials',
-        'client_id': APP_KEY,
-        'client_secret': CLIENT_KEY
-    },
+    data={'grant_type': 'client_credentials'},
+    auth=(APP_KEY, CLIENT_KEY),
     timeout=30
 )
 if not token_resp.ok:
