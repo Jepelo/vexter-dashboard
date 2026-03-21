@@ -1,58 +1,122 @@
 """
 Vexter Dashboard – PowerOffice datafetcher
+Kjøres av GitHub Actions og lagrer poweroffice-data.json i repoet.
 """
-import requests, json, os, sys
+import requests
+import json
+import os
+import sys
 from datetime import datetime
 
 APP_KEY    = os.environ.get('PO_APP_KEY', '')
 CLIENT_KEY = os.environ.get('PO_CLIENT_KEY', '')
 SUB_KEY    = os.environ.get('PO_SUB_KEY', '')
 
-if not all([APP_KEY, CLIENT_KEY, SUB_KEY]):
-    print('FEIL: Mangler nøkler'); sys.exit(1)
+PO_AUTH = 'https://goapi.poweroffice.net/OAuth/Token'
+PO_BASE = 'https://goapi.poweroffice.net/v2'
 
-print('Henter token...')
-r = requests.post('https://goapi.poweroffice.net/OAuth/Token',
-    headers={'Content-Type':'application/x-www-form-urlencoded','Ocp-Apim-Subscription-Key':SUB_KEY},
-    data={'grant_type':'client_credentials'}, auth=(APP_KEY, CLIENT_KEY), timeout=30)
-if not r.ok: print(f'Token-feil: {r.status_code} {r.text[:300]}'); sys.exit(1)
-token = r.json()['access_token']
+if not all([APP_KEY, CLIENT_KEY, SUB_KEY]):
+    print('FEIL: Mangler en eller flere nøkler (PO_APP_KEY, PO_CLIENT_KEY, PO_SUB_KEY)')
+    sys.exit(1)
+
+# 1. Hent OAuth-token (Basic Auth)
+print('Henter tilgangstoken...')
+token_resp = requests.post(
+    PO_AUTH,
+    auth=(APP_KEY, CLIENT_KEY),
+    headers={
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Ocp-Apim-Subscription-Key': SUB_KEY
+    },
+    data={'grant_type': 'client_credentials'},
+    timeout=30
+)
+if not token_resp.ok:
+    print(f'Token-feil {token_resp.status_code}: {token_resp.text[:500]}')
+    token_resp.raise_for_status()
+token = token_resp.json()['access_token']
 print('Token OK')
 
-hdrs = {'Authorization':f'Bearer {token}','Ocp-Apim-Subscription-Key':SUB_KEY}
-BASE = 'https://goapi.poweroffice.net/v2'
+hdrs = {
+    'Authorization': f'Bearer {token}',
+    'Ocp-Apim-Subscription-Key': SUB_KEY
+}
 
-# Kunder
-customers = []
-r = requests.get(f'{BASE}/Customers?pageSize=1000', headers=hdrs, timeout=30)
-if r.ok:
-    d = r.json()
-    customers = d if isinstance(d, list) else d.get('data', [])
-    print(f'Kunder: {len(customers)}')
+# 2. Hent kunder
+print('Henter kunder...')
+cust_resp = requests.get(f'{PO_BASE}/Customers?pageSize=1000', headers=hdrs, timeout=30)
+cust_resp.raise_for_status()
+customers = cust_resp.json().get('data', [])
+print(f'  -> {len(customers)} kunder')
 
-# Fakturaer (paginert)
-all_invoices, page = [], 1
+# 3. Hent utgående fakturaer (paginert med $skip/$top OData-stil)
+print('Henter fakturaer...')
+all_invoices = []
+skip = 0
+top = 1000
+
 while True:
-    r = requests.get(f'{BASE}/OutgoingInvoices?page={page}&pageSize=1000', headers=hdrs, timeout=60)
-    if not r.ok:
-        print(f'Faktura-feil {r.status_code}: {r.text[:200]}')
+    url = f'{PO_BASE}/OutgoingInvoices?$top={top}&$skip={skip}'
+    resp = requests.get(url, headers=hdrs, timeout=60)
+
+    if not resp.ok:
+        print(f'  Faktura-feil {resp.status_code}: {resp.text[:300]}')
+        # Prøv uten paginering som fallback
+        print('  Prøver uten paginering...')
+        resp2 = requests.get(f'{PO_BASE}/OutgoingInvoices', headers=hdrs, timeout=60)
+        if resp2.ok:
+            data2 = resp2.json()
+            batch2 = data2.get('data', data2) if isinstance(data2, dict) else data2
+            if isinstance(batch2, list):
+                all_invoices.extend(batch2)
+                print(f'  -> {len(batch2)} fakturaer (ingen paginering)')
+        else:
+            print(f'  Fallback feilet også: {resp2.status_code}: {resp2.text[:300]}')
         break
-    d = r.json()
-    batch = d if isinstance(d, list) else d.get('data', [])
-    if not batch: break
+
+    data = resp.json()
+    batch = data.get('data', data) if isinstance(data, dict) else data
+
+    if not isinstance(batch, list) or len(batch) == 0:
+        break
+
     all_invoices.extend(batch)
-    print(f'Side {page}: {len(batch)} fakturaer')
-    if len(batch) < 1000: break
-    page += 1
+    print(f'  -> $skip={skip}: {len(batch)} fakturaer (totalt {len(all_invoices)})')
 
-# Kundefordringer
-ledger = []
-r = requests.get(f'{BASE}/CustomerLedger?pageSize=1000', headers=hdrs, timeout=60)
-if r.ok:
-    d = r.json()
-    ledger = d if isinstance(d, list) else d.get('data', [])
-    print(f'Posteringer: {len(ledger)}')
+    if len(batch) < top:
+        break
+    skip += top
 
-json.dump({'generert':datetime.utcnow().isoformat()+'Z','fakturaer':all_invoices,'kunder':customers,'kundefordringer':ledger},
-    open('poweroffice-data.json','w',encoding='utf-8'), ensure_ascii=False, default=str, indent=2)
-print(f'Ferdig! {len(all_invoices)} fakturaer, {len(customers)} kunder, {len(ledger)} posteringer')
+print(f'  Totalt {len(all_invoices)} fakturaer')
+
+# 4. Hent kundefordringer (betalingsstatus)
+print('Henter kundefordringer...')
+ledger_entries = []
+try:
+    ledger_resp = requests.get(
+        f'{PO_BASE}/CustomerLedger?pageSize=1000',
+        headers=hdrs,
+        timeout=60
+    )
+    if ledger_resp.ok:
+        ledger_entries = ledger_resp.json().get('data', [])
+        print(f'  -> {len(ledger_entries)} posteringer')
+    else:
+        print(f'  CustomerLedger feil {ledger_resp.status_code}: {ledger_resp.text[:200]}')
+except Exception as e:
+    print(f'  Kunne ikke hente kundefordringer: {e}')
+
+# 5. Lagre JSON
+output = {
+    'generert': datetime.utcnow().isoformat() + 'Z',
+    'fakturaer': all_invoices,
+    'kunder': customers,
+    'kundefordringer': ledger_entries
+}
+
+with open('poweroffice-data.json', 'w', encoding='utf-8') as f:
+    json.dump(output, f, ensure_ascii=False, default=str, indent=2)
+
+size_kb = os.path.getsize('poweroffice-data.json') / 1024
+print(f'\nFerdig! {len(all_invoices)} fakturaer, {len(customers)} kunder, {len(ledger_entries)} posteringer')
+print(f'Fil: poweroffice-data.json ({size_kb:.1f} KB)')
