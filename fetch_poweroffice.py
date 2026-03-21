@@ -1,55 +1,40 @@
-"""
-Vexter Dashboard – PowerOffice datafetcher (debug)
-"""
-import requests
-import json
-import os
-import sys
-from datetime import datetime
+name: Hent PowerOffice-data
 
-APP_KEY    = os.environ.get('PO_APP_KEY', '')
-CLIENT_KEY = os.environ.get('PO_CLIENT_KEY', '')
-SUB_KEY    = os.environ.get('PO_SUB_KEY', '')
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
 
-PO_AUTH = 'https://goapi.poweroffice.net/OAuth/Token'
+permissions:
+  contents: write
 
-if not all([APP_KEY, CLIENT_KEY, SUB_KEY]):
-    print('FEIL: Mangler nøkler')
-    sys.exit(1)
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
 
-# 1. Token
-print('Henter token...')
-token_resp = requests.post(
-    PO_AUTH,
-    headers={
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Ocp-Apim-Subscription-Key': SUB_KEY
-    },
-    data={'grant_type': 'client_credentials'},
-    auth=(APP_KEY, CLIENT_KEY),
-    timeout=30
-)
-if not token_resp.ok:
-    print(f'Token-feil: {token_resp.status_code} {token_resp.text[:300]}')
-    sys.exit(1)
-token = token_resp.json()['access_token']
-print('Token OK')
+    steps:
+      - name: Sjekk ut repo
+        uses: actions/checkout@v4
 
-hdrs = {
-    'Authorization': f'Bearer {token}',
-    'Ocp-Apim-Subscription-Key': SUB_KEY
-}
+      - name: Sett opp Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-# 2. Test ulike URL-varianter med full respons
-urls = [
-    'https://goapi.poweroffice.net/v2/Customer',
-    'https://goapi.poweroffice.net/v2/customer',
-    'https://goapi.poweroffice.net/Customer',
-    'https://goapi.poweroffice.net/customer',
-    'https://goapi.poweroffice.net/v2/OutgoingInvoice',
-    'https://goapi.poweroffice.net/v2/outgoinginvoice',
-]
+      - name: Installer avhengigheter
+        run: pip install requests
 
-for url in urls:
-    r = requests.get(url + '?pageSize=1', headers=hdrs, timeout=15)
-    print(f'{r.status_code} | {url} | {r.text[:150]}')
+      - name: Hent data fra PowerOffice
+        env:
+          PO_APP_KEY:    ${{ secrets.PO_APP_KEY }}
+          PO_CLIENT_KEY: ${{ secrets.PO_CLIENT_KEY }}
+          PO_SUB_KEY:    ${{ secrets.PO_SUB_KEY }}
+        run: python fetch_poweroffice.py
+
+      - name: Commit og push
+        run: |
+          git config user.name  "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add poweroffice-data.json
+          git diff --staged --quiet || git commit -m "Oppdater PowerOffice-data $(date +'%Y-%m-%d %H:%M UTC')"
+          git push
