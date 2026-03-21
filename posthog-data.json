@@ -1,5 +1,5 @@
 {
-  "hentetTidspunkt": "2026-03-20T06:43:15.694072",
+  "hentetTidspunkt": "2026-03-21T06:32:55.240186",
   "projectId": "19751",
   "emailField": "person.properties.email",
   "sessions": [
@@ -44095,74 +44095,74 @@
   "userSummary": [
     {
       "email": "jorgen@vexter.no",
-      "total_sessions": 631,
-      "last_session": "2026-03-19T17:44:37.352000+01:00",
+      "total_sessions": 633,
+      "last_session": "2026-03-20T09:02:52.709000+01:00",
       "first_session": "2026-01-06T10:08:35.643000+01:00"
     },
     {
       "email": "salg@salgspartneren.no",
-      "total_sessions": 565,
-      "last_session": "2026-03-20T07:40:59.069000+01:00",
+      "total_sessions": 577,
+      "last_session": "2026-03-20T22:18:48.505000+01:00",
       "first_session": "2026-01-09T12:29:38.469000+01:00"
     },
     {
       "email": "mansour.rashidi@thevit.no",
-      "total_sessions": 457,
-      "last_session": "2026-03-19T20:28:50.541000+01:00",
+      "total_sessions": 466,
+      "last_session": "2026-03-20T19:33:48.684000+01:00",
       "first_session": "2025-11-27T10:40:08.419000+01:00"
     },
     {
       "email": "shehab@vexter.no",
-      "total_sessions": 423,
-      "last_session": "2026-03-19T19:02:01.416000+01:00",
+      "total_sessions": 432,
+      "last_session": "2026-03-20T14:34:50.439000+01:00",
       "first_session": "2025-11-18T12:45:35.342000+01:00"
     },
     {
       "email": "harald@osvold.no",
-      "total_sessions": 411,
-      "last_session": "2026-03-19T21:50:04.549000+01:00",
+      "total_sessions": 421,
+      "last_session": "2026-03-20T19:32:56.690000+01:00",
       "first_session": "2025-12-05T15:11:42.106000+01:00"
     },
     {
       "email": "jens.loe@vexter.ai",
-      "total_sessions": 384,
-      "last_session": "2026-03-19T21:32:31.623000+01:00",
+      "total_sessions": 393,
+      "last_session": "2026-03-21T05:04:36.236000+01:00",
       "first_session": "2025-11-20T08:38:19.923000+01:00"
     },
     {
       "email": "stina@vexter.no",
-      "total_sessions": 284,
-      "last_session": "2026-03-20T07:38:00.208000+01:00",
+      "total_sessions": 294,
+      "last_session": "2026-03-20T19:35:11.659000+01:00",
       "first_session": "2025-12-30T10:14:08.066000+01:00"
     },
     {
       "email": "post@kreatek.no",
-      "total_sessions": 238,
-      "last_session": "2026-03-19T20:29:33.059000+01:00",
+      "total_sessions": 244,
+      "last_session": "2026-03-20T19:34:43.831000+01:00",
       "first_session": "2026-02-11T14:28:23.068000+01:00"
     },
     {
       "email": "jan@propos.no",
-      "total_sessions": 235,
-      "last_session": "2026-03-19T21:50:13.175000+01:00",
+      "total_sessions": 244,
+      "last_session": "2026-03-20T19:33:25.479000+01:00",
       "first_session": "2026-01-26T12:30:35.995000+01:00"
     },
     {
       "email": "christian.fredrik.borgen@folq.no",
-      "total_sessions": 207,
-      "last_session": "2026-03-19T20:24:37.671000+01:00",
+      "total_sessions": 213,
+      "last_session": "2026-03-20T19:32:39.041000+01:00",
       "first_session": "2026-02-11T21:40:24.462000+01:00"
     },
     {
       "email": "stian@vexter.io",
-      "total_sessions": 195,
-      "last_session": "2026-03-19T15:19:02.508000+01:00",
+      "total_sessions": 200,
+      "last_session": "2026-03-20T13:42:59.147000+01:00",
       "first_session": "2024-10-08T14:13:32.520000+02:00"
     },
     {
       "email": "mathias@vexter.no",
-      "total_sessions": 186,
-      "last_session": "2026-03-19T15:51:22.971000+01:00",
+      "total_sessions": 196,
+      "last_session": "2026-03-20T19:32:15.795000+01:00",
       "first_session": "2026-01-06T10:31:22.663000+01:00"
     },
     {
@@ -44172,28 +44172,34 @@
       "first_session": "2026-01-06T11:05:16.990000+01:00"
     },
     {
+      "email": "karsten@elitemedia.no",
+      "total_sessions": 162,
+      "last_session": "2026-03-21T07:22:11.913000+01:00",
+      "first_session": "2026-02-24T14:23:50.752000+01:00"
+    },
+    {
       "email": "steffen.torsberg@ntt.no",
-      "total_sessions": 153,
-      "last_session": "2026-03-19T20:29:45.174000+01:00",
+      "total_sessions": 158,
+      "last_session": "2026-03-20T19:34:58.860000+01:00",
       "first_session": "2026-02-03T09:39:35.936000+01:00"
     },
     {
       "email": "morten@unmo.no",
-      "total_sessions": 142,
-      "last_session": "2026-03-19T20:29:23.815000+01:00",
+      "total_sessions": 147,
+      "last_session": "2026-03-20T19:34:09.181000+01:00",
       "first_session": "2026-02-13T13:31:27.501000+01:00"
     },
     {
-      "email": "karsten@elitemedia.no",
-      "total_sessions": 136,
-      "last_session": "2026-03-19T20:28:35.099000+01:00",
-      "first_session": "2026-02-24T14:23:50.752000+01:00"
+      "email": "perespen@sportperformance.no",
+      "total_sessions": 142,
+      "last_session": "2026-03-20T19:34:33.649000+01:00",
+      "first_session": "2026-01-19T14:25:09.862000+01:00"
     },
     {
-      "email": "perespen@sportperformance.no",
-      "total_sessions": 135,
-      "last_session": "2026-03-19T18:41:27.755000+01:00",
-      "first_session": "2026-01-19T14:25:09.862000+01:00"
+      "email": "oliver@vexter.no",
+      "total_sessions": 129,
+      "last_session": "2026-03-20T19:34:20.798000+01:00",
+      "first_session": "2026-02-12T10:39:33.530000+01:00"
     },
     {
       "email": "toringe@rydd.no",
@@ -44202,28 +44208,34 @@
       "first_session": "2025-11-20T10:26:22.031000+01:00"
     },
     {
-      "email": "oliver@vexter.no",
-      "total_sessions": 113,
-      "last_session": "2026-03-20T03:09:13.874000+01:00",
-      "first_session": "2026-02-12T10:39:33.530000+01:00"
-    },
-    {
       "email": "janolav@bidsystem.no",
-      "total_sessions": 111,
-      "last_session": "2026-03-19T18:09:43.979000+01:00",
+      "total_sessions": 112,
+      "last_session": "2026-03-20T13:40:43.180000+01:00",
       "first_session": "2026-02-23T10:25:46.282000+01:00"
     },
     {
       "email": "lotte@svenn.com",
-      "total_sessions": 94,
-      "last_session": "2026-03-19T14:01:36.606000+01:00",
+      "total_sessions": 96,
+      "last_session": "2026-03-20T09:02:39.067000+01:00",
       "first_session": "2026-02-12T13:38:37.594000+01:00"
+    },
+    {
+      "email": "vivian@vexter.no",
+      "total_sessions": 84,
+      "last_session": "2026-03-20T19:35:32.170000+01:00",
+      "first_session": "2026-02-12T10:25:08.695000+01:00"
     },
     {
       "email": "eirik@energihuset.net",
       "total_sessions": 83,
       "last_session": "2026-03-11T09:51:41.159000+01:00",
       "first_session": "2026-02-03T13:17:33.133000+01:00"
+    },
+    {
+      "email": "glen@grossman.no",
+      "total_sessions": 80,
+      "last_session": "2026-03-20T19:32:48.074000+01:00",
+      "first_session": "2026-03-02T11:52:54.279000+01:00"
     },
     {
       "email": "roger@aurskogbyggrenhold.no",
@@ -44238,22 +44250,10 @@
       "first_session": "2026-02-10T13:17:37.260000+01:00"
     },
     {
-      "email": "vivian@vexter.no",
-      "total_sessions": 74,
-      "last_session": "2026-03-02T15:55:49.894000+01:00",
-      "first_session": "2026-02-12T10:25:08.695000+01:00"
-    },
-    {
       "email": "sondre@myprofil.no",
       "total_sessions": 69,
       "last_session": "2026-03-17T12:41:22.701000+01:00",
       "first_session": "2025-12-01T08:46:07.462000+01:00"
-    },
-    {
-      "email": "glen@grossman.no",
-      "total_sessions": 66,
-      "last_session": "2026-03-19T20:24:48.241000+01:00",
-      "first_session": "2026-03-02T11:52:54.279000+01:00"
     },
     {
       "email": "hallvard@pitchpeak.no",
@@ -44275,27 +44275,27 @@
     },
     {
       "email": "mithuna@hornmedia.no",
-      "total_sessions": 47,
-      "last_session": "2026-03-19T20:29:11.736000+01:00",
+      "total_sessions": 53,
+      "last_session": "2026-03-20T19:33:59.161000+01:00",
       "first_session": "2026-03-05T10:03:18.449000+01:00"
     },
     {
       "email": "isak.solem@nki.no",
-      "total_sessions": 45,
-      "last_session": "2026-03-19T15:33:16.352000+01:00",
+      "total_sessions": 48,
+      "last_session": "2026-03-20T13:11:40.535000+01:00",
       "first_session": "2026-02-24T12:05:45.072000+01:00"
+    },
+    {
+      "email": "olechristian@re-boot.life",
+      "total_sessions": 46,
+      "last_session": "2026-03-20T09:24:08.866000+01:00",
+      "first_session": "2026-02-13T13:15:44.595000+01:00"
     },
     {
       "email": "erlend@britannia.no",
       "total_sessions": 44,
       "last_session": "2026-02-26T13:00:27.540000+01:00",
       "first_session": "2025-12-04T08:51:07.170000+01:00"
-    },
-    {
-      "email": "olechristian@re-boot.life",
-      "total_sessions": 44,
-      "last_session": "2026-03-17T14:13:41.435000+01:00",
-      "first_session": "2026-02-13T13:15:44.595000+01:00"
     },
     {
       "email": "shehab63363@gmail.com",
@@ -44328,6 +44328,12 @@
       "first_session": "2025-11-20T11:13:47.363000+01:00"
     },
     {
+      "email": "daniel.oseth@igaidi.no",
+      "total_sessions": 31,
+      "last_session": "2026-03-20T13:55:15.074000+01:00",
+      "first_session": "2026-03-05T08:07:53.862000+01:00"
+    },
+    {
       "email": "linda.skagerberg@toptemp.no",
       "total_sessions": 31,
       "last_session": "2026-03-16T15:01:24.685000+01:00",
@@ -44340,16 +44346,16 @@
       "first_session": "2025-12-15T15:07:44.132000+01:00"
     },
     {
-      "email": "daniel.oseth@igaidi.no",
-      "total_sessions": 28,
-      "last_session": "2026-03-19T15:13:56.913000+01:00",
-      "first_session": "2026-03-05T08:07:53.862000+01:00"
+      "email": "peli@godik.no",
+      "total_sessions": 29,
+      "last_session": "2026-03-20T14:56:26.977000+01:00",
+      "first_session": "2025-11-25T09:23:18.037000+01:00"
     },
     {
-      "email": "peli@godik.no",
-      "total_sessions": 26,
-      "last_session": "2026-03-19T21:22:14.186000+01:00",
-      "first_session": "2025-11-25T09:23:18.037000+01:00"
+      "email": "thomas.ortega@forenom.com",
+      "total_sessions": 28,
+      "last_session": "2026-03-20T19:35:22.164000+01:00",
+      "first_session": "2026-03-16T11:12:48.661000+01:00"
     },
     {
       "email": "jon.petter.andersen@comfycom.com",
@@ -44386,12 +44392,6 @@
       "total_sessions": 22,
       "last_session": "2026-03-19T15:57:38.756000+01:00",
       "first_session": "2026-03-09T16:42:23.832000+01:00"
-    },
-    {
-      "email": "thomas.ortega@forenom.com",
-      "total_sessions": 22,
-      "last_session": "2026-03-18T21:39:46.038000+01:00",
-      "first_session": "2026-03-16T11:12:48.661000+01:00"
     },
     {
       "email": "ola@heiglo.no",
@@ -44442,6 +44442,12 @@
       "first_session": "2025-12-01T10:17:03.733000+01:00"
     },
     {
+      "email": "jakub@vexter.no",
+      "total_sessions": 15,
+      "last_session": "2026-03-20T19:32:29.152000+01:00",
+      "first_session": "2026-03-16T13:35:59.222000+01:00"
+    },
+    {
       "email": "morten@re-boot.life",
       "total_sessions": 15,
       "last_session": "2026-03-11T16:51:10.753000+01:00",
@@ -44478,6 +44484,12 @@
       "first_session": "2025-11-26T14:18:46.774000+01:00"
     },
     {
+      "email": "julie.remen@fortytwo.io",
+      "total_sessions": 12,
+      "last_session": "2026-03-09T12:57:08.790000+01:00",
+      "first_session": "2026-02-25T13:06:08.148000+01:00"
+    },
+    {
       "email": "havard.ellingsen@expandia.no",
       "total_sessions": 12,
       "last_session": "2026-01-08T07:58:52.009000+01:00",
@@ -44490,22 +44502,22 @@
       "first_session": "2026-01-07T13:16:03.281000+01:00"
     },
     {
+      "email": "eva.alette@re-boot.life",
+      "total_sessions": 12,
+      "last_session": "2026-03-20T12:49:42.385000+01:00",
+      "first_session": "2026-02-23T10:24:13.308000+01:00"
+    },
+    {
       "email": "ove@easyreq.no",
       "total_sessions": 12,
       "last_session": "2026-02-26T14:59:03.173000+01:00",
       "first_session": "2026-02-12T14:29:48.843000+01:00"
     },
     {
-      "email": "julie.remen@fortytwo.io",
-      "total_sessions": 12,
-      "last_session": "2026-03-09T12:57:08.790000+01:00",
-      "first_session": "2026-02-25T13:06:08.148000+01:00"
-    },
-    {
-      "email": "ali@rupanicom.no",
+      "email": "fredrik.rasmussen@energihuset.net",
       "total_sessions": 11,
-      "last_session": "2026-03-10T12:12:29.869000+01:00",
-      "first_session": "2026-02-10T13:09:56.336000+01:00"
+      "last_session": "2026-02-18T13:04:58.451000+01:00",
+      "first_session": "2025-11-21T10:48:51.684000+01:00"
     },
     {
       "email": "doh@smartwaves.cloud",
@@ -44514,10 +44526,10 @@
       "first_session": "2026-03-16T12:33:56.376000+01:00"
     },
     {
-      "email": "fredrik.rasmussen@energihuset.net",
+      "email": "ali@rupanicom.no",
       "total_sessions": 11,
-      "last_session": "2026-02-18T13:04:58.451000+01:00",
-      "first_session": "2025-11-21T10:48:51.684000+01:00"
+      "last_session": "2026-03-10T12:12:29.869000+01:00",
+      "first_session": "2026-02-10T13:09:56.336000+01:00"
     },
     {
       "email": "erik.mellebye-giertsen@sperton.com",
@@ -44532,6 +44544,18 @@
       "first_session": "2026-03-02T23:35:11.854000+01:00"
     },
     {
+      "email": "ashkan@anbudstorget.no",
+      "total_sessions": 9,
+      "last_session": "2026-01-22T10:04:21.199000+01:00",
+      "first_session": "2025-11-20T13:06:41.837000+01:00"
+    },
+    {
+      "email": "simon@werocksales.com",
+      "total_sessions": 9,
+      "last_session": "2026-03-20T08:23:19.526000+01:00",
+      "first_session": "2026-03-18T23:14:37.602000+01:00"
+    },
+    {
       "email": "joel@homni.no",
       "total_sessions": 9,
       "last_session": "2026-03-09T23:50:21.698000+01:00",
@@ -44544,10 +44568,10 @@
       "first_session": "2025-12-03T13:14:06.166000+01:00"
     },
     {
-      "email": "ashkan@anbudstorget.no",
-      "total_sessions": 9,
-      "last_session": "2026-01-22T10:04:21.199000+01:00",
-      "first_session": "2025-11-20T13:06:41.837000+01:00"
+      "email": "lasse@pitch.no",
+      "total_sessions": 8,
+      "last_session": "2026-02-25T15:03:47.881000+01:00",
+      "first_session": "2026-02-24T11:05:01.059000+01:00"
     },
     {
       "email": "fredrik@digr.no",
@@ -44562,34 +44586,10 @@
       "first_session": "2025-12-04T12:38:06.944000+01:00"
     },
     {
-      "email": "simon@werocksales.com",
-      "total_sessions": 8,
-      "last_session": "2026-03-19T21:32:12.802000+01:00",
-      "first_session": "2026-03-18T23:14:37.602000+01:00"
-    },
-    {
-      "email": "jakub@vexter.no",
-      "total_sessions": 8,
-      "last_session": "2026-03-19T09:03:19.877000+01:00",
-      "first_session": "2026-03-16T13:35:59.222000+01:00"
-    },
-    {
-      "email": "eva.alette@re-boot.life",
-      "total_sessions": 8,
-      "last_session": "2026-03-19T09:31:56.560000+01:00",
-      "first_session": "2026-02-23T10:24:13.308000+01:00"
-    },
-    {
-      "email": "lasse@pitch.no",
-      "total_sessions": 8,
-      "last_session": "2026-02-25T15:03:47.881000+01:00",
-      "first_session": "2026-02-24T11:05:01.059000+01:00"
-    },
-    {
-      "email": "jakob@amidays.com",
+      "email": "torgeir@mercatur.no",
       "total_sessions": 7,
-      "last_session": "2026-01-16T16:17:15.270000+01:00",
-      "first_session": "2026-01-13T16:53:08.845000+01:00"
+      "last_session": "2026-03-20T13:07:31.744000+01:00",
+      "first_session": "2026-03-19T16:44:27.931000+01:00"
     },
     {
       "email": "mathilde@vexter.no",
@@ -44598,10 +44598,16 @@
       "first_session": "2026-03-17T12:55:55.615000+01:00"
     },
     {
-      "email": "kristian.borseth1@gmail.com",
-      "total_sessions": 6,
-      "last_session": "2026-02-18T09:15:00.704000+01:00",
-      "first_session": "2026-02-14T08:15:47.144000+01:00"
+      "email": "mona.ulimoen@eidsiva.no",
+      "total_sessions": 7,
+      "last_session": "2026-03-20T08:42:44.383000+01:00",
+      "first_session": "2026-03-18T08:25:58.186000+01:00"
+    },
+    {
+      "email": "jakob@amidays.com",
+      "total_sessions": 7,
+      "last_session": "2026-01-16T16:17:15.270000+01:00",
+      "first_session": "2026-01-13T16:53:08.845000+01:00"
     },
     {
       "email": "nils.magne@invisi.no",
@@ -44610,22 +44616,22 @@
       "first_session": "2025-12-11T11:05:28.781000+01:00"
     },
     {
-      "email": "sf@thebrave.no",
-      "total_sessions": 6,
-      "last_session": "2025-12-12T14:38:30.817000+01:00",
-      "first_session": "2025-12-10T13:49:15.059000+01:00"
-    },
-    {
       "email": "olai@homesourcing.no",
       "total_sessions": 6,
       "last_session": "2025-12-11T15:58:27.720000+01:00",
       "first_session": "2025-12-10T10:40:45.705000+01:00"
     },
     {
-      "email": "mona.ulimoen@eidsiva.no",
+      "email": "kristian.borseth1@gmail.com",
       "total_sessions": 6,
-      "last_session": "2026-03-18T20:25:37.252000+01:00",
-      "first_session": "2026-03-18T08:25:58.186000+01:00"
+      "last_session": "2026-02-18T09:15:00.704000+01:00",
+      "first_session": "2026-02-14T08:15:47.144000+01:00"
+    },
+    {
+      "email": "sf@thebrave.no",
+      "total_sessions": 6,
+      "last_session": "2025-12-12T14:38:30.817000+01:00",
+      "first_session": "2025-12-10T13:49:15.059000+01:00"
     },
     {
       "email": "oyvind.fritzen@noova.no",
@@ -44652,24 +44658,6 @@
       "first_session": "2026-03-09T14:13:58.667000+01:00"
     },
     {
-      "email": "jens@vexter.io",
-      "total_sessions": 5,
-      "last_session": "2025-12-15T09:38:41.235000+01:00",
-      "first_session": "2025-12-01T13:55:35.171000+01:00"
-    },
-    {
-      "email": "ingvild.kristiansen@jobzone.no",
-      "total_sessions": 5,
-      "last_session": "2026-01-28T14:50:07.862000+01:00",
-      "first_session": "2026-01-08T12:26:02.222000+01:00"
-    },
-    {
-      "email": "kafil.ahmed@bring.com",
-      "total_sessions": 5,
-      "last_session": "2026-01-19T11:27:52.306000+01:00",
-      "first_session": "2025-12-02T13:20:43.264000+01:00"
-    },
-    {
       "email": "morten.bjonness@eidsiva.no",
       "total_sessions": 5,
       "last_session": "2026-03-20T07:18:19.766000+01:00",
@@ -44682,10 +44670,22 @@
       "first_session": "2025-12-18T11:35:30.781000+01:00"
     },
     {
-      "email": "kenhygienesystems@gmail.com",
+      "email": "jens@vexter.io",
       "total_sessions": 5,
-      "last_session": "2026-02-12T09:13:34.814000+01:00",
-      "first_session": "2026-02-11T10:02:05.287000+01:00"
+      "last_session": "2025-12-15T09:38:41.235000+01:00",
+      "first_session": "2025-12-01T13:55:35.171000+01:00"
+    },
+    {
+      "email": "diyana@anbudstorget.no",
+      "total_sessions": 5,
+      "last_session": "2025-12-11T08:45:02.437000+01:00",
+      "first_session": "2025-11-21T08:34:24.759000+01:00"
+    },
+    {
+      "email": "vetle@tibe.no",
+      "total_sessions": 5,
+      "last_session": "2025-12-04T11:41:34.821000+01:00",
+      "first_session": "2025-11-20T07:41:02.185000+01:00"
     },
     {
       "email": "ashenafi.abdissa@noova.no",
@@ -45303,9 +45303,9 @@
     },
     {
       "week": "2026-03-16",
-      "wau": 60,
-      "total_sessions": 972,
-      "sessions_per_user": 16.2
+      "wau": 61,
+      "total_sessions": 1195,
+      "sessions_per_user": 19.59
     }
   ]
 }
