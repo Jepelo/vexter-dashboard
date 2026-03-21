@@ -24,7 +24,8 @@ print('Henter tilgangstoken...')
 token_resp = requests.post(
     PO_AUTH,
     headers={
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Ocp-Apim-Subscription-Key': SUB_KEY
     },
     data={
         'grant_type': 'client_credentials',
