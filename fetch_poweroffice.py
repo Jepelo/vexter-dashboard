@@ -46,7 +46,10 @@ hdrs = {
 print('Henter kunder...')
 cust_resp = requests.get(f'{PO_BASE}/Customers?pageSize=1000', headers=hdrs, timeout=30)
 cust_resp.raise_for_status()
-customers = cust_resp.json().get('data', [])
+cust_data = cust_resp.json()
+customers = cust_data.get('data', cust_data) if isinstance(cust_data, dict) else cust_data
+if not isinstance(customers, list):
+    customers = []
 print(f'  -> {len(customers)} kunder')
 
 # 3. Hent utgående fakturaer (paginert med $skip/$top OData-stil)
@@ -99,7 +102,10 @@ try:
         timeout=60
     )
     if ledger_resp.ok:
-        ledger_entries = ledger_resp.json().get('data', [])
+        ledger_data = ledger_resp.json()
+        ledger_entries = ledger_data.get('data', ledger_data) if isinstance(ledger_data, dict) else ledger_data
+        if not isinstance(ledger_entries, list):
+            ledger_entries = []
         print(f'  -> {len(ledger_entries)} posteringer')
     else:
         print(f'  CustomerLedger feil {ledger_resp.status_code}: {ledger_resp.text[:200]}')
