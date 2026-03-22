@@ -1,5 +1,5 @@
 {
-  "generert": "2026-03-22T19:28:54.270779Z",
+  "generert": "2026-03-22T19:37:23.131804Z",
   "kunder": [
     {
       "Allowance": null,
@@ -23336,34 +23336,27 @@
   ],
   "mrrPerKunde": {
     "TCT Norge AS": 1990,
-    "ADITE AS": 99,
     "Toptemp AS": 3000,
-    "LOYALTY AS": 6000,
-    "Awe AS": 399,
     "Føyen Digital AS": 1990,
-    "The Panda AS": 399,
-    "Glassy AS": 3000,
     "Folq AS": 2000,
     "Invisible Connections AS": 3000,
     "Aurskog Bygg & Renhold AS": 1950,
     "Anbudstorget.No AS": 6000,
-    "KPE Talent As": 5000,
+    "KPE Talent As": 7500,
     "SVENN AS": 3000,
     "Kontrafei Media AS": 14990,
     "AGI SYNERGIES AS": 1990,
     "Jobzone Kongsvinger": 2500,
-    "Padel Plus AS": 1990,
-    "Elite Media AS": 1667,
-    "Kaupang Sales AS": 399,
+    "Elite Media AS": 1327,
     "Energihuset Marked As": 4000,
-    "Rydd Reolsystem AS": 3000,
-    "AVONOVA SOLUTIONS AS": 3000,
+    "Rydd Reolsystem AS": 4000,
+    "AVONOVA SOLUTIONS AS": 4500,
     "Stekle AS": 5000,
     "NTT AS": 4000,
     "Smartwaves AS": 3000,
     "Lås1 Sikkerhet AS": 2000,
     "Salgspartneren AS": 1500,
-    "FORENOM AS": 5000,
+    "FORENOM AS": 2100,
     "Goma Pizza og Grill AS": 2000,
     "Unmo Ikt AS": 6000,
     "FORTYTWO TECHNOLOGIES AS": 2000,
@@ -23375,32 +23368,26 @@
     "SILDRE AS": 4000,
     "Top Temp Romerike": 3000,
     "My Profil AS": 2000,
-    "Workmove Group AS": 1500,
-    "Incepto Executive AS": 1990,
     "GODIK AS": 2000,
-    "Mat & Drikke AS": 99,
     "G O PROSJEKT AS": 2000,
-    "Pitchpeak Group AS": 2100,
-    "Markedssjefene AS": 4950,
     "Ownersroom AS": 1950,
-    "Branchy Rekruttering AS": 4000,
     "Sperton Norway AS": 7000,
     "Horn Media Group AS": 5000,
     "Bris Regnskap AS": 3000,
-    "Rupanicom AS": 6000,
+    "Rupanicom AS": 5000,
     "Expandia Moduler AS": 2100,
     "Bid System AS": 5000,
     "DIRI AS": 2500,
     "Posten Bring AS Stokke Terminal": 700,
-    "Fram People AS": 2000,
-    "PROPOS AS": 5000,
+    "Fram People AS": 8495,
+    "PROPOS AS": 4000,
     "We Rock Sales AS": 3000,
     "Mercatur AS": 2001,
     "B7people AS": 2000,
     "PILAR PERSONELL AS": 5000,
     "Eidsiva Digital AS": 6000,
     "Nki Kompetanse AS": 6000,
-    "Thevit AS": 2000,
+    "Thevit AS": 2100,
     "Pitch AS": 1000,
     "Concept Communication AS": 2000,
     "Cb Nettløsninger Christofer Bertilsson": 2100,
@@ -23415,511 +23402,480 @@
       "frekvens": "monthly",
       "sisteBeloep": 1990,
       "sisteFaktura": "2026-03-01",
-      "antallFakturaer": 15
-    },
-    "ADITE AS": {
-      "mrr": 99,
-      "frekvens": "monthly",
-      "sisteBeloep": 99,
-      "sisteFaktura": "2025-10-21",
-      "antallFakturaer": 9
+      "antallFakturaer": 15,
+      "dagsSiden": 21
     },
     "Toptemp AS": {
       "mrr": 3000,
       "frekvens": "monthly",
       "sisteBeloep": 3000,
       "sisteFaktura": "2026-03-14",
-      "antallFakturaer": 11
-    },
-    "LOYALTY AS": {
-      "mrr": 6000,
-      "frekvens": "monthly",
-      "sisteBeloep": 6000,
-      "sisteFaktura": "2025-12-18",
-      "antallFakturaer": 4
-    },
-    "Awe AS": {
-      "mrr": 399,
-      "frekvens": "monthly",
-      "sisteBeloep": 399,
-      "sisteFaktura": "2025-04-30",
-      "antallFakturaer": 3
+      "antallFakturaer": 11,
+      "dagsSiden": 8
     },
     "Føyen Digital AS": {
       "mrr": 1990,
       "frekvens": "monthly",
       "sisteBeloep": 1990,
       "sisteFaktura": "2026-03-03",
-      "antallFakturaer": 13
-    },
-    "The Panda AS": {
-      "mrr": 399,
-      "frekvens": "monthly",
-      "sisteBeloep": 399,
-      "sisteFaktura": "2025-08-21",
-      "antallFakturaer": 7
-    },
-    "Glassy AS": {
-      "mrr": 3000,
-      "frekvens": "monthly",
-      "sisteBeloep": 3000,
-      "sisteFaktura": "2025-11-23",
-      "antallFakturaer": 3
+      "antallFakturaer": 13,
+      "dagsSiden": 19
     },
     "Folq AS": {
       "mrr": 2000,
       "frekvens": "monthly",
       "sisteBeloep": 2000,
       "sisteFaktura": "2026-03-06",
-      "antallFakturaer": 3
+      "antallFakturaer": 3,
+      "dagsSiden": 16
     },
     "Invisible Connections AS": {
       "mrr": 3000,
       "frekvens": "monthly",
       "sisteBeloep": 3000,
       "sisteFaktura": "2026-03-11",
-      "antallFakturaer": 4
+      "antallFakturaer": 4,
+      "dagsSiden": 11
     },
     "Aurskog Bygg & Renhold AS": {
       "mrr": 1950,
       "frekvens": "monthly",
       "sisteBeloep": 1950,
       "sisteFaktura": "2026-03-06",
-      "antallFakturaer": 5
+      "antallFakturaer": 5,
+      "dagsSiden": 16
     },
     "Anbudstorget.No AS": {
       "mrr": 6000,
       "frekvens": "monthly",
       "sisteBeloep": 6000,
       "sisteFaktura": "2026-02-08",
-      "antallFakturaer": 6
+      "antallFakturaer": 6,
+      "dagsSiden": 42
     },
     "KPE Talent As": {
-      "mrr": 5000,
+      "mrr": 7500,
       "frekvens": "monthly",
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-03-19",
-      "antallFakturaer": 18
+      "antallFakturaer": 18,
+      "dagsSiden": 3
     },
     "SVENN AS": {
       "mrr": 3000,
       "frekvens": "monthly",
       "sisteBeloep": 3000,
       "sisteFaktura": "2026-03-16",
-      "antallFakturaer": 2
+      "antallFakturaer": 2,
+      "dagsSiden": 6
     },
     "Kontrafei Media AS": {
       "mrr": 14990,
       "frekvens": "monthly",
       "sisteBeloep": 14990,
       "sisteFaktura": "2026-03-02",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 20
     },
     "AGI SYNERGIES AS": {
       "mrr": 1990,
       "frekvens": "monthly",
       "sisteBeloep": 1990,
       "sisteFaktura": "2025-03-31",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 356
     },
     "Jobzone Kongsvinger": {
       "mrr": 2500,
       "frekvens": "monthly",
       "sisteBeloep": 2500,
       "sisteFaktura": "2026-03-07",
-      "antallFakturaer": 6
-    },
-    "Padel Plus AS": {
-      "mrr": 1990,
-      "frekvens": "monthly",
-      "sisteBeloep": 1990,
-      "sisteFaktura": "2025-04-01",
-      "antallFakturaer": 4
+      "antallFakturaer": 6,
+      "dagsSiden": 15
     },
     "Elite Media AS": {
-      "mrr": 1667,
+      "mrr": 1327,
       "frekvens": "quarterly",
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-02-24",
-      "antallFakturaer": 8
-    },
-    "Kaupang Sales AS": {
-      "mrr": 399,
-      "frekvens": "monthly",
-      "sisteBeloep": 399,
-      "sisteFaktura": "2025-09-07",
-      "antallFakturaer": 8
+      "antallFakturaer": 8,
+      "dagsSiden": 26
     },
     "Energihuset Marked As": {
       "mrr": 4000,
       "frekvens": "monthly",
       "sisteBeloep": 4000,
       "sisteFaktura": "2026-03-15",
-      "antallFakturaer": 7
+      "antallFakturaer": 7,
+      "dagsSiden": 7
     },
     "Rydd Reolsystem AS": {
-      "mrr": 3000,
+      "mrr": 4000,
       "frekvens": "monthly",
       "sisteBeloep": 3000,
       "sisteFaktura": "2026-02-16",
-      "antallFakturaer": 6
+      "antallFakturaer": 6,
+      "dagsSiden": 34
     },
     "AVONOVA SOLUTIONS AS": {
-      "mrr": 3000,
+      "mrr": 4500,
       "frekvens": "monthly",
       "sisteBeloep": 3000,
       "sisteFaktura": "2026-03-19",
-      "antallFakturaer": 2
+      "antallFakturaer": 2,
+      "dagsSiden": 3
     },
     "Stekle AS": {
       "mrr": 5000,
       "frekvens": "monthly",
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-03-16",
-      "antallFakturaer": 2
+      "antallFakturaer": 2,
+      "dagsSiden": 6
     },
     "NTT AS": {
       "mrr": 4000,
       "frekvens": "monthly",
       "sisteBeloep": 4000,
       "sisteFaktura": "2026-03-04",
-      "antallFakturaer": 3
+      "antallFakturaer": 3,
+      "dagsSiden": 18
     },
     "Smartwaves AS": {
       "mrr": 3000,
       "frekvens": "monthly",
       "sisteBeloep": 3000,
       "sisteFaktura": "2026-03-17",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 5
     },
     "Lås1 Sikkerhet AS": {
       "mrr": 2000,
       "frekvens": "monthly",
       "sisteBeloep": 2000,
       "sisteFaktura": "2026-03-12",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 10
     },
     "Salgspartneren AS": {
       "mrr": 1500,
       "frekvens": "monthly",
       "sisteBeloep": 1500,
       "sisteFaktura": "2026-03-09",
-      "antallFakturaer": 6
+      "antallFakturaer": 6,
+      "dagsSiden": 13
     },
     "FORENOM AS": {
-      "mrr": 5000,
+      "mrr": 2100,
       "frekvens": "monthly",
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-03-06",
-      "antallFakturaer": 5
+      "antallFakturaer": 5,
+      "dagsSiden": 16
     },
     "Goma Pizza og Grill AS": {
       "mrr": 2000,
       "frekvens": "monthly",
       "sisteBeloep": 2000,
       "sisteFaktura": "2026-03-17",
-      "antallFakturaer": 2
+      "antallFakturaer": 2,
+      "dagsSiden": 5
     },
     "Unmo Ikt AS": {
       "mrr": 6000,
       "frekvens": "monthly",
       "sisteBeloep": 6000,
       "sisteFaktura": "2026-03-20",
-      "antallFakturaer": 3
+      "antallFakturaer": 3,
+      "dagsSiden": 2
     },
     "FORTYTWO TECHNOLOGIES AS": {
       "mrr": 2000,
       "frekvens": "monthly",
       "sisteBeloep": 2000,
       "sisteFaktura": "2026-02-25",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 25
     },
     "ABSEC AS": {
       "mrr": 5000,
       "frekvens": "monthly",
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-03-19",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 3
     },
     "INNOVATION SUPPORT AS": {
       "mrr": 2000,
       "frekvens": "monthly",
       "sisteBeloep": 2000,
       "sisteFaktura": "2025-10-14",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 159
     },
     "MEDIA PERFORMANCE AS": {
       "mrr": 5000,
       "frekvens": "monthly",
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-03-10",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 12
     },
     "Nell Renhold AS": {
       "mrr": 2100,
       "frekvens": "monthly",
       "sisteBeloep": 2100,
       "sisteFaktura": "2026-03-21",
-      "antallFakturaer": 5
+      "antallFakturaer": 5,
+      "dagsSiden": 1
     },
     "BRITANNIA HOTEL AS": {
       "mrr": 2100,
       "frekvens": "monthly",
       "sisteBeloep": 2100,
       "sisteFaktura": "2026-03-04",
-      "antallFakturaer": 4
+      "antallFakturaer": 4,
+      "dagsSiden": 18
     },
     "SILDRE AS": {
       "mrr": 4000,
       "frekvens": "monthly",
       "sisteBeloep": 4000,
       "sisteFaktura": "2026-03-04",
-      "antallFakturaer": 4
+      "antallFakturaer": 4,
+      "dagsSiden": 18
     },
     "Top Temp Romerike": {
       "mrr": 3000,
       "frekvens": "monthly",
       "sisteBeloep": 3000,
       "sisteFaktura": "2026-02-19",
-      "antallFakturaer": 6
+      "antallFakturaer": 6,
+      "dagsSiden": 31
     },
     "My Profil AS": {
       "mrr": 2000,
       "frekvens": "monthly",
       "sisteBeloep": 2000,
       "sisteFaktura": "2026-03-19",
-      "antallFakturaer": 7
-    },
-    "Workmove Group AS": {
-      "mrr": 1500,
-      "frekvens": "monthly",
-      "sisteBeloep": 1500,
-      "sisteFaktura": "2026-01-13",
-      "antallFakturaer": 3
-    },
-    "Incepto Executive AS": {
-      "mrr": 1990,
-      "frekvens": "monthly",
-      "sisteBeloep": 1990,
-      "sisteFaktura": "2025-04-01",
-      "antallFakturaer": 3
+      "antallFakturaer": 7,
+      "dagsSiden": 3
     },
     "GODIK AS": {
       "mrr": 2000,
       "frekvens": "monthly",
       "sisteBeloep": 2000,
       "sisteFaktura": "2026-03-13",
-      "antallFakturaer": 5
-    },
-    "Mat & Drikke AS": {
-      "mrr": 99,
-      "frekvens": "monthly",
-      "sisteBeloep": 99,
-      "sisteFaktura": "2025-09-03",
-      "antallFakturaer": 8
+      "antallFakturaer": 5,
+      "dagsSiden": 9
     },
     "G O PROSJEKT AS": {
       "mrr": 2000,
       "frekvens": "monthly",
       "sisteBeloep": 2000,
       "sisteFaktura": "2026-03-11",
-      "antallFakturaer": 6
-    },
-    "Pitchpeak Group AS": {
-      "mrr": 2100,
-      "frekvens": "monthly",
-      "sisteBeloep": 2100,
-      "sisteFaktura": "2026-01-12",
-      "antallFakturaer": 2
-    },
-    "Markedssjefene AS": {
-      "mrr": 4950,
-      "frekvens": "monthly",
-      "sisteBeloep": 4950,
-      "sisteFaktura": "2025-12-31",
-      "antallFakturaer": 3
+      "antallFakturaer": 6,
+      "dagsSiden": 11
     },
     "Ownersroom AS": {
       "mrr": 1950,
       "frekvens": "annual",
       "sisteBeloep": 23400,
       "sisteFaktura": "2026-01-21",
-      "antallFakturaer": 2
-    },
-    "Branchy Rekruttering AS": {
-      "mrr": 4000,
-      "frekvens": "monthly",
-      "sisteBeloep": 4000,
-      "sisteFaktura": "2025-12-18",
-      "antallFakturaer": 4
+      "antallFakturaer": 2,
+      "dagsSiden": 60
     },
     "Sperton Norway AS": {
       "mrr": 7000,
       "frekvens": "monthly",
       "sisteBeloep": 7000,
       "sisteFaktura": "2026-03-03",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 19
     },
     "Horn Media Group AS": {
       "mrr": 5000,
       "frekvens": "monthly",
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-03-03",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 19
     },
     "Bris Regnskap AS": {
       "mrr": 3000,
       "frekvens": "monthly",
       "sisteBeloep": 3000,
       "sisteFaktura": "2026-03-02",
-      "antallFakturaer": 4
+      "antallFakturaer": 4,
+      "dagsSiden": 20
     },
     "Rupanicom AS": {
-      "mrr": 6000,
+      "mrr": 5000,
       "frekvens": "monthly",
       "sisteBeloep": 6000,
       "sisteFaktura": "2026-03-17",
-      "antallFakturaer": 2
+      "antallFakturaer": 2,
+      "dagsSiden": 5
     },
     "Expandia Moduler AS": {
       "mrr": 2100,
       "frekvens": "monthly",
       "sisteBeloep": 2100,
       "sisteFaktura": "2026-01-18",
-      "antallFakturaer": 4
+      "antallFakturaer": 4,
+      "dagsSiden": 63
     },
     "Bid System AS": {
       "mrr": 5000,
       "frekvens": "monthly",
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-02-24",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 26
     },
     "DIRI AS": {
       "mrr": 2500,
       "frekvens": "monthly",
       "sisteBeloep": 2500,
       "sisteFaktura": "2026-03-14",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 8
     },
     "Posten Bring AS Stokke Terminal": {
       "mrr": 700,
       "frekvens": "quarterly",
       "sisteBeloep": 2100,
       "sisteFaktura": "2025-11-28",
-      "antallFakturaer": 3
+      "antallFakturaer": 3,
+      "dagsSiden": 114
     },
     "Fram People AS": {
-      "mrr": 2000,
+      "mrr": 8495,
       "frekvens": "monthly",
       "sisteBeloep": 2000,
       "sisteFaktura": "2026-03-19",
-      "antallFakturaer": 2
+      "antallFakturaer": 2,
+      "dagsSiden": 3
     },
     "PROPOS AS": {
-      "mrr": 5000,
+      "mrr": 4000,
       "frekvens": "monthly",
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-02-27",
-      "antallFakturaer": 2
+      "antallFakturaer": 2,
+      "dagsSiden": 23
     },
     "We Rock Sales AS": {
       "mrr": 3000,
       "frekvens": "monthly",
       "sisteBeloep": 3000,
       "sisteFaktura": "2026-03-19",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 3
     },
     "Mercatur AS": {
       "mrr": 2001,
       "frekvens": "monthly",
       "sisteBeloep": 2001,
       "sisteFaktura": "2026-03-20",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 2
     },
     "B7people AS": {
       "mrr": 2000,
       "frekvens": "monthly",
       "sisteBeloep": 2000,
       "sisteFaktura": "2026-03-02",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 20
     },
     "PILAR PERSONELL AS": {
       "mrr": 5000,
       "frekvens": "monthly",
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-03-11",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 11
     },
     "Eidsiva Digital AS": {
       "mrr": 6000,
       "frekvens": "monthly",
       "sisteBeloep": 6000,
       "sisteFaktura": "2026-03-10",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 12
     },
     "Nki Kompetanse AS": {
       "mrr": 6000,
       "frekvens": "monthly",
       "sisteBeloep": 6000,
       "sisteFaktura": "2026-02-24",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 26
     },
     "Thevit AS": {
-      "mrr": 2000,
+      "mrr": 2100,
       "frekvens": "monthly",
       "sisteBeloep": 2000,
       "sisteFaktura": "2026-02-05",
-      "antallFakturaer": 3
+      "antallFakturaer": 3,
+      "dagsSiden": 45
     },
     "Pitch AS": {
       "mrr": 1000,
       "frekvens": "monthly",
       "sisteBeloep": 1000,
       "sisteFaktura": "2026-02-02",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 48
     },
     "Concept Communication AS": {
       "mrr": 2000,
       "frekvens": "monthly",
       "sisteBeloep": 2000,
       "sisteFaktura": "2026-02-03",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 47
     },
     "Cb Nettløsninger Christofer Bertilsson": {
       "mrr": 2100,
       "frekvens": "monthly",
       "sisteBeloep": 2100,
       "sisteFaktura": "2025-11-14",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 128
     },
     "Soliditet AS": {
       "mrr": 2100,
       "frekvens": "monthly",
       "sisteBeloep": 2100,
       "sisteFaktura": "2025-12-08",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 104
     },
     "BEDRIFTSABONNEMENT AS": {
       "mrr": 2000,
       "frekvens": "monthly",
       "sisteBeloep": 2000,
       "sisteFaktura": "2026-02-28",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 22
     },
     "Venturetime AS": {
       "mrr": 3000,
       "frekvens": "monthly",
       "sisteBeloep": 3000,
       "sisteFaktura": "2026-03-11",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 11
     },
     "GROSSMAN AS": {
       "mrr": 5000,
       "frekvens": "monthly",
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-02-28",
-      "antallFakturaer": 1
+      "antallFakturaer": 1,
+      "dagsSiden": 22
     }
   },
   "gjentagendeOrdre": [
@@ -24158,6 +24114,8 @@
   "kontopostinger": [],
   "kundekonto": [],
   "leverandorkonto": [],
+  "bankbilag": [],
+  "kassabilag": [],
   "produkter": [
     {
       "Code": "1",
