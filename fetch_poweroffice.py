@@ -70,7 +70,24 @@ def safe_get(endpoint):
         print(f'  /{endpoint}: unntak – {e}')
         return []
 
-# 2. Kunder
+# 2. Sjekk tilgangsrettigheter
+print('\nSjekker tilgangsrettigheter...')
+try:
+    ci_resp = requests.get(f'{PO_BASE}/ClientIntegrationInformation', headers=hdrs, timeout=30)
+    if ci_resp.ok:
+        ci = ci_resp.json()
+        print(f'  Klientnavn: {ci.get("ClientName", "?")}')
+        privs = ci.get('AccessPrivileges', ci.get('Privileges', ci.get('Subscriptions', [])))
+        if privs:
+            print(f'  Tilganger: {json.dumps(privs, ensure_ascii=False)[:500]}')
+        else:
+            print(f'  Full respons: {json.dumps(ci, ensure_ascii=False)[:500]}')
+    else:
+        print(f'  ClientIntegrationInformation: {ci_resp.status_code}')
+except Exception as e:
+    print(f'  Feil: {e}')
+
+# 3. Kunder
 print('\nHenter kunder...')
 customers = safe_get('Customers')
 
