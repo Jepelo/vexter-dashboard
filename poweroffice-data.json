@@ -1,5 +1,5 @@
 {
-  "generert": "2026-03-21T21:41:42.193226Z",
+  "generert": "2026-03-22T05:19:25.297715Z",
   "kunder": [
     {
       "Allowance": null,
@@ -7748,7 +7748,7 @@
       "InvoiceNo": 10271,
       "IsCreatedByCurrentIntegration": false,
       "IsReversed": false,
-      "LastChangedDateTimeOffset": "2026-03-12T02:15:38.4652321Z",
+      "LastChangedDateTimeOffset": "2026-03-22T03:12:09.3462341Z",
       "LocationCode": null,
       "LocationId": null,
       "MatchId": null,
@@ -8058,7 +8058,7 @@
       "InvoiceNo": 10237,
       "IsCreatedByCurrentIntegration": false,
       "IsReversed": false,
-      "LastChangedDateTimeOffset": "2026-03-18T03:13:18.5779351Z",
+      "LastChangedDateTimeOffset": "2026-03-22T03:12:10.4981043Z",
       "LocationCode": null,
       "LocationId": null,
       "MatchId": null,
@@ -11096,7 +11096,7 @@
       "InvoiceNo": 10233,
       "IsCreatedByCurrentIntegration": false,
       "IsReversed": false,
-      "LastChangedDateTimeOffset": "2026-03-18T03:13:18.5925146Z",
+      "LastChangedDateTimeOffset": "2026-03-22T03:12:10.4892477Z",
       "LocationCode": null,
       "LocationId": null,
       "MatchId": null,
@@ -23124,7 +23124,7 @@
       "InvoiceNo": 10245,
       "IsCreatedByCurrentIntegration": false,
       "IsReversed": false,
-      "LastChangedDateTimeOffset": "2026-03-18T03:13:18.5822086Z",
+      "LastChangedDateTimeOffset": "2026-03-22T03:12:10.5031171Z",
       "LocationCode": null,
       "LocationId": null,
       "MatchId": null,
