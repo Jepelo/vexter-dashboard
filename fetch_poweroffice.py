@@ -13,8 +13,10 @@ APP_KEY    = os.environ.get('PO_APP_KEY', '')
 CLIENT_KEY = os.environ.get('PO_CLIENT_KEY', '')
 SUB_KEY    = os.environ.get('PO_SUB_KEY', '')
 
-PO_AUTH = 'https://goapi.poweroffice.net/OAuth/Token'
-PO_BASE = 'https://goapi.poweroffice.net/v2'
+PO_AUTH    = 'https://goapi.poweroffice.net/OAuth/Token'   # V2 auth
+PO_BASE    = 'https://goapi.poweroffice.net/v2'            # V2 base
+PO_AUTH_V1 = 'https://api.poweroffice.net/OAuth/Token'     # V1 auth
+PO_BASE_V1 = 'https://api.poweroffice.net/api'             # V1 base
 
 if not all([APP_KEY, CLIENT_KEY, SUB_KEY]):
     print('FEIL: Mangler en eller flere nøkler (PO_APP_KEY, PO_CLIENT_KEY, PO_SUB_KEY)')
@@ -70,7 +72,58 @@ def safe_get(endpoint):
         print(f'  /{endpoint}: unntak – {e}')
         return []
 
-# 2. Sjekk tilgangsrettigheter
+# 2. Hent V1 token (separat fra V2)
+print('\nHenter V1 tilgangstoken...')
+token_v1 = None
+hdrs_v1 = None
+try:
+    v1_resp = requests.post(
+        PO_AUTH_V1,
+        auth=(APP_KEY, CLIENT_KEY),
+        headers={'Content-Type': 'application/x-www-form-urlencoded'},
+        data={'grant_type': 'client_credentials'},
+        timeout=30
+    )
+    if v1_resp.ok:
+        token_v1 = v1_resp.json().get('access_token')
+        hdrs_v1 = {'Authorization': f'Bearer {token_v1}'}
+        print('V1 Token OK')
+    else:
+        print(f'V1 Token feil {v1_resp.status_code}: {v1_resp.text[:200]}')
+except Exception as e:
+    print(f'V1 Token unntak: {e}')
+
+def safe_get_v1(endpoint):
+    """Henter data fra V1 endepunkt."""
+    if not hdrs_v1:
+        return []
+    url = f'{PO_BASE_V1}/{endpoint}'
+    try:
+        r = requests.get(url, headers=hdrs_v1, timeout=60)
+        if r.ok:
+            d = r.json()
+            # V1 returnerer data direkte eller i 'data'/'Data'
+            result = d.get('data', d.get('Data', d)) if isinstance(d, dict) else d
+            if isinstance(result, list):
+                print(f'  ✓ V1 /{endpoint}: {len(result)} poster')
+                return result
+            else:
+                print(f'  V1 /{endpoint}: ukjent format: {str(result)[:100]}')
+                return []
+        elif r.status_code == 404:
+            print(f'  V1 /{endpoint}: ikke funnet (404)')
+            return []
+        elif r.status_code == 403:
+            print(f'  V1 /{endpoint}: ingen tilgang (403)')
+            return []
+        else:
+            print(f'  V1 /{endpoint}: feil {r.status_code} – {r.text[:150]}')
+            return []
+    except Exception as e:
+        print(f'  V1 /{endpoint}: unntak – {e}')
+        return []
+
+# 3. Sjekk tilgangsrettigheter
 print('\nSjekker tilgangsrettigheter...')
 try:
     ci_resp = requests.get(f'{PO_BASE}/ClientIntegrationInformation', headers=hdrs, timeout=30)
@@ -95,37 +148,177 @@ customers = safe_get('Customers')
 print('\nHenter utgående fakturaer...')
 outgoing_invoices = safe_get('OutgoingInvoices')
 
-# 4. Gjentagende ordrer – MRR-kilde
-#    Riktig sti: SalesOrder (ikke Reporting/)
-print('\nHenter gjentagende/repeterende ordrer...')
+# 4. Gjentagende/repeterende fakturaer
+#    Prøver V2 SalesOrders og V1 RecurringInvoice
+print('\nHenter gjentagende/repeterende fakturaer...')
 recurring_orders = safe_get('SalesOrders') or safe_get('SalesOrder')
+# V1 forsøk hvis V2 gir lite
+v1_recurring = safe_get_v1('recurringinvoice') or safe_get_v1('RecurringInvoice') or safe_get_v1('recurring-invoice')
+if v1_recurring:
+    print(f'  -> Bruker V1 gjentagende fakturaer ({len(v1_recurring)} stk)')
+    recurring_orders = v1_recurring
 
-# 5. Innkommende fakturaer (kostnader) – under Reporting/
+# 5. Innkommende fakturaer (kostnader)
+#    V2 Reporting/ + V1 fallback
 print('\nHenter innkommende fakturaer (kostnader)...')
-incoming_invoices = safe_get('Reporting/IncomingInvoices')
+incoming_invoices = (
+    safe_get('Reporting/IncomingInvoices')
+    or safe_get_v1('invoice/incoming')
+    or safe_get_v1('IncomingInvoice')
+    or safe_get_v1('supplierinvoice')
+    or safe_get_v1('SupplierInvoice')
+)
 
-# 6. Kontopostinger – under Reporting/
+# 6. Kontopostinger – full regnskapshistorikk
 print('\nHenter kontopostinger (regnskap)...')
-account_transactions = safe_get('Reporting/AccountTransactions')
+account_transactions = (
+    safe_get('Reporting/AccountTransactions')
+    or safe_get_v1('accounttransaction')
+    or safe_get_v1('AccountTransaction')
+    or safe_get_v1('journalentry')
+    or safe_get_v1('voucher')
+)
 
-# 7. Kundekonto – under Reporting/
+# 7. Kundekonto
 print('\nHenter kundekonto...')
-customer_ledger = safe_get('Reporting/CustomerLedger')
+customer_ledger = (
+    safe_get('Reporting/CustomerLedger')
+    or safe_get_v1('customerledger')
+    or safe_get_v1('CustomerLedger')
+)
 
-# 8. Leverandørkonto – under Reporting/
+# 8. Leverandørkonto
 print('\nHenter leverandørkonto...')
-supplier_ledger = safe_get('Reporting/SupplierLedger')
+supplier_ledger = (
+    safe_get('Reporting/SupplierLedger')
+    or safe_get_v1('supplierledger')
+    or safe_get_v1('SupplierLedger')
+)
 
 # 9. Produkter
 print('\nHenter produkter...')
 products = safe_get('Products')
 
-# 10. Lagre JSON
+# 10. Utled MRR per kunde fra fakturahistorikk
+# Siden /Reporting/RecurringInvoice ikke er tilgjengelig, bruker vi fakturamønster:
+# - Finner siste faktura per kunde (ekskluderer engangskjøp)
+# - Bestemmer frekvens (månedlig/kvartalsvis/årlig) fra fakturahistorikk
+# - Normaliserer til månedlig MRR
+print('\nUtleder MRR fra fakturahistorikk...')
+
+ONE_TIME_KEYWORDS = ['resultatgaranti', 'oppstart', 'onboarding', 'kampanje', 'etablering']
+
+def get_invoice_date(inv):
+    for field in ['OrderDate', 'InvoiceDate', 'OutgoingInvoiceDate', 'CreatedDateTimeOffset']:
+        val = inv.get(field)
+        if val:
+            try:
+                return datetime.fromisoformat(str(val)[:19].replace('T', ' '))
+            except Exception:
+                pass
+    return None
+
+def get_customer_name(inv):
+    for field in ['CustomerName', 'ContactName', 'DebtorName']:
+        val = inv.get(field)
+        if val and str(val).strip():
+            return str(val).strip()
+    return None
+
+def is_one_time(inv):
+    desc = ' '.join([
+        str(inv.get('Description', '')),
+        str(inv.get('ProductName', '')),
+        str(inv.get('Lines', '')),
+    ]).lower()
+    return any(kw in desc for kw in ONE_TIME_KEYWORDS)
+
+def get_amount(inv):
+    for field in ['NetAmount', 'GrossAmount', 'TotalIncludingVat', 'Amount']:
+        val = inv.get(field)
+        if val is not None:
+            try:
+                return float(val)
+            except Exception:
+                pass
+    return 0.0
+
+# Grupper fakturaer per kunde (ekskluder engangskjøp)
+from collections import defaultdict
+cust_invoices = defaultdict(list)
+for inv in outgoing_invoices:
+    name = get_customer_name(inv)
+    if not name or is_one_time(inv):
+        continue
+    d = get_invoice_date(inv)
+    amt = get_amount(inv)
+    if d and amt > 0:
+        cust_invoices[name].append((d, amt))
+
+# Bestem MRR per kunde
+now = datetime.utcnow()
+mrr_per_kunde = {}
+mrr_detaljer = {}
+
+for name, invoices in cust_invoices.items():
+    invoices.sort(key=lambda x: x[0])
+    last_date, last_amt = invoices[-1]
+
+    # Sjekk om kunden fortsatt er aktiv (siste faktura innen 400 dager)
+    days_since = (now - last_date).days
+    if days_since > 400:
+        continue  # Sannsynlig churn
+
+    # Bestem fakturafrekvens fra mellomrom mellom siste fakturaer
+    if len(invoices) >= 2:
+        gaps = []
+        for i in range(max(0, len(invoices)-4), len(invoices)-1):
+            gap = (invoices[i+1][0] - invoices[i][0]).days
+            if gap > 10:  # ignorer duplikater
+                gaps.append(gap)
+        avg_gap = sum(gaps) / len(gaps) if gaps else 30
+    else:
+        avg_gap = 30  # default månedlig
+
+    # Normaliser til MRR
+    if avg_gap < 45:       # Månedlig
+        mrr = last_amt
+        freq = 'monthly'
+    elif avg_gap < 110:    # Kvartalsvis
+        mrr = last_amt / 3
+        freq = 'quarterly'
+    elif avg_gap < 200:    # Halvårlig
+        mrr = last_amt / 6
+        freq = 'semiannual'
+    else:                  # Årlig
+        mrr = last_amt / 12
+        freq = 'annual'
+
+    mrr_per_kunde[name] = round(mrr)
+    mrr_detaljer[name] = {
+        'mrr': round(mrr),
+        'frekvens': freq,
+        'sisteBeloep': round(last_amt),
+        'sisteFaktura': last_date.strftime('%Y-%m-%d'),
+        'antallFakturaer': len(invoices),
+    }
+
+total_mrr = sum(mrr_per_kunde.values())
+print(f'  ✓ MRR utledet for {len(mrr_per_kunde)} kunder, total MRR = kr {total_mrr:,.0f}')
+
+# Vis topp 10 for debugging
+sorted_mrr = sorted(mrr_detaljer.items(), key=lambda x: -x[1]['mrr'])
+for name, d in sorted_mrr[:10]:
+    print(f'    {name}: kr {d["mrr"]} ({d["frekvens"]}, siste {d["sisteFaktura"]})')
+
+# 11. Lagre JSON
 print('\n=== Lagrer poweroffice-data.json ===')
 output = {
     'generert': datetime.utcnow().isoformat() + 'Z',
     'kunder': customers,
     'fakturaer': outgoing_invoices,
+    'mrrPerKunde': mrr_per_kunde,       # MRR utledet fra fakturamønster
+    'mrrDetaljer': mrr_detaljer,        # Detaljert MRR-info per kunde
     'gjentagendeOrdre': recurring_orders,
     'innkommendeFakturaer': incoming_invoices,
     'kontopostinger': account_transactions,
@@ -141,6 +334,7 @@ size_kb = os.path.getsize('poweroffice-data.json') / 1024
 print(f'\n✓ Ferdig! poweroffice-data.json ({size_kb:.1f} KB)')
 print(f'  Kunder:                {len(customers)}')
 print(f'  Utgående fakturaer:    {len(outgoing_invoices)}')
+print(f'  MRR utledet kunder:    {len(mrr_per_kunde)} (kr {sum(mrr_per_kunde.values()):,.0f}/mnd)')
 print(f'  Gjentagende ordrer:    {len(recurring_orders)}')
 print(f'  Innkommende fakturaer: {len(incoming_invoices)}')
 print(f'  Kontopostinger:        {len(account_transactions)}')
