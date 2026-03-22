@@ -1,5 +1,5 @@
 {
-  "generert": "2026-03-22T14:17:16.248887Z",
+  "generert": "2026-03-22T19:22:02.643054Z",
   "kunder": [
     {
       "Allowance": null,
@@ -23334,6 +23334,8 @@
       "VoucherType": "OutgoingInvoice"
     }
   ],
+  "mrrPerKunde": {},
+  "mrrDetaljer": {},
   "gjentagendeOrdre": [
     {
       "BrandingThemeCode": "1",
