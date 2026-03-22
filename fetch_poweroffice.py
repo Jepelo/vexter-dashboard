@@ -313,7 +313,7 @@ for name, invoices in cust_invoices.items():
     if len(invoices) == 1:
         # Ny kunde med 1 faktura: teller som manedlig MRR
         # Hopp over kun hvis veldig gammelt (>400 dager = sannsynlig churn)
-        if days_since > 400:
+        if days_since > 45:
             skipped_churn += 1
             continue
         freq = 'monthly'
