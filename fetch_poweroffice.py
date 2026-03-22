@@ -143,6 +143,9 @@ except Exception as e:
 # 3. Kunder
 print('\nHenter kunder...')
 customers = safe_get('Customers')
+if customers:
+    first_c = customers[0]
+    print(f'  DEBUG første kunde – felter: {list(first_c.keys())[:20]}')
 
 # 3. Utgående fakturaer (inntekter)
 print('\nHenter utgående fakturaer...')
@@ -206,12 +209,21 @@ products = safe_get('Products')
 # - Normaliserer til månedlig MRR
 print('\nUtleder MRR fra fakturahistorikk...')
 
+# Debug: vis struktur på første faktura for å finne riktige feltnavn
+if outgoing_invoices:
+    first = outgoing_invoices[0]
+    print(f'  DEBUG første faktura – alle felter:')
+    for k, v in first.items():
+        print(f'    {k}: {repr(v)[:80]}')
+    print(f'  (totalt {len(first)} felter)')
+
 ONE_TIME_KEYWORDS = ['resultatgaranti', 'oppstart', 'onboarding', 'kampanje', 'etablering']
 
 def get_invoice_date(inv):
-    for field in ['OrderDate', 'InvoiceDate', 'OutgoingInvoiceDate', 'CreatedDateTimeOffset']:
+    for field in ['InvoiceDate', 'OrderDate', 'OutgoingInvoiceDate', 'CreatedDateTimeOffset',
+                  'SentDate', 'Date', 'date', 'invoiceDate', 'DueDate']:
         val = inv.get(field)
-        if val:
+        if val and str(val) not in ('None', 'null', ''):
             try:
                 return datetime.fromisoformat(str(val)[:19].replace('T', ' '))
             except Exception:
@@ -219,9 +231,10 @@ def get_invoice_date(inv):
     return None
 
 def get_customer_name(inv):
-    for field in ['CustomerName', 'ContactName', 'DebtorName']:
+    for field in ['CustomerName', 'ContactName', 'DebtorName', 'Customer', 'CustomerCode',
+                  'DebtorCustomerName', 'ContactPersonName', 'name', 'Name']:
         val = inv.get(field)
-        if val and str(val).strip():
+        if val and str(val).strip() and str(val).strip() not in ('None', '0'):
             return str(val).strip()
     return None
 
@@ -234,11 +247,14 @@ def is_one_time(inv):
     return any(kw in desc for kw in ONE_TIME_KEYWORDS)
 
 def get_amount(inv):
-    for field in ['NetAmount', 'GrossAmount', 'TotalIncludingVat', 'Amount']:
+    for field in ['NetAmount', 'GrossAmount', 'TotalIncludingVat', 'TotalExcludingVat',
+                  'Amount', 'TotalAmount', 'RestAmount', 'amount', 'total']:
         val = inv.get(field)
         if val is not None:
             try:
-                return float(val)
+                f = float(val)
+                if f != 0.0:
+                    return f
             except Exception:
                 pass
     return 0.0
@@ -246,14 +262,26 @@ def get_amount(inv):
 # Grupper fakturaer per kunde (ekskluder engangskjøp)
 from collections import defaultdict
 cust_invoices = defaultdict(list)
+no_name = 0
+no_date = 0
+no_amt = 0
 for inv in outgoing_invoices:
     name = get_customer_name(inv)
-    if not name or is_one_time(inv):
+    if not name:
+        no_name += 1
+        continue
+    if is_one_time(inv):
         continue
     d = get_invoice_date(inv)
+    if not d:
+        no_date += 1
+        continue
     amt = get_amount(inv)
-    if d and amt > 0:
-        cust_invoices[name].append((d, amt))
+    if not amt or amt <= 0:
+        no_amt += 1
+        continue
+    cust_invoices[name].append((d, amt))
+print(f'  DEBUG: {len(cust_invoices)} kunder funnet, {no_name} uten navn, {no_date} uten dato, {no_amt} uten beløp')
 
 # Bestem MRR per kunde
 now = datetime.utcnow()
