@@ -1194,11 +1194,35 @@ async function autoLoadFromGitHub(){
           if(id&&name) custById[id]=name;
         });
 
-        // ── MRR fra gjentagende ordrer (API-kilde) ────────────────────────
-        let mrrFromApi=false;
-        if(recurringOrders.length){
-          mrrFromApi=true;
-          const apiMrr={};
+        // ── MRR fra API (server-beregnet mrrPerKunde) ───────────────────────
+        // Strategi: CUSTOMER_META.mrr er sannhet for kjente kunder (verifiserte verdier).
+        // API brukes KUN til aa oppdage NYE kunder automatisk.
+        const apiMrrData=poData.mrrPerKunde||{};
+        const apiMrrDetaljer=poData.mrrDetaljer||{};
+        let newCustCount=0;
+        let mrrFromApi=Object.keys(apiMrrData).length>0;
+
+        Object.entries(apiMrrData).forEach(([name,mrr])=>{
+          if(mrr<=0) return;
+          let key=CUSTOMER_META[name]?name:Object.keys(CUSTOMER_META).find(k=>k.toLowerCase()===name.toLowerCase());
+          if(!key){
+            // NY kunde oppdaget av API – legg til automatisk
+            const det=apiMrrDetaljer[name]||{};
+            const fmap={monthly:'monthly',quarterly:'quarterly',semiannual:'semiannual',annual:'annual'};
+            CUSTOMER_META[name]={
+              since:det.sisteFaktura||null,
+              type:fmap[det.frekvens]||'monthly',
+              dify:false,
+              mrr:Math.round(mrr)
+            };
+            newCustCount++;
+          }
+          // Eksisterende kunder: IKKE overskriv mrr – CUSTOMER_META er verifisert sannhet
+        });
+
+        // Fallback: gjentagende ordrer (bare om mrrPerKunde er tom)
+        if(!mrrFromApi&&recurringOrders.length){
+          const legMrr={};
           recurringOrders.forEach(ord=>{
             const active=ord.Active!==false&&ord.IsActive!==false&&ord.Status!=='Inactive';
             if(!active) return;
@@ -1208,15 +1232,14 @@ async function autoLoadFromGitHub(){
             const netto=parseFloat(ord.NetAmount||ord.TotalNetAmount||ord.LineAmount||ord.Amount||0);
             const freq=(ord.RepetitionType||ord.RepeatIntervalType||ord.Frequency||ord.FrequencyType||'').toLowerCase();
             let mrr=netto;
-            if(freq.includes('quart')||freq.includes('3')||freq==='kvartal') mrr=netto/3;
-            else if(freq.includes('annual')||freq.includes('year')||freq.includes('arlig')||freq.includes('yearly')) mrr=netto/12;
+            if(freq.includes('quart')||freq==='kvartal') mrr=netto/3;
+            else if(freq.includes('annual')||freq.includes('year')||freq.includes('arlig')) mrr=netto/12;
             else if(freq.includes('semi')||freq.includes('half')) mrr=netto/6;
-            if(mrr>0) apiMrr[name]=(apiMrr[name]||0)+mrr;
+            if(mrr>0) legMrr[name]=(legMrr[name]||0)+mrr;
           });
-          Object.entries(apiMrr).forEach(([name,mrr])=>{
+          Object.entries(legMrr).forEach(([name,mrr])=>{
             let key=CUSTOMER_META[name]?name:Object.keys(CUSTOMER_META).find(k=>k.toLowerCase()===name.toLowerCase());
-            if(key) CUSTOMER_META[key].mrr=Math.round(mrr);
-            else CUSTOMER_META[name]={since:null,type:'monthly',dify:false,mrr:Math.round(mrr)};
+            if(!key) CUSTOMER_META[name]={since:null,type:'monthly',dify:false,mrr:Math.round(mrr)};
           });
         }
 
@@ -3545,8 +3568,8 @@ function applySeedData(){
             });
             Object.entries(apiMrr).forEach(([name,mrr])=>{
               let key=CUSTOMER_META[name]?name:Object.keys(CUSTOMER_META).find(k=>k.toLowerCase()===name.toLowerCase());
-              if(key) CUSTOMER_META[key].mrr=Math.round(mrr);
-              else CUSTOMER_META[name]={since:null,type:'monthly',dify:false,mrr:Math.round(mrr)};
+              if(!key) CUSTOMER_META[name]={since:null,type:'monthly',dify:false,mrr:Math.round(mrr)};
+              // Eksisterende kunder: ikke overskriv mrr
             });
           }
           syncCustFromMeta();
