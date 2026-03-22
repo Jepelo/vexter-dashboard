@@ -1129,6 +1129,26 @@ async function connectPowerOfficeAPI(){
 }
 // ── END POWEROFFICE API ──────────────────────────────────────────────────────
 
+// Synkroniser S.customers fra CUSTOMER_META.mrr
+// Kjøres etter at CUSTOMER_META er oppdatert fra API-data
+function syncCustFromMeta(){
+  const existMap={};
+  S.customers.forEach(c=>{existMap[c.name.toLowerCase()]=c;});
+  Object.entries(CUSTOMER_META).forEach(([name,meta])=>{
+    if(!meta.mrr||meta.mrr<=0) return;
+    const key=name.toLowerCase();
+    if(existMap[key]){
+      existMap[key].mrr=meta.mrr;
+      if(meta.type) existMap[key].type=meta.type;
+    } else {
+      const nc={name,mrr:meta.mrr,type:meta.type||'monthly',products:[],userCount:0,dify:meta.dify||false,oneTimeProducts:[]};
+      S.customers.push(nc);
+      existMap[key]=nc;
+    }
+  });
+  S.customers.sort((a,b)=>b.mrr-a.mrr);
+}
+
 async function autoLoadFromGitHub(){
   const btn=document.getElementById('auto-load-btn');
   const st=document.getElementById('auto-load-st');
@@ -1159,64 +1179,83 @@ async function autoLoadFromGitHub(){
     // --- PowerOffice ---
     st.textContent='Henter PowerOffice-data...';
     try{
-      const poResp=await fetch(BASE+'poweroffice-data.json');
+      const poResp=await fetch(BASE+'poweroffice-data.json?_='+Date.now());
       if(poResp.ok){
         const poData=await poResp.json();
         const invoices=poData.fakturaer||[];
-        const customers=poData.kunder||[];
+        const apiCustomers=poData.kunder||[];
+        const recurringOrders=poData.gjentagendeOrdre||[];
+
         // Build customer name lookup by Id
         const custById={};
-        customers.forEach(c=>{
-          const id=c.Id||c.id||c.CustomerNo;
+        apiCustomers.forEach(c=>{
+          const id=c.Id||c.id||c.CustomerCode||c.CustomerNo;
           const name=c.Name||c.DisplayName||c.CompanyName||c.ContactName||null;
           if(id&&name) custById[id]=name;
         });
+
+        // ── MRR fra gjentagende ordrer (API-kilde) ────────────────────────
+        let mrrFromApi=false;
+        if(recurringOrders.length){
+          mrrFromApi=true;
+          const apiMrr={};
+          recurringOrders.forEach(ord=>{
+            const active=ord.Active!==false&&ord.IsActive!==false&&ord.Status!=='Inactive';
+            if(!active) return;
+            const custId=ord.CustomerCode||ord.CustomerId||ord.CustomerNo||ord.ContactId||null;
+            const name=ord.CustomerName||ord.ContactName||ord.CustomerDisplayName||(custId?custById[custId]:null);
+            if(!name) return;
+            const netto=parseFloat(ord.NetAmount||ord.TotalNetAmount||ord.LineAmount||ord.Amount||0);
+            const freq=(ord.RepetitionType||ord.RepeatIntervalType||ord.Frequency||ord.FrequencyType||'').toLowerCase();
+            let mrr=netto;
+            if(freq.includes('quart')||freq.includes('3')||freq==='kvartal') mrr=netto/3;
+            else if(freq.includes('annual')||freq.includes('year')||freq.includes('arlig')||freq.includes('yearly')) mrr=netto/12;
+            else if(freq.includes('semi')||freq.includes('half')) mrr=netto/6;
+            if(mrr>0) apiMrr[name]=(apiMrr[name]||0)+mrr;
+          });
+          Object.entries(apiMrr).forEach(([name,mrr])=>{
+            let key=CUSTOMER_META[name]?name:Object.keys(CUSTOMER_META).find(k=>k.toLowerCase()===name.toLowerCase());
+            if(key) CUSTOMER_META[key].mrr=Math.round(mrr);
+            else CUSTOMER_META[name]={since:null,type:'monthly',dify:false,mrr:Math.round(mrr)};
+          });
+        }
+
+        // ── Synkroniser S.customers fra CUSTOMER_META.mrr ─────────────────
+        syncCustFromMeta();
+
+        // ── Faktura-historikk + kundestartdatoer fra fakturaer ────────────
         if(invoices.length){
           const monthMap={};
-          // Track first invoice date per customer for auto-deriving start dates
           const firstInvDate={};
           invoices.forEach(inv=>{
             const dateStr=inv.OrderDate||inv.InvoiceDate||inv.OutgoingInvoiceDate||inv.CreatedDateTimeOffset||inv.createdDateTimeOffset||'';
             if(!dateStr) return;
-            const d=new Date(dateStr);
-            if(isNaN(d)) return;
-            // Monthly revenue aggregation
+            const d=new Date(dateStr); if(isNaN(d)) return;
             const key=NOM[d.getMonth()]+' '+d.getFullYear();
-            const amt=parseFloat(inv.GrossAmount||inv.NetAmount||inv.TotalIncludingVat||inv.Amount||inv.Balance||0);
+            const amt=parseFloat(inv.GrossAmount||inv.NetAmount||inv.TotalIncludingVat||inv.Amount||0);
             if(!monthMap[key]) monthMap[key]=0;
             monthMap[key]+=amt;
-            // Customer start-date derivation
             const custId=inv.CustomerCode||inv.CustomerId||inv.CustomerNo||inv.contactId||null;
-            const custNameDirect=inv.CustomerName||inv.ContactName||inv.DebtorName||null;
-            const custName=custNameDirect||(custId?custById[custId]:null);
+            const custName=(inv.CustomerName||inv.ContactName||inv.DebtorName)||(custId?custById[custId]:null);
             if(custName){
               const iso=d.toISOString().slice(0,10);
               if(!firstInvDate[custName]||iso<firstInvDate[custName]) firstInvDate[custName]=iso;
             }
           });
-          // Auto-update CUSTOMER_META with derived start dates
-          let autoUpdated=0;
           Object.entries(firstInvDate).forEach(([name,iso])=>{
-            // Try exact then case-insensitive match
             let key=CUSTOMER_META[name]?name:Object.keys(CUSTOMER_META).find(k=>k.toLowerCase()===name.toLowerCase());
-            if(key){
-              // Only update if derived date is earlier (catches corrections)
-              if(!CUSTOMER_META[key].since||iso<CUSTOMER_META[key].since){
-                CUSTOMER_META[key].since=iso; autoUpdated++;
-              }
-            } else {
-              // New customer not yet in CUSTOMER_META – add it
-              CUSTOMER_META[name]={since:iso,type:'monthly',dify:false};
-              autoUpdated++;
-            }
+            if(key){if(!CUSTOMER_META[key].since||iso<CUSTOMER_META[key].since)CUSTOMER_META[key].since=iso;}
+            else CUSTOMER_META[name]={since:iso,type:'monthly',dify:false};
           });
           Object.entries(monthMap).forEach(([k,v])=>{
             if(v>0){S.invoiceHistory[k]=v; S.recurringHistory[k]=v;}
           });
-          setSt('inv','Auto-lastet \u00b7 '+invoices.length+' fakturaer · '+autoUpdated+' kunder oppdatert');
-          document.getElementById('z-inv').classList.add('loaded');
-          loaded.push('PowerOffice: '+invoices.length+' fakturaer');
         }
+
+        const mrrNow=S.customers.reduce((a,c)=>a+c.mrr,0);
+        setSt('inv','Auto-lastet \u00b7 '+invoices.length+' fakturaer · '+S.customers.length+' kunder · '+fmt(mrrNow)+(mrrFromApi?' (API MRR)':' (meta MRR)'));
+        document.getElementById('z-inv').classList.add('loaded');
+        loaded.push('PowerOffice: '+invoices.length+' fakturaer, '+S.customers.length+' kunder');
       }
     }catch(e){console.warn('PowerOffice-feil:',e);}
 
@@ -1301,7 +1340,7 @@ const ONE_TIME_KEYS=['resultatgaranti','oppstart'];
 function isOneTimeProd(desc){const d=(desc||'').toLowerCase();return ONE_TIME_KEYS.some(k=>d.includes(k));}
 
 // CUSTOMER METADATA (from PowerOffice CSV)
-const CUSTOMER_META={"Mercatur AS":{"since":"2026-03-21","type":"monthly","dify":false},"ABSEC AS":{"since":"2026-03-21","type":"monthly","dify":false},"We Rock Sales AS":{"since":"2026-03-21","type":"monthly","dify":false},"Smartwaves AS":{"since":"2026-03-15","type":"monthly","dify":false},"Fram People AS":{"since":"2026-03-12","type":"annual","dify":false},"Venturetime AS":{"since":"2026-03-09","type":"monthly","dify":false},"DIRI AS":{"since":"2026-03-08","type":"monthly","dify":false},"Prege AS":{"since":"2026-03-07","type":"monthly","dify":false},"Eidsiva Digital AS":{"since":"2026-03-05","type":"annual","dify":false},"MEDIA PERFORMANCE AS":{"since":"2026-03-04","type":"annual","dify":true},"Kontrafei Media AS":{"since":"2026-03-02","type":"annual","dify":false},"Sperton Norway AS":{"since":"2026-03-01","type":"monthly","dify":true},"Horn Media Group AS":{"since":"2026-03-01","type":"monthly","dify":true},"GROSSMAN AS":{"since":"2026-02-27","type":"annual","dify":true},"Lås1 Sikkerhet AS":{"since":"2026-02-27","type":"monthly","dify":false},"PILAR PERSONELL AS":{"since":"2026-02-27","type":"annual","dify":true},"Bid System AS":{"since":"2026-02-23","type":"annual","dify":true},"BEDRIFTSABONNEMENT AS":{"since":"2026-02-23","type":"annual","dify":false},"B7people AS":{"since":"2026-02-20","type":"monthly","dify":false},"Nki Kompetanse AS":{"since":"2026-02-19","type":"annual","dify":true},"FORTYTWO TECHNOLOGIES AS":{"since":"2026-02-19","type":"monthly","dify":false},"Unmo Ikt AS":{"since":"2026-02-17","type":"quarterly","dify":false},"Re Boot AS":{"since":"2026-02-13","type":"monthly","dify":false},"VERJI TECH AS":{"since":"2026-02-13","type":"monthly","dify":true},"SVENN AS":{"since":"2026-02-13","type":"monthly","dify":false},"Stekle AS":{"since":"2026-02-13","type":"monthly","dify":true},"Goma Pizza og Grill AS":{"since":"2026-02-13","type":"monthly","dify":false},"Rupanicom AS":{"since":"2026-02-06","type":"annual","dify":false},"Folq AS":{"since":"2026-02-06","type":"monthly","dify":false},"AVONOVA SOLUTIONS AS":{"since":"2026-02-05","type":"monthly","dify":false},"Concept Communication AS":{"since":"2026-02-03","type":"monthly","dify":false},"Pitch AS":{"since":"2026-02-02","type":"monthly","dify":false},"NTT AS":{"since":"2026-02-02","type":"monthly","dify":false},"PROPOS AS":{"since":"2026-01-27","type":"annual","dify":true},"Pitchpeak Group AS":{"since":"2025-12-12","type":"monthly","dify":false},"G O PROSJEKT AS":{"since":"2025-12-05","type":"monthly","dify":true},"Thevit AS":{"since":"2025-12-05","type":"annual","dify":false},"BRITANNIA HOTEL AS":{"since":"2025-12-04","type":"monthly","dify":false},"SILDRE AS":{"since":"2025-12-04","type":"monthly","dify":false},"Bris Regnskap AS":{"since":"2025-12-02","type":"monthly","dify":false},"Nell Renhold AS":{"since":"2025-11-21","type":"monthly","dify":false},"Expandia Moduler AS":{"since":"2025-11-18","type":"monthly","dify":false},"Cb Nettløsninger Christofer Bertilsson":{"since":"2025-11-13","type":"monthly","dify":false},"Workmove Group AS":{"since":"2025-11-13","type":"monthly","dify":false},"GODIK AS":{"since":"2025-11-12","type":"monthly","dify":false},"Soliditet AS":{"since":"2025-11-12","type":"monthly","dify":false},"Aurskog Bygg & Renhold AS":{"since":"2025-11-03","type":"monthly","dify":false},"FORENOM AS":{"since":"2025-10-30","type":"annual","dify":true},"Markedssjefene AS":{"since":"2025-10-28","type":"monthly","dify":false},"Invisible Connections AS":{"since":"2025-10-27","type":"monthly","dify":false},"INNOVATION SUPPORT AS":{"since":"2025-10-14","type":"monthly","dify":false},"Rydd Reolsystem AS":{"since":"2025-10-14","type":"monthly","dify":false},"Anbudstorget.No AS":{"since":"2025-10-07","type":"monthly","dify":false},"Jobzone Kongsvinger":{"since":"2025-10-07","type":"monthly","dify":false},"LOYALTY AS":{"since":"2025-10-01","type":"monthly","dify":false},"Glassy AS":{"since":"2025-09-23","type":"monthly","dify":false},"My Profil AS":{"since":"2025-09-19","type":"monthly","dify":false},"Top Temp Romerike":{"since":"2025-09-19","type":"monthly","dify":false},"Energihuset Marked As":{"since":"2025-09-15","type":"monthly","dify":false},"Branchy Rekruttering AS":{"since":"2025-09-01","type":"monthly","dify":false},"Toptemp AS":{"since":"2025-05-14","type":"monthly","dify":false},"Posten Bring AS Stokke Terminal":{"since":"2025-05-09","type":"monthly","dify":false},"Salgspartneren AS":{"since":"2025-05-08","type":"monthly","dify":false},"AGI SYNERGIES AS":{"since":"2025-03-26","type":"monthly","dify":false},"Awe AS":{"since":"2025-02-28","type":"monthly","dify":false},"Føyen Digital AS":{"since":"2025-02-25","type":"monthly","dify":false},"The Panda AS":{"since":"2025-02-21","type":"monthly","dify":false},"ADITE AS":{"since":"2025-02-21","type":"monthly","dify":false},"Kaupang Sales AS":{"since":"2025-02-07","type":"monthly","dify":false},"Elite Media AS":{"since":"2025-02-05","type":"monthly","dify":true},"Incepto Executive AS":{"since":"2025-01-29","type":"monthly","dify":false},"Ownersroom AS":{"since":"2025-01-17","type":"annual","dify":false},"Mat & Drikke AS":{"since":"2025-01-17","type":"monthly","dify":false},"Padel Plus AS":{"since":"2024-12-02","type":"monthly","dify":false},"TCT Norge AS":{"since":"2024-12-02","type":"monthly","dify":false},"KPE Talent As":{"since":"2024-11-15","type":"monthly","dify":false}};
+const CUSTOMER_META={"Mercatur AS":{"since":"2026-03-21","type":"monthly","dify":false,"mrr":2001},"ABSEC AS":{"since":"2026-03-21","type":"monthly","dify":false,"mrr":5000},"We Rock Sales AS":{"since":"2026-03-21","type":"monthly","dify":false,"mrr":3000},"Smartwaves AS":{"since":"2026-03-15","type":"monthly","dify":false,"mrr":3000},"Fram People AS":{"since":"2026-03-12","type":"monthly","dify":false,"mrr":2000},"Venturetime AS":{"since":"2026-03-09","type":"monthly","dify":false,"mrr":3000},"DIRI AS":{"since":"2026-03-08","type":"monthly","dify":false,"mrr":2500},"Prege AS":{"since":"2026-03-07","type":"monthly","dify":false,"mrr":3000},"Eidsiva Digital AS":{"since":"2026-03-05","type":"monthly","dify":false,"mrr":6000},"MEDIA PERFORMANCE AS":{"since":"2026-03-04","type":"monthly","dify":true,"mrr":5000},"Kontrafei Media AS":{"since":"2026-03-02","type":"monthly","dify":false,"mrr":2000},"Sperton Norway AS":{"since":"2026-03-01","type":"monthly","dify":true,"mrr":7000},"Horn Media Group AS":{"since":"2026-03-01","type":"monthly","dify":true,"mrr":5000},"GROSSMAN AS":{"since":"2026-02-27","type":"monthly","dify":true,"mrr":5000},"Lås1 Sikkerhet AS":{"since":"2026-02-27","type":"monthly","dify":false,"mrr":2000},"PILAR PERSONELL AS":{"since":"2026-02-27","type":"monthly","dify":true,"mrr":5000},"Bid System AS":{"since":"2026-02-23","type":"monthly","dify":true,"mrr":5000},"BEDRIFTSABONNEMENT AS":{"since":"2026-02-23","type":"monthly","dify":false,"mrr":2000},"B7people AS":{"since":"2026-02-20","type":"monthly","dify":false,"mrr":2000},"Nki Kompetanse AS":{"since":"2026-02-19","type":"monthly","dify":true,"mrr":7500},"FORTYTWO TECHNOLOGIES AS":{"since":"2026-02-19","type":"monthly","dify":false,"mrr":2000},"Unmo Ikt AS":{"since":"2026-02-17","type":"quarterly","dify":false,"mrr":2000},"Re Boot AS":{"since":"2026-02-13","type":"monthly","dify":false,"mrr":6000},"VERJI TECH AS":{"since":"2026-02-13","type":"monthly","dify":true,"mrr":5000},"SVENN AS":{"since":"2026-02-13","type":"monthly","dify":false,"mrr":3000},"Stekle AS":{"since":"2026-02-13","type":"monthly","dify":true,"mrr":5000},"Goma Pizza og Grill AS":{"since":"2026-02-13","type":"monthly","dify":false,"mrr":2000},"Rupanicom AS":{"since":"2026-02-06","type":"monthly","dify":false,"mrr":6000},"Folq AS":{"since":"2026-02-06","type":"monthly","dify":false,"mrr":2000},"AVONOVA SOLUTIONS AS":{"since":"2026-02-05","type":"monthly","dify":false,"mrr":3000},"Concept Communication AS":{"since":"2026-02-03","type":"monthly","dify":false},"Pitch AS":{"since":"2026-02-02","type":"monthly","dify":false},"NTT AS":{"since":"2026-02-02","type":"monthly","dify":false,"mrr":4000},"PROPOS AS":{"since":"2026-01-27","type":"monthly","dify":true,"mrr":5000},"Pitchpeak Group AS":{"since":"2025-12-12","type":"monthly","dify":false},"G O PROSJEKT AS":{"since":"2025-12-05","type":"monthly","dify":true,"mrr":5000},"Thevit AS":{"since":"2025-12-05","type":"monthly","dify":false,"mrr":2000},"BRITANNIA HOTEL AS":{"since":"2025-12-04","type":"monthly","dify":false,"mrr":2100},"SILDRE AS":{"since":"2025-12-04","type":"monthly","dify":false,"mrr":4000},"Bris Regnskap AS":{"since":"2025-12-02","type":"monthly","dify":false},"Nell Renhold AS":{"since":"2025-11-21","type":"monthly","dify":false,"mrr":2100},"Expandia Moduler AS":{"since":"2025-11-18","type":"monthly","dify":false},"Cb Nettløsninger Christofer Bertilsson":{"since":"2025-11-13","type":"monthly","dify":false},"Workmove Group AS":{"since":"2025-11-13","type":"monthly","dify":false},"GODIK AS":{"since":"2025-11-12","type":"monthly","dify":false,"mrr":2000},"Soliditet AS":{"since":"2025-11-12","type":"monthly","dify":false},"Aurskog Bygg & Renhold AS":{"since":"2025-11-03","type":"monthly","dify":false,"mrr":1950},"FORENOM AS":{"since":"2025-10-30","type":"monthly","dify":true,"mrr":5000},"Markedssjefene AS":{"since":"2025-10-28","type":"monthly","dify":false},"Invisible Connections AS":{"since":"2025-10-27","type":"monthly","dify":false,"mrr":3000},"INNOVATION SUPPORT AS":{"since":"2025-10-14","type":"monthly","dify":false},"Rydd Reolsystem AS":{"since":"2025-10-14","type":"monthly","dify":false},"Anbudstorget.No AS":{"since":"2025-10-07","type":"monthly","dify":false},"Jobzone Kongsvinger":{"since":"2025-10-07","type":"monthly","dify":false,"mrr":2500},"LOYALTY AS":{"since":"2025-10-01","type":"monthly","dify":false},"Glassy AS":{"since":"2025-09-23","type":"monthly","dify":false},"My Profil AS":{"since":"2025-09-19","type":"monthly","dify":false,"mrr":2000},"Top Temp Romerike":{"since":"2025-09-19","type":"monthly","dify":false},"Energihuset Marked As":{"since":"2025-09-15","type":"monthly","dify":false,"mrr":4000},"Branchy Rekruttering AS":{"since":"2025-09-01","type":"monthly","dify":false},"Toptemp AS":{"since":"2025-05-14","type":"monthly","dify":false,"mrr":3000},"Posten Bring AS Stokke Terminal":{"since":"2025-05-09","type":"monthly","dify":false},"Salgspartneren AS":{"since":"2025-05-08","type":"monthly","dify":false,"mrr":1500},"AGI SYNERGIES AS":{"since":"2025-03-26","type":"monthly","dify":false},"Awe AS":{"since":"2025-02-28","type":"monthly","dify":false},"Føyen Digital AS":{"since":"2025-02-25","type":"monthly","dify":false,"mrr":1990},"The Panda AS":{"since":"2025-02-21","type":"monthly","dify":false},"ADITE AS":{"since":"2025-02-21","type":"monthly","dify":false},"Kaupang Sales AS":{"since":"2025-02-07","type":"monthly","dify":false},"Elite Media AS":{"since":"2025-02-05","type":"monthly","dify":true,"mrr":5000},"Incepto Executive AS":{"since":"2025-01-29","type":"monthly","dify":false},"Ownersroom AS":{"since":"2025-01-17","type":"annual","dify":false,"mrr":1950},"Mat & Drikke AS":{"since":"2025-01-17","type":"monthly","dify":false},"Padel Plus AS":{"since":"2024-12-02","type":"monthly","dify":false},"TCT Norge AS":{"since":"2024-12-02","type":"monthly","dify":false,"mrr":1990},"KPE Talent As":{"since":"2024-11-15","type":"monthly","dify":false,"mrr":5000}};
 
 // STATE
 const SK='vexter_v5';
@@ -3456,10 +3495,100 @@ function applySeedData(){
 
   // Mark schema as current and persist
   S.schemaVersion=SCHEMA_VER;
+
+  // Synkroniser S.customers fra CUSTOMER_META (sikrer at MRR alltid er oppdatert)
+  syncCustFromMeta();
+
   save();
   renderAll();
   // Init PowerOffice API key fields
   initPOApiKeys();
+
+  // ── Auto-last fra GitHub ved oppstart ────────────────────────────────────
+  // Laster automatisk hvis data er eldre enn 2 timer eller aldri lastet
+  (async function autoRefresh(){
+    const TWO_HOURS=2*60*60*1000;
+    const lastLoad=S.lastUpdated?new Date(S.lastUpdated).getTime():0;
+    const stale=!lastLoad||((Date.now()-lastLoad)>TWO_HOURS);
+    if(stale){
+      console.log('Data mangler eller er gammel – auto-laster fra GitHub...');
+      // Kjør stille i bakgrunn (uten å vise spinner)
+      try{
+        const BASE='https://raw.githubusercontent.com/Jepelo/vexter-dashboard/main/';
+        const poResp=await fetch(BASE+'poweroffice-data.json?_='+Date.now());
+        if(poResp.ok){
+          const poData=await poResp.json();
+          const invoices=poData.fakturaer||[];
+          const apiCustomers=poData.kunder||[];
+          const recurringOrders=poData.gjentagendeOrdre||[];
+          const custById={};
+          apiCustomers.forEach(c=>{
+            const id=c.Id||c.id||c.CustomerCode||c.CustomerNo;
+            const name=c.Name||c.DisplayName||c.CompanyName||c.ContactName||null;
+            if(id&&name) custById[id]=name;
+          });
+          if(recurringOrders.length){
+            const apiMrr={};
+            recurringOrders.forEach(ord=>{
+              const active=ord.Active!==false&&ord.IsActive!==false&&ord.Status!=='Inactive';
+              if(!active) return;
+              const custId=ord.CustomerCode||ord.CustomerId||ord.CustomerNo||ord.ContactId||null;
+              const name=ord.CustomerName||ord.ContactName||ord.CustomerDisplayName||(custId?custById[custId]:null);
+              if(!name) return;
+              const netto=parseFloat(ord.NetAmount||ord.TotalNetAmount||ord.LineAmount||ord.Amount||0);
+              const freq=(ord.RepetitionType||ord.RepeatIntervalType||ord.Frequency||ord.FrequencyType||'').toLowerCase();
+              let mrr=netto;
+              if(freq.includes('quart')||freq.includes('3')||freq==='kvartal') mrr=netto/3;
+              else if(freq.includes('annual')||freq.includes('year')||freq.includes('arlig')||freq.includes('yearly')) mrr=netto/12;
+              else if(freq.includes('semi')||freq.includes('half')) mrr=netto/6;
+              if(mrr>0) apiMrr[name]=(apiMrr[name]||0)+mrr;
+            });
+            Object.entries(apiMrr).forEach(([name,mrr])=>{
+              let key=CUSTOMER_META[name]?name:Object.keys(CUSTOMER_META).find(k=>k.toLowerCase()===name.toLowerCase());
+              if(key) CUSTOMER_META[key].mrr=Math.round(mrr);
+              else CUSTOMER_META[name]={since:null,type:'monthly',dify:false,mrr:Math.round(mrr)};
+            });
+          }
+          syncCustFromMeta();
+          if(invoices.length){
+            const monthMap={};const firstInvDate={};
+            invoices.forEach(inv=>{
+              const dateStr=inv.OrderDate||inv.InvoiceDate||inv.OutgoingInvoiceDate||inv.CreatedDateTimeOffset||inv.createdDateTimeOffset||'';
+              if(!dateStr) return;
+              const d=new Date(dateStr); if(isNaN(d)) return;
+              const key=NOM[d.getMonth()]+' '+d.getFullYear();
+              const amt=parseFloat(inv.GrossAmount||inv.NetAmount||inv.TotalIncludingVat||inv.Amount||0);
+              if(!monthMap[key]) monthMap[key]=0; monthMap[key]+=amt;
+              const custId=inv.CustomerCode||inv.CustomerId||inv.CustomerNo||inv.contactId||null;
+              const custName=(inv.CustomerName||inv.ContactName||inv.DebtorName)||(custId?custById[custId]:null);
+              if(custName){const iso=d.toISOString().slice(0,10);if(!firstInvDate[custName]||iso<firstInvDate[custName])firstInvDate[custName]=iso;}
+            });
+            Object.entries(firstInvDate).forEach(([name,iso])=>{
+              let key=CUSTOMER_META[name]?name:Object.keys(CUSTOMER_META).find(k=>k.toLowerCase()===name.toLowerCase());
+              if(key){if(!CUSTOMER_META[key].since||iso<CUSTOMER_META[key].since)CUSTOMER_META[key].since=iso;}
+              else CUSTOMER_META[name]={since:iso,type:'monthly',dify:false};
+            });
+            Object.entries(monthMap).forEach(([k,v])=>{if(v>0){S.invoiceHistory[k]=v;S.recurringHistory[k]=v;}});
+          }
+          // Hent PostHog i bakgrunn
+          try{
+            const phResp=await fetch(BASE+'posthog-data.json?_='+Date.now());
+            if(phResp.ok){
+              const phData=await phResp.json();
+              if(phData.sessions&&phData.sessions.length){
+                S.posthogSessions=phData.sessions.map(s=>({email:s.email,domain:(s.email||'').split('@')[1]||'ukjent',date:new Date(s.session_start),duration:s.duration_min||0})).filter(s=>s.date&&!isNaN(s.date));
+              }
+            }
+          }catch(e){}
+          S.lastUpdated=new Date().toLocaleString('nb-NO');
+          save(); renderAll();
+          document.getElementById('dataBadge').style.display='inline-block';
+          document.getElementById('updatedDate').textContent=S.lastUpdated;
+          console.log('Auto-refresh ferdig: '+S.customers.length+' kunder, MRR '+S.customers.reduce((a,c)=>a+c.mrr,0)+' kr');
+        }
+      }catch(e){console.warn('Auto-refresh feil:',e);}
+    }
+  })();
 })();
 </script>
 </body>
