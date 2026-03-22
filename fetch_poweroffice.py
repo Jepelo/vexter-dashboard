@@ -145,7 +145,19 @@ print('\nHenter kunder...')
 customers = safe_get('Customers')
 if customers:
     first_c = customers[0]
-    print(f'  DEBUG første kunde – felter: {list(first_c.keys())[:20]}')
+    print(f'  DEBUG første kunde – alle felter:')
+    for k, v in first_c.items():
+        print(f'    {k}: {repr(v)[:80]}')
+
+# Bygg oppslagstabell: kunde-ID → navn
+customer_id_to_name = {}
+for c in customers:
+    cid = c.get('Id') or c.get('id') or c.get('CustomerNo') or c.get('Code')
+    cname = (c.get('Name') or c.get('DisplayName') or c.get('FullName')
+             or c.get('CustomerName') or c.get('ContactName') or str(cid))
+    if cid is not None:
+        customer_id_to_name[str(cid)] = str(cname).strip()
+print(f'  Oppslagstabell: {len(customer_id_to_name)} kunder med ID→navn')
 
 # 3. Utgående fakturaer (inntekter)
 print('\nHenter utgående fakturaer...')
@@ -231,11 +243,20 @@ def get_invoice_date(inv):
     return None
 
 def get_customer_name(inv):
-    for field in ['CustomerName', 'ContactName', 'DebtorName', 'Customer', 'CustomerCode',
-                  'DebtorCustomerName', 'ContactPersonName', 'name', 'Name']:
+    # Prøv direkte navnefelt først
+    for field in ['CustomerName', 'ContactName', 'DebtorName', 'DebtorCustomerName',
+                  'ContactPersonName', 'Name', 'name']:
         val = inv.get(field)
-        if val and str(val).strip() and str(val).strip() not in ('None', '0'):
+        if val and str(val).strip() and str(val).strip() not in ('None', '0', 'null'):
             return str(val).strip()
+    # Slå opp via ID fra oppslagstabellen
+    for id_field in ['ContactId', 'CustomerId', 'DebtorId', 'ContactCode',
+                     'CustomerNo', 'DebtorNo']:
+        cid = inv.get(id_field)
+        if cid is not None:
+            name = customer_id_to_name.get(str(cid))
+            if name and name not in ('None', '0', 'null'):
+                return name
     return None
 
 def is_one_time(inv):
@@ -279,6 +300,10 @@ for inv in outgoing_invoices:
     amt = get_amount(inv)
     if not amt or amt <= 0:
         no_amt += 1
+        continue
+    # Ekskluder kreditnotaer
+    vtype = str(inv.get('VoucherType', '')).lower()
+    if 'credit' in vtype or 'kreditnota' in vtype:
         continue
     cust_invoices[name].append((d, amt))
 print(f'  DEBUG: {len(cust_invoices)} kunder funnet, {no_name} uten navn, {no_date} uten dato, {no_amt} uten beløp')
