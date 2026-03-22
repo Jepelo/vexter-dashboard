@@ -1,5 +1,5 @@
 {
-  "generert": "2026-03-22T19:26:02.386788Z",
+  "generert": "2026-03-22T19:28:54.270779Z",
   "kunder": [
     {
       "Allowance": null,
@@ -23334,8 +23334,594 @@
       "VoucherType": "OutgoingInvoice"
     }
   ],
-  "mrrPerKunde": {},
-  "mrrDetaljer": {},
+  "mrrPerKunde": {
+    "TCT Norge AS": 1990,
+    "ADITE AS": 99,
+    "Toptemp AS": 3000,
+    "LOYALTY AS": 6000,
+    "Awe AS": 399,
+    "Føyen Digital AS": 1990,
+    "The Panda AS": 399,
+    "Glassy AS": 3000,
+    "Folq AS": 2000,
+    "Invisible Connections AS": 3000,
+    "Aurskog Bygg & Renhold AS": 1950,
+    "Anbudstorget.No AS": 6000,
+    "KPE Talent As": 5000,
+    "SVENN AS": 3000,
+    "Kontrafei Media AS": 14990,
+    "AGI SYNERGIES AS": 1990,
+    "Jobzone Kongsvinger": 2500,
+    "Padel Plus AS": 1990,
+    "Elite Media AS": 1667,
+    "Kaupang Sales AS": 399,
+    "Energihuset Marked As": 4000,
+    "Rydd Reolsystem AS": 3000,
+    "AVONOVA SOLUTIONS AS": 3000,
+    "Stekle AS": 5000,
+    "NTT AS": 4000,
+    "Smartwaves AS": 3000,
+    "Lås1 Sikkerhet AS": 2000,
+    "Salgspartneren AS": 1500,
+    "FORENOM AS": 5000,
+    "Goma Pizza og Grill AS": 2000,
+    "Unmo Ikt AS": 6000,
+    "FORTYTWO TECHNOLOGIES AS": 2000,
+    "ABSEC AS": 5000,
+    "INNOVATION SUPPORT AS": 2000,
+    "MEDIA PERFORMANCE AS": 5000,
+    "Nell Renhold AS": 2100,
+    "BRITANNIA HOTEL AS": 2100,
+    "SILDRE AS": 4000,
+    "Top Temp Romerike": 3000,
+    "My Profil AS": 2000,
+    "Workmove Group AS": 1500,
+    "Incepto Executive AS": 1990,
+    "GODIK AS": 2000,
+    "Mat & Drikke AS": 99,
+    "G O PROSJEKT AS": 2000,
+    "Pitchpeak Group AS": 2100,
+    "Markedssjefene AS": 4950,
+    "Ownersroom AS": 1950,
+    "Branchy Rekruttering AS": 4000,
+    "Sperton Norway AS": 7000,
+    "Horn Media Group AS": 5000,
+    "Bris Regnskap AS": 3000,
+    "Rupanicom AS": 6000,
+    "Expandia Moduler AS": 2100,
+    "Bid System AS": 5000,
+    "DIRI AS": 2500,
+    "Posten Bring AS Stokke Terminal": 700,
+    "Fram People AS": 2000,
+    "PROPOS AS": 5000,
+    "We Rock Sales AS": 3000,
+    "Mercatur AS": 2001,
+    "B7people AS": 2000,
+    "PILAR PERSONELL AS": 5000,
+    "Eidsiva Digital AS": 6000,
+    "Nki Kompetanse AS": 6000,
+    "Thevit AS": 2000,
+    "Pitch AS": 1000,
+    "Concept Communication AS": 2000,
+    "Cb Nettløsninger Christofer Bertilsson": 2100,
+    "Soliditet AS": 2100,
+    "BEDRIFTSABONNEMENT AS": 2000,
+    "Venturetime AS": 3000,
+    "GROSSMAN AS": 5000
+  },
+  "mrrDetaljer": {
+    "TCT Norge AS": {
+      "mrr": 1990,
+      "frekvens": "monthly",
+      "sisteBeloep": 1990,
+      "sisteFaktura": "2026-03-01",
+      "antallFakturaer": 15
+    },
+    "ADITE AS": {
+      "mrr": 99,
+      "frekvens": "monthly",
+      "sisteBeloep": 99,
+      "sisteFaktura": "2025-10-21",
+      "antallFakturaer": 9
+    },
+    "Toptemp AS": {
+      "mrr": 3000,
+      "frekvens": "monthly",
+      "sisteBeloep": 3000,
+      "sisteFaktura": "2026-03-14",
+      "antallFakturaer": 11
+    },
+    "LOYALTY AS": {
+      "mrr": 6000,
+      "frekvens": "monthly",
+      "sisteBeloep": 6000,
+      "sisteFaktura": "2025-12-18",
+      "antallFakturaer": 4
+    },
+    "Awe AS": {
+      "mrr": 399,
+      "frekvens": "monthly",
+      "sisteBeloep": 399,
+      "sisteFaktura": "2025-04-30",
+      "antallFakturaer": 3
+    },
+    "Føyen Digital AS": {
+      "mrr": 1990,
+      "frekvens": "monthly",
+      "sisteBeloep": 1990,
+      "sisteFaktura": "2026-03-03",
+      "antallFakturaer": 13
+    },
+    "The Panda AS": {
+      "mrr": 399,
+      "frekvens": "monthly",
+      "sisteBeloep": 399,
+      "sisteFaktura": "2025-08-21",
+      "antallFakturaer": 7
+    },
+    "Glassy AS": {
+      "mrr": 3000,
+      "frekvens": "monthly",
+      "sisteBeloep": 3000,
+      "sisteFaktura": "2025-11-23",
+      "antallFakturaer": 3
+    },
+    "Folq AS": {
+      "mrr": 2000,
+      "frekvens": "monthly",
+      "sisteBeloep": 2000,
+      "sisteFaktura": "2026-03-06",
+      "antallFakturaer": 3
+    },
+    "Invisible Connections AS": {
+      "mrr": 3000,
+      "frekvens": "monthly",
+      "sisteBeloep": 3000,
+      "sisteFaktura": "2026-03-11",
+      "antallFakturaer": 4
+    },
+    "Aurskog Bygg & Renhold AS": {
+      "mrr": 1950,
+      "frekvens": "monthly",
+      "sisteBeloep": 1950,
+      "sisteFaktura": "2026-03-06",
+      "antallFakturaer": 5
+    },
+    "Anbudstorget.No AS": {
+      "mrr": 6000,
+      "frekvens": "monthly",
+      "sisteBeloep": 6000,
+      "sisteFaktura": "2026-02-08",
+      "antallFakturaer": 6
+    },
+    "KPE Talent As": {
+      "mrr": 5000,
+      "frekvens": "monthly",
+      "sisteBeloep": 5000,
+      "sisteFaktura": "2026-03-19",
+      "antallFakturaer": 18
+    },
+    "SVENN AS": {
+      "mrr": 3000,
+      "frekvens": "monthly",
+      "sisteBeloep": 3000,
+      "sisteFaktura": "2026-03-16",
+      "antallFakturaer": 2
+    },
+    "Kontrafei Media AS": {
+      "mrr": 14990,
+      "frekvens": "monthly",
+      "sisteBeloep": 14990,
+      "sisteFaktura": "2026-03-02",
+      "antallFakturaer": 1
+    },
+    "AGI SYNERGIES AS": {
+      "mrr": 1990,
+      "frekvens": "monthly",
+      "sisteBeloep": 1990,
+      "sisteFaktura": "2025-03-31",
+      "antallFakturaer": 1
+    },
+    "Jobzone Kongsvinger": {
+      "mrr": 2500,
+      "frekvens": "monthly",
+      "sisteBeloep": 2500,
+      "sisteFaktura": "2026-03-07",
+      "antallFakturaer": 6
+    },
+    "Padel Plus AS": {
+      "mrr": 1990,
+      "frekvens": "monthly",
+      "sisteBeloep": 1990,
+      "sisteFaktura": "2025-04-01",
+      "antallFakturaer": 4
+    },
+    "Elite Media AS": {
+      "mrr": 1667,
+      "frekvens": "quarterly",
+      "sisteBeloep": 5000,
+      "sisteFaktura": "2026-02-24",
+      "antallFakturaer": 8
+    },
+    "Kaupang Sales AS": {
+      "mrr": 399,
+      "frekvens": "monthly",
+      "sisteBeloep": 399,
+      "sisteFaktura": "2025-09-07",
+      "antallFakturaer": 8
+    },
+    "Energihuset Marked As": {
+      "mrr": 4000,
+      "frekvens": "monthly",
+      "sisteBeloep": 4000,
+      "sisteFaktura": "2026-03-15",
+      "antallFakturaer": 7
+    },
+    "Rydd Reolsystem AS": {
+      "mrr": 3000,
+      "frekvens": "monthly",
+      "sisteBeloep": 3000,
+      "sisteFaktura": "2026-02-16",
+      "antallFakturaer": 6
+    },
+    "AVONOVA SOLUTIONS AS": {
+      "mrr": 3000,
+      "frekvens": "monthly",
+      "sisteBeloep": 3000,
+      "sisteFaktura": "2026-03-19",
+      "antallFakturaer": 2
+    },
+    "Stekle AS": {
+      "mrr": 5000,
+      "frekvens": "monthly",
+      "sisteBeloep": 5000,
+      "sisteFaktura": "2026-03-16",
+      "antallFakturaer": 2
+    },
+    "NTT AS": {
+      "mrr": 4000,
+      "frekvens": "monthly",
+      "sisteBeloep": 4000,
+      "sisteFaktura": "2026-03-04",
+      "antallFakturaer": 3
+    },
+    "Smartwaves AS": {
+      "mrr": 3000,
+      "frekvens": "monthly",
+      "sisteBeloep": 3000,
+      "sisteFaktura": "2026-03-17",
+      "antallFakturaer": 1
+    },
+    "Lås1 Sikkerhet AS": {
+      "mrr": 2000,
+      "frekvens": "monthly",
+      "sisteBeloep": 2000,
+      "sisteFaktura": "2026-03-12",
+      "antallFakturaer": 1
+    },
+    "Salgspartneren AS": {
+      "mrr": 1500,
+      "frekvens": "monthly",
+      "sisteBeloep": 1500,
+      "sisteFaktura": "2026-03-09",
+      "antallFakturaer": 6
+    },
+    "FORENOM AS": {
+      "mrr": 5000,
+      "frekvens": "monthly",
+      "sisteBeloep": 5000,
+      "sisteFaktura": "2026-03-06",
+      "antallFakturaer": 5
+    },
+    "Goma Pizza og Grill AS": {
+      "mrr": 2000,
+      "frekvens": "monthly",
+      "sisteBeloep": 2000,
+      "sisteFaktura": "2026-03-17",
+      "antallFakturaer": 2
+    },
+    "Unmo Ikt AS": {
+      "mrr": 6000,
+      "frekvens": "monthly",
+      "sisteBeloep": 6000,
+      "sisteFaktura": "2026-03-20",
+      "antallFakturaer": 3
+    },
+    "FORTYTWO TECHNOLOGIES AS": {
+      "mrr": 2000,
+      "frekvens": "monthly",
+      "sisteBeloep": 2000,
+      "sisteFaktura": "2026-02-25",
+      "antallFakturaer": 1
+    },
+    "ABSEC AS": {
+      "mrr": 5000,
+      "frekvens": "monthly",
+      "sisteBeloep": 5000,
+      "sisteFaktura": "2026-03-19",
+      "antallFakturaer": 1
+    },
+    "INNOVATION SUPPORT AS": {
+      "mrr": 2000,
+      "frekvens": "monthly",
+      "sisteBeloep": 2000,
+      "sisteFaktura": "2025-10-14",
+      "antallFakturaer": 1
+    },
+    "MEDIA PERFORMANCE AS": {
+      "mrr": 5000,
+      "frekvens": "monthly",
+      "sisteBeloep": 5000,
+      "sisteFaktura": "2026-03-10",
+      "antallFakturaer": 1
+    },
+    "Nell Renhold AS": {
+      "mrr": 2100,
+      "frekvens": "monthly",
+      "sisteBeloep": 2100,
+      "sisteFaktura": "2026-03-21",
+      "antallFakturaer": 5
+    },
+    "BRITANNIA HOTEL AS": {
+      "mrr": 2100,
+      "frekvens": "monthly",
+      "sisteBeloep": 2100,
+      "sisteFaktura": "2026-03-04",
+      "antallFakturaer": 4
+    },
+    "SILDRE AS": {
+      "mrr": 4000,
+      "frekvens": "monthly",
+      "sisteBeloep": 4000,
+      "sisteFaktura": "2026-03-04",
+      "antallFakturaer": 4
+    },
+    "Top Temp Romerike": {
+      "mrr": 3000,
+      "frekvens": "monthly",
+      "sisteBeloep": 3000,
+      "sisteFaktura": "2026-02-19",
+      "antallFakturaer": 6
+    },
+    "My Profil AS": {
+      "mrr": 2000,
+      "frekvens": "monthly",
+      "sisteBeloep": 2000,
+      "sisteFaktura": "2026-03-19",
+      "antallFakturaer": 7
+    },
+    "Workmove Group AS": {
+      "mrr": 1500,
+      "frekvens": "monthly",
+      "sisteBeloep": 1500,
+      "sisteFaktura": "2026-01-13",
+      "antallFakturaer": 3
+    },
+    "Incepto Executive AS": {
+      "mrr": 1990,
+      "frekvens": "monthly",
+      "sisteBeloep": 1990,
+      "sisteFaktura": "2025-04-01",
+      "antallFakturaer": 3
+    },
+    "GODIK AS": {
+      "mrr": 2000,
+      "frekvens": "monthly",
+      "sisteBeloep": 2000,
+      "sisteFaktura": "2026-03-13",
+      "antallFakturaer": 5
+    },
+    "Mat & Drikke AS": {
+      "mrr": 99,
+      "frekvens": "monthly",
+      "sisteBeloep": 99,
+      "sisteFaktura": "2025-09-03",
+      "antallFakturaer": 8
+    },
+    "G O PROSJEKT AS": {
+      "mrr": 2000,
+      "frekvens": "monthly",
+      "sisteBeloep": 2000,
+      "sisteFaktura": "2026-03-11",
+      "antallFakturaer": 6
+    },
+    "Pitchpeak Group AS": {
+      "mrr": 2100,
+      "frekvens": "monthly",
+      "sisteBeloep": 2100,
+      "sisteFaktura": "2026-01-12",
+      "antallFakturaer": 2
+    },
+    "Markedssjefene AS": {
+      "mrr": 4950,
+      "frekvens": "monthly",
+      "sisteBeloep": 4950,
+      "sisteFaktura": "2025-12-31",
+      "antallFakturaer": 3
+    },
+    "Ownersroom AS": {
+      "mrr": 1950,
+      "frekvens": "annual",
+      "sisteBeloep": 23400,
+      "sisteFaktura": "2026-01-21",
+      "antallFakturaer": 2
+    },
+    "Branchy Rekruttering AS": {
+      "mrr": 4000,
+      "frekvens": "monthly",
+      "sisteBeloep": 4000,
+      "sisteFaktura": "2025-12-18",
+      "antallFakturaer": 4
+    },
+    "Sperton Norway AS": {
+      "mrr": 7000,
+      "frekvens": "monthly",
+      "sisteBeloep": 7000,
+      "sisteFaktura": "2026-03-03",
+      "antallFakturaer": 1
+    },
+    "Horn Media Group AS": {
+      "mrr": 5000,
+      "frekvens": "monthly",
+      "sisteBeloep": 5000,
+      "sisteFaktura": "2026-03-03",
+      "antallFakturaer": 1
+    },
+    "Bris Regnskap AS": {
+      "mrr": 3000,
+      "frekvens": "monthly",
+      "sisteBeloep": 3000,
+      "sisteFaktura": "2026-03-02",
+      "antallFakturaer": 4
+    },
+    "Rupanicom AS": {
+      "mrr": 6000,
+      "frekvens": "monthly",
+      "sisteBeloep": 6000,
+      "sisteFaktura": "2026-03-17",
+      "antallFakturaer": 2
+    },
+    "Expandia Moduler AS": {
+      "mrr": 2100,
+      "frekvens": "monthly",
+      "sisteBeloep": 2100,
+      "sisteFaktura": "2026-01-18",
+      "antallFakturaer": 4
+    },
+    "Bid System AS": {
+      "mrr": 5000,
+      "frekvens": "monthly",
+      "sisteBeloep": 5000,
+      "sisteFaktura": "2026-02-24",
+      "antallFakturaer": 1
+    },
+    "DIRI AS": {
+      "mrr": 2500,
+      "frekvens": "monthly",
+      "sisteBeloep": 2500,
+      "sisteFaktura": "2026-03-14",
+      "antallFakturaer": 1
+    },
+    "Posten Bring AS Stokke Terminal": {
+      "mrr": 700,
+      "frekvens": "quarterly",
+      "sisteBeloep": 2100,
+      "sisteFaktura": "2025-11-28",
+      "antallFakturaer": 3
+    },
+    "Fram People AS": {
+      "mrr": 2000,
+      "frekvens": "monthly",
+      "sisteBeloep": 2000,
+      "sisteFaktura": "2026-03-19",
+      "antallFakturaer": 2
+    },
+    "PROPOS AS": {
+      "mrr": 5000,
+      "frekvens": "monthly",
+      "sisteBeloep": 5000,
+      "sisteFaktura": "2026-02-27",
+      "antallFakturaer": 2
+    },
+    "We Rock Sales AS": {
+      "mrr": 3000,
+      "frekvens": "monthly",
+      "sisteBeloep": 3000,
+      "sisteFaktura": "2026-03-19",
+      "antallFakturaer": 1
+    },
+    "Mercatur AS": {
+      "mrr": 2001,
+      "frekvens": "monthly",
+      "sisteBeloep": 2001,
+      "sisteFaktura": "2026-03-20",
+      "antallFakturaer": 1
+    },
+    "B7people AS": {
+      "mrr": 2000,
+      "frekvens": "monthly",
+      "sisteBeloep": 2000,
+      "sisteFaktura": "2026-03-02",
+      "antallFakturaer": 1
+    },
+    "PILAR PERSONELL AS": {
+      "mrr": 5000,
+      "frekvens": "monthly",
+      "sisteBeloep": 5000,
+      "sisteFaktura": "2026-03-11",
+      "antallFakturaer": 1
+    },
+    "Eidsiva Digital AS": {
+      "mrr": 6000,
+      "frekvens": "monthly",
+      "sisteBeloep": 6000,
+      "sisteFaktura": "2026-03-10",
+      "antallFakturaer": 1
+    },
+    "Nki Kompetanse AS": {
+      "mrr": 6000,
+      "frekvens": "monthly",
+      "sisteBeloep": 6000,
+      "sisteFaktura": "2026-02-24",
+      "antallFakturaer": 1
+    },
+    "Thevit AS": {
+      "mrr": 2000,
+      "frekvens": "monthly",
+      "sisteBeloep": 2000,
+      "sisteFaktura": "2026-02-05",
+      "antallFakturaer": 3
+    },
+    "Pitch AS": {
+      "mrr": 1000,
+      "frekvens": "monthly",
+      "sisteBeloep": 1000,
+      "sisteFaktura": "2026-02-02",
+      "antallFakturaer": 1
+    },
+    "Concept Communication AS": {
+      "mrr": 2000,
+      "frekvens": "monthly",
+      "sisteBeloep": 2000,
+      "sisteFaktura": "2026-02-03",
+      "antallFakturaer": 1
+    },
+    "Cb Nettløsninger Christofer Bertilsson": {
+      "mrr": 2100,
+      "frekvens": "monthly",
+      "sisteBeloep": 2100,
+      "sisteFaktura": "2025-11-14",
+      "antallFakturaer": 1
+    },
+    "Soliditet AS": {
+      "mrr": 2100,
+      "frekvens": "monthly",
+      "sisteBeloep": 2100,
+      "sisteFaktura": "2025-12-08",
+      "antallFakturaer": 1
+    },
+    "BEDRIFTSABONNEMENT AS": {
+      "mrr": 2000,
+      "frekvens": "monthly",
+      "sisteBeloep": 2000,
+      "sisteFaktura": "2026-02-28",
+      "antallFakturaer": 1
+    },
+    "Venturetime AS": {
+      "mrr": 3000,
+      "frekvens": "monthly",
+      "sisteBeloep": 3000,
+      "sisteFaktura": "2026-03-11",
+      "antallFakturaer": 1
+    },
+    "GROSSMAN AS": {
+      "mrr": 5000,
+      "frekvens": "monthly",
+      "sisteBeloep": 5000,
+      "sisteFaktura": "2026-02-28",
+      "antallFakturaer": 1
+    }
+  },
   "gjentagendeOrdre": [
     {
       "BrandingThemeCode": "1",
