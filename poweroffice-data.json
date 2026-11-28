@@ -1,5 +1,5 @@
 {
-  "generert": "2026-11-27T13:31:11.001669Z",
+  "generert": "2026-11-28T12:44:31.735489Z",
   "kunder": [
     {
       "Allowance": null,
@@ -19615,7 +19615,7 @@
       "InvoiceNo": 10742,
       "IsCreatedByCurrentIntegration": false,
       "IsReversed": false,
-      "LastChangedDateTimeOffset": "2026-11-24T05:15:40.7190932Z",
+      "LastChangedDateTimeOffset": "2026-11-28T05:14:22.0659972Z",
       "LocationCode": null,
       "LocationId": null,
       "MatchId": null,
@@ -25071,7 +25071,7 @@
       "InvoiceNo": 10721,
       "IsCreatedByCurrentIntegration": false,
       "IsReversed": false,
-      "LastChangedDateTimeOffset": "2026-11-24T05:15:40.7193662Z",
+      "LastChangedDateTimeOffset": "2026-11-28T05:14:22.1459754Z",
       "LocationCode": null,
       "LocationId": null,
       "MatchId": null,
@@ -30362,6 +30362,68 @@
       "TotalPostedAmount": 13125.0,
       "VoucherDate": "2026-11-24",
       "VoucherNo": 3052,
+      "VoucherType": "OutgoingInvoice"
+    },
+    {
+      "Balance": 6250.0,
+      "BalanceLastChangedDateTimeOffset": "2026-11-28T04:09:55.2475503Z",
+      "BrandingThemeCode": "1",
+      "BrandingThemeId": 8912895,
+      "Cid": "10115108481",
+      "ContractNo": null,
+      "CreatedDateTimeOffset": "2026-11-28T04:09:46.3815247Z",
+      "CurrencyCode": "NOK",
+      "CurrencyExchangeRate": 1.0,
+      "CustomerId": 189637959,
+      "CustomerNo": 10115,
+      "CustomerReference": "Sondre Li Hauger",
+      "CustomerReferenceContactPersonId": 113252976,
+      "CustomMatchingReference": null,
+      "DeliveryAddress1": "Tordenskiolds gate 2",
+      "DeliveryAddress2": null,
+      "DeliveryAddressCity": "Oslo",
+      "DeliveryAddressCountryCode": "NO",
+      "DeliveryAddressZipCode": "0160",
+      "DeliveryDate": "2026-11-28",
+      "DeliveryTerm": null,
+      "DeliveryTermId": null,
+      "DepartmentCode": null,
+      "DepartmentId": null,
+      "Dim1Code": null,
+      "Dim1Id": null,
+      "Dim2Code": null,
+      "Dim2Id": null,
+      "Dim3Code": null,
+      "Dim3Id": null,
+      "DueDate": "2026-12-12",
+      "ExternalImportReference": null,
+      "Id": "a481e419-0f33-43d8-b7d0-5a4b4951049f",
+      "ImportedOrderNo": null,
+      "InvoiceDeliveryType": "EHF",
+      "InvoiceNo": 10848,
+      "IsCreatedByCurrentIntegration": false,
+      "IsReversed": false,
+      "LastChangedDateTimeOffset": "2026-11-28T04:09:55.8764710Z",
+      "LocationCode": null,
+      "LocationId": null,
+      "MatchId": null,
+      "NetAmount": 5000.0,
+      "NetPostedAmount": 5000.0,
+      "OrderDate": "2026-11-28",
+      "OrderNo": 877,
+      "PaymentTerm": 14,
+      "PaymentTermId": 23799193,
+      "ProjectCode": null,
+      "ProjectId": null,
+      "PurchaseOrderReference": null,
+      "RelatedInvoiceNo": null,
+      "SellersReferenceEmployeeId": 154076063,
+      "SellersReferenceEmployeeNo": 2,
+      "SentDateTimeOffset": "2026-11-28T04:09:50.0961804Z",
+      "TotalAmount": 6250.0,
+      "TotalPostedAmount": 6250.0,
+      "VoucherDate": "2026-11-28",
+      "VoucherNo": 3081,
       "VoucherType": "OutgoingInvoice"
     },
     {
@@ -37471,7 +37533,7 @@
       "InvoiceNo": 10815,
       "IsCreatedByCurrentIntegration": false,
       "IsReversed": false,
-      "LastChangedDateTimeOffset": "2026-11-14T04:08:40.7887911Z",
+      "LastChangedDateTimeOffset": "2026-11-28T05:14:20.6421173Z",
       "LocationCode": null,
       "LocationId": null,
       "MatchId": null,
@@ -44477,7 +44539,7 @@
       "InvoiceNo": 10748,
       "IsCreatedByCurrentIntegration": false,
       "IsReversed": false,
-      "LastChangedDateTimeOffset": "2026-11-24T05:15:40.7200007Z",
+      "LastChangedDateTimeOffset": "2026-11-28T05:14:22.1452898Z",
       "LocationCode": null,
       "LocationId": null,
       "MatchId": null,
@@ -48383,7 +48445,7 @@
       "InvoiceNo": 10803,
       "IsCreatedByCurrentIntegration": false,
       "IsReversed": false,
-      "LastChangedDateTimeOffset": "2026-11-24T05:15:38.8971212Z",
+      "LastChangedDateTimeOffset": "2026-11-28T05:14:22.1341250Z",
       "LocationCode": null,
       "LocationId": null,
       "MatchId": null,
@@ -54397,7 +54459,7 @@
       "InvoiceNo": 10804,
       "IsCreatedByCurrentIntegration": false,
       "IsReversed": false,
-      "LastChangedDateTimeOffset": "2026-11-24T05:15:40.7187136Z",
+      "LastChangedDateTimeOffset": "2026-11-28T05:14:22.1250981Z",
       "LocationCode": null,
       "LocationId": null,
       "MatchId": null,
@@ -55162,6 +55224,68 @@
       "TotalPostedAmount": 3750.0,
       "VoucherDate": "2026-06-20",
       "VoucherNo": 2084,
+      "VoucherType": "OutgoingInvoice"
+    },
+    {
+      "Balance": 4375.0,
+      "BalanceLastChangedDateTimeOffset": "2026-11-28T04:09:55.0981446Z",
+      "BrandingThemeCode": "1",
+      "BrandingThemeId": 8912895,
+      "Cid": "10091108471",
+      "ContractNo": null,
+      "CreatedDateTimeOffset": "2026-11-28T04:09:44.6690670Z",
+      "CurrencyCode": "NOK",
+      "CurrencyExchangeRate": 1.0,
+      "CustomerId": 180766435,
+      "CustomerNo": 10091,
+      "CustomerReference": "Kjetil Haakon Haug",
+      "CustomerReferenceContactPersonId": 107982866,
+      "CustomMatchingReference": null,
+      "DeliveryAddress1": "Vogellund 20",
+      "DeliveryAddress2": null,
+      "DeliveryAddressCity": "Nesbru",
+      "DeliveryAddressCountryCode": "NO",
+      "DeliveryAddressZipCode": "1394",
+      "DeliveryDate": "2026-04-28",
+      "DeliveryTerm": null,
+      "DeliveryTermId": null,
+      "DepartmentCode": null,
+      "DepartmentId": null,
+      "Dim1Code": null,
+      "Dim1Id": null,
+      "Dim2Code": null,
+      "Dim2Id": null,
+      "Dim3Code": null,
+      "Dim3Id": null,
+      "DueDate": "2026-12-08",
+      "ExternalImportReference": null,
+      "Id": "08aa6298-1b82-4afd-8f0b-dcacebb37718",
+      "ImportedOrderNo": null,
+      "InvoiceDeliveryType": "EHF",
+      "InvoiceNo": 10847,
+      "IsCreatedByCurrentIntegration": false,
+      "IsReversed": false,
+      "LastChangedDateTimeOffset": "2026-11-28T04:09:55.7329074Z",
+      "LocationCode": null,
+      "LocationId": null,
+      "MatchId": null,
+      "NetAmount": 3500.0,
+      "NetPostedAmount": 3500.0,
+      "OrderDate": "2026-11-28",
+      "OrderNo": 876,
+      "PaymentTerm": 10,
+      "PaymentTermId": 24456002,
+      "ProjectCode": null,
+      "ProjectId": null,
+      "PurchaseOrderReference": null,
+      "RelatedInvoiceNo": null,
+      "SellersReferenceEmployeeId": 154076063,
+      "SellersReferenceEmployeeNo": 2,
+      "SentDateTimeOffset": "2026-11-28T04:09:49.6574192Z",
+      "TotalAmount": 4375.0,
+      "TotalPostedAmount": 4375.0,
+      "VoucherDate": "2026-11-28",
+      "VoucherNo": 3080,
       "VoucherType": "OutgoingInvoice"
     },
     {
@@ -62293,9 +62417,9 @@
     "Stella IT AS": 4000,
     "Nova Spektrum AS": 20000,
     "Braathen & Partners AS": 7500,
+    "Mesh Oslo AS": 5000,
     "ASVO-Kongsberg AS": 5000,
     "Nimbus Direct AS": 8000,
-    "Mesh Oslo AS": 5000,
     "COHERENT AS": 6375,
     "Orange Business Digital Norway AS": 5000,
     "Coretrek AS": 5000,
@@ -62314,7 +62438,7 @@
       "sisteBeloep": 25000,
       "sisteFaktura": "2026-11-27",
       "antallFakturaer": 9,
-      "dagsSiden": 0
+      "dagsSiden": 1
     },
     "TCT Norge AS": {
       "mrr": 4990,
@@ -62322,7 +62446,7 @@
       "sisteBeloep": 4990,
       "sisteFaktura": "2026-11-01",
       "antallFakturaer": 23,
-      "dagsSiden": 26
+      "dagsSiden": 27
     },
     "AVONOVA SOLUTIONS AS": {
       "mrr": 3000,
@@ -62330,7 +62454,7 @@
       "sisteBeloep": 3000,
       "sisteFaktura": "2026-11-19",
       "antallFakturaer": 10,
-      "dagsSiden": 8
+      "dagsSiden": 9
     },
     "Nki Kompetanse AS": {
       "mrr": 20000,
@@ -62338,7 +62462,7 @@
       "sisteBeloep": 20000,
       "sisteFaktura": "2026-11-24",
       "antallFakturaer": 11,
-      "dagsSiden": 3
+      "dagsSiden": 4
     },
     "FORENOM AS": {
       "mrr": 20000,
@@ -62346,7 +62470,7 @@
       "sisteBeloep": 20000,
       "sisteFaktura": "2026-11-26",
       "antallFakturaer": 14,
-      "dagsSiden": 1
+      "dagsSiden": 2
     },
     "Innit AS": {
       "mrr": 5000,
@@ -62354,7 +62478,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-11-22",
       "antallFakturaer": 3,
-      "dagsSiden": 5
+      "dagsSiden": 6
     },
     "My Profil AS": {
       "mrr": 2000,
@@ -62362,7 +62486,7 @@
       "sisteBeloep": 2000,
       "sisteFaktura": "2026-11-19",
       "antallFakturaer": 15,
-      "dagsSiden": 8
+      "dagsSiden": 9
     },
     "Idkollen i Sverige AB": {
       "mrr": 2000,
@@ -62370,7 +62494,7 @@
       "sisteBeloep": 2000,
       "sisteFaktura": "2026-10-31",
       "antallFakturaer": 9,
-      "dagsSiden": 27
+      "dagsSiden": 28
     },
     "Jobzone Larvik": {
       "mrr": 5000,
@@ -62378,7 +62502,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-11-05",
       "antallFakturaer": 3,
-      "dagsSiden": 22
+      "dagsSiden": 23
     },
     "Føyen Digital AS": {
       "mrr": 1990,
@@ -62386,7 +62510,7 @@
       "sisteBeloep": 1990,
       "sisteFaktura": "2026-11-03",
       "antallFakturaer": 21,
-      "dagsSiden": 24
+      "dagsSiden": 25
     },
     "Caspeco Norge AS": {
       "mrr": 5000,
@@ -62394,7 +62518,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-11-01",
       "antallFakturaer": 5,
-      "dagsSiden": 26
+      "dagsSiden": 27
     },
     "PILAR PERSONELL AS": {
       "mrr": 5000,
@@ -62402,7 +62526,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-11-11",
       "antallFakturaer": 9,
-      "dagsSiden": 16
+      "dagsSiden": 17
     },
     "Invisible Connections AS": {
       "mrr": 3000,
@@ -62410,7 +62534,7 @@
       "sisteBeloep": 3000,
       "sisteFaktura": "2026-10-11",
       "antallFakturaer": 11,
-      "dagsSiden": 47
+      "dagsSiden": 48
     },
     "SILDRE AS": {
       "mrr": 5000,
@@ -62418,7 +62542,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-11-04",
       "antallFakturaer": 12,
-      "dagsSiden": 23
+      "dagsSiden": 24
     },
     "Aurskog Bygg & Renhold AS": {
       "mrr": 1950,
@@ -62426,7 +62550,7 @@
       "sisteBeloep": 1950,
       "sisteFaktura": "2026-11-06",
       "antallFakturaer": 13,
-      "dagsSiden": 21
+      "dagsSiden": 22
     },
     "SVENN AS": {
       "mrr": 5000,
@@ -62434,7 +62558,7 @@
       "sisteBeloep": 20000,
       "sisteFaktura": "2026-10-31",
       "antallFakturaer": 11,
-      "dagsSiden": 27
+      "dagsSiden": 28
     },
     "KPE Talent As": {
       "mrr": 7500,
@@ -62442,7 +62566,7 @@
       "sisteBeloep": 7500,
       "sisteFaktura": "2026-11-19",
       "antallFakturaer": 26,
-      "dagsSiden": 8
+      "dagsSiden": 9
     },
     "G O PROSJEKT AS": {
       "mrr": 2500,
@@ -62450,7 +62574,7 @@
       "sisteBeloep": 2500,
       "sisteFaktura": "2026-10-04",
       "antallFakturaer": 18,
-      "dagsSiden": 54
+      "dagsSiden": 55
     },
     "Evolve Communication AS": {
       "mrr": 7500,
@@ -62458,7 +62582,7 @@
       "sisteBeloep": 7500,
       "sisteFaktura": "2026-11-09",
       "antallFakturaer": 1,
-      "dagsSiden": 18
+      "dagsSiden": 19
     },
     "IE Forvaltning AS": {
       "mrr": 5000,
@@ -62466,7 +62590,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-11-27",
       "antallFakturaer": 8,
-      "dagsSiden": 0
+      "dagsSiden": 1
     },
     "Lås1 Sikkerhet AS": {
       "mrr": 2000,
@@ -62474,7 +62598,7 @@
       "sisteBeloep": 2000,
       "sisteFaktura": "2026-11-12",
       "antallFakturaer": 9,
-      "dagsSiden": 15
+      "dagsSiden": 16
     },
     "Aimz AS": {
       "mrr": 3000,
@@ -62482,7 +62606,7 @@
       "sisteBeloep": 3000,
       "sisteFaktura": "2026-11-20",
       "antallFakturaer": 7,
-      "dagsSiden": 7
+      "dagsSiden": 8
     },
     "Zinatra AS": {
       "mrr": 3000,
@@ -62490,7 +62614,7 @@
       "sisteBeloep": 3000,
       "sisteFaktura": "2026-11-08",
       "antallFakturaer": 7,
-      "dagsSiden": 19
+      "dagsSiden": 20
     },
     "Glåmdal Personal Partner AS": {
       "mrr": 5000,
@@ -62498,7 +62622,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-11-07",
       "antallFakturaer": 14,
-      "dagsSiden": 20
+      "dagsSiden": 21
     },
     "Neurostrike AS": {
       "mrr": 5000,
@@ -62506,7 +62630,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-10-31",
       "antallFakturaer": 1,
-      "dagsSiden": 27
+      "dagsSiden": 28
     },
     "Rupanicom AS": {
       "mrr": 2000,
@@ -62514,7 +62638,7 @@
       "sisteBeloep": 2000,
       "sisteFaktura": "2026-11-17",
       "antallFakturaer": 10,
-      "dagsSiden": 10
+      "dagsSiden": 11
     },
     "Workmove Group AS": {
       "mrr": 1003,
@@ -62522,7 +62646,7 @@
       "sisteBeloep": 3010,
       "sisteFaktura": "2026-10-19",
       "antallFakturaer": 6,
-      "dagsSiden": 39
+      "dagsSiden": 40
     },
     "Trodal AS": {
       "mrr": 3000,
@@ -62530,7 +62654,7 @@
       "sisteBeloep": 3000,
       "sisteFaktura": "2026-11-26",
       "antallFakturaer": 8,
-      "dagsSiden": 1
+      "dagsSiden": 2
     },
     "Sperton Norway AS": {
       "mrr": 7000,
@@ -62538,15 +62662,15 @@
       "sisteBeloep": 7000,
       "sisteFaktura": "2026-11-27",
       "antallFakturaer": 8,
-      "dagsSiden": 0
+      "dagsSiden": 1
     },
     "Holmen Hockey": {
       "mrr": 3500,
       "frekvens": "monthly",
       "sisteBeloep": 3500,
-      "sisteFaktura": "2026-10-28",
-      "antallFakturaer": 7,
-      "dagsSiden": 30
+      "sisteFaktura": "2026-11-28",
+      "antallFakturaer": 8,
+      "dagsSiden": 0
     },
     "Thermax AS": {
       "mrr": 20000,
@@ -62554,7 +62678,7 @@
       "sisteBeloep": 20000,
       "sisteFaktura": "2026-11-07",
       "antallFakturaer": 2,
-      "dagsSiden": 20
+      "dagsSiden": 21
     },
     "VERJI TECH AS": {
       "mrr": 5000,
@@ -62562,7 +62686,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-11-13",
       "antallFakturaer": 7,
-      "dagsSiden": 14
+      "dagsSiden": 15
     },
     "Hesby Kompetanse AS": {
       "mrr": 8000,
@@ -62570,7 +62694,7 @@
       "sisteBeloep": 8000,
       "sisteFaktura": "2026-11-21",
       "antallFakturaer": 3,
-      "dagsSiden": 6
+      "dagsSiden": 7
     },
     "Mobit Norge AS": {
       "mrr": 18000,
@@ -62578,7 +62702,7 @@
       "sisteBeloep": 18000,
       "sisteFaktura": "2026-11-22",
       "antallFakturaer": 3,
-      "dagsSiden": 5
+      "dagsSiden": 6
     },
     "Skilt & Reklame, UTD": {
       "mrr": 5000,
@@ -62586,7 +62710,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-10-31",
       "antallFakturaer": 3,
-      "dagsSiden": 27
+      "dagsSiden": 28
     },
     "PROPOS AS": {
       "mrr": 3000,
@@ -62594,7 +62718,7 @@
       "sisteBeloep": 3000,
       "sisteFaktura": "2026-10-27",
       "antallFakturaer": 11,
-      "dagsSiden": 31
+      "dagsSiden": 32
     },
     "Nimbus Innregulering AS": {
       "mrr": 4500,
@@ -62602,7 +62726,7 @@
       "sisteBeloep": 4500,
       "sisteFaktura": "2026-11-06",
       "antallFakturaer": 2,
-      "dagsSiden": 21
+      "dagsSiden": 22
     },
     "Personal Team Bodø AS (Jobzone Bodø)": {
       "mrr": 5000,
@@ -62610,7 +62734,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-11-16",
       "antallFakturaer": 1,
-      "dagsSiden": 11
+      "dagsSiden": 12
     },
     "FORTYTWO TECHNOLOGIES AS": {
       "mrr": 2000,
@@ -62618,7 +62742,7 @@
       "sisteBeloep": 2000,
       "sisteFaktura": "2026-11-25",
       "antallFakturaer": 10,
-      "dagsSiden": 2
+      "dagsSiden": 3
     },
     "GODIK AS": {
       "mrr": 2000,
@@ -62626,7 +62750,7 @@
       "sisteBeloep": 2000,
       "sisteFaktura": "2026-11-13",
       "antallFakturaer": 13,
-      "dagsSiden": 14
+      "dagsSiden": 15
     },
     "GROSSMAN AS": {
       "mrr": 3000,
@@ -62634,7 +62758,7 @@
       "sisteBeloep": 3000,
       "sisteFaktura": "2026-11-23",
       "antallFakturaer": 10,
-      "dagsSiden": 4
+      "dagsSiden": 5
     },
     "Nora Marketing AS": {
       "mrr": 3000,
@@ -62642,7 +62766,7 @@
       "sisteBeloep": 3000,
       "sisteFaktura": "2026-11-16",
       "antallFakturaer": 8,
-      "dagsSiden": 11
+      "dagsSiden": 12
     },
     "Hankø Hotell & SPA AS": {
       "mrr": 5000,
@@ -62650,7 +62774,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-11-12",
       "antallFakturaer": 1,
-      "dagsSiden": 15
+      "dagsSiden": 16
     },
     "ABSEC AS": {
       "mrr": 5000,
@@ -62658,7 +62782,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-11-19",
       "antallFakturaer": 9,
-      "dagsSiden": 8
+      "dagsSiden": 9
     },
     "Nell Renhold AS": {
       "mrr": 2100,
@@ -62666,7 +62790,7 @@
       "sisteBeloep": 2100,
       "sisteFaktura": "2026-11-21",
       "antallFakturaer": 13,
-      "dagsSiden": 6
+      "dagsSiden": 7
     },
     "SCALIGN AS": {
       "mrr": 2170,
@@ -62674,7 +62798,7 @@
       "sisteBeloep": 2170,
       "sisteFaktura": "2026-11-17",
       "antallFakturaer": 8,
-      "dagsSiden": 10
+      "dagsSiden": 11
     },
     "APCOA NORWAY AS": {
       "mrr": 5000,
@@ -62682,7 +62806,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-11-27",
       "antallFakturaer": 4,
-      "dagsSiden": 0
+      "dagsSiden": 1
     },
     "Gasta Design & Kommunikasjon AS": {
       "mrr": 7500,
@@ -62690,7 +62814,7 @@
       "sisteBeloep": 7500,
       "sisteFaktura": "2026-11-03",
       "antallFakturaer": 1,
-      "dagsSiden": 24
+      "dagsSiden": 25
     },
     "Polyfemos AS": {
       "mrr": 5000,
@@ -62698,7 +62822,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-11-01",
       "antallFakturaer": 5,
-      "dagsSiden": 26
+      "dagsSiden": 27
     },
     "Andiamo Sports AS": {
       "mrr": 5000,
@@ -62706,7 +62830,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-11-26",
       "antallFakturaer": 4,
-      "dagsSiden": 1
+      "dagsSiden": 2
     },
     "Jobzone Trondheim": {
       "mrr": 15000,
@@ -62714,7 +62838,7 @@
       "sisteBeloep": 15000,
       "sisteFaktura": "2026-11-15",
       "antallFakturaer": 3,
-      "dagsSiden": 12
+      "dagsSiden": 13
     },
     "Semway Norge AS": {
       "mrr": 5001,
@@ -62722,7 +62846,7 @@
       "sisteBeloep": 5001,
       "sisteFaktura": "2026-10-31",
       "antallFakturaer": 6,
-      "dagsSiden": 27
+      "dagsSiden": 28
     },
     "Konversai AS": {
       "mrr": 10500,
@@ -62730,7 +62854,7 @@
       "sisteBeloep": 10500,
       "sisteFaktura": "2026-11-24",
       "antallFakturaer": 3,
-      "dagsSiden": 3
+      "dagsSiden": 4
     },
     "Ownersroom AS": {
       "mrr": 1950,
@@ -62738,7 +62862,7 @@
       "sisteBeloep": 23400,
       "sisteFaktura": "2026-01-21",
       "antallFakturaer": 2,
-      "dagsSiden": 310
+      "dagsSiden": 311
     },
     "PREIKESTOLEN BASECAMP": {
       "mrr": 7500,
@@ -62746,7 +62870,7 @@
       "sisteBeloep": 7500,
       "sisteFaktura": "2026-11-04",
       "antallFakturaer": 1,
-      "dagsSiden": 23
+      "dagsSiden": 24
     },
     "Quantified Strategies AS": {
       "mrr": 5000,
@@ -62754,7 +62878,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-11-21",
       "antallFakturaer": 3,
-      "dagsSiden": 6
+      "dagsSiden": 7
     },
     "Stella IT AS": {
       "mrr": 4000,
@@ -62762,7 +62886,7 @@
       "sisteBeloep": 4000,
       "sisteFaktura": "2026-11-11",
       "antallFakturaer": 7,
-      "dagsSiden": 16
+      "dagsSiden": 17
     },
     "Nova Spektrum AS": {
       "mrr": 20000,
@@ -62770,7 +62894,7 @@
       "sisteBeloep": 20000,
       "sisteFaktura": "2026-11-22",
       "antallFakturaer": 8,
-      "dagsSiden": 5
+      "dagsSiden": 6
     },
     "Braathen & Partners AS": {
       "mrr": 7500,
@@ -62778,7 +62902,15 @@
       "sisteBeloep": 7500,
       "sisteFaktura": "2026-11-10",
       "antallFakturaer": 1,
-      "dagsSiden": 17
+      "dagsSiden": 18
+    },
+    "Mesh Oslo AS": {
+      "mrr": 5000,
+      "frekvens": "monthly",
+      "sisteBeloep": 5000,
+      "sisteFaktura": "2026-11-28",
+      "antallFakturaer": 4,
+      "dagsSiden": 0
     },
     "ASVO-Kongsberg AS": {
       "mrr": 5000,
@@ -62786,7 +62918,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-11-10",
       "antallFakturaer": 3,
-      "dagsSiden": 17
+      "dagsSiden": 18
     },
     "Nimbus Direct AS": {
       "mrr": 8000,
@@ -62794,14 +62926,6 @@
       "sisteBeloep": 8000,
       "sisteFaktura": "2026-10-29",
       "antallFakturaer": 7,
-      "dagsSiden": 29
-    },
-    "Mesh Oslo AS": {
-      "mrr": 5000,
-      "frekvens": "monthly",
-      "sisteBeloep": 5000,
-      "sisteFaktura": "2026-10-28",
-      "antallFakturaer": 3,
       "dagsSiden": 30
     },
     "COHERENT AS": {
@@ -62810,7 +62934,7 @@
       "sisteBeloep": 6375,
       "sisteFaktura": "2026-11-19",
       "antallFakturaer": 2,
-      "dagsSiden": 8
+      "dagsSiden": 9
     },
     "Orange Business Digital Norway AS": {
       "mrr": 5000,
@@ -62818,7 +62942,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-09-25",
       "antallFakturaer": 2,
-      "dagsSiden": 63
+      "dagsSiden": 64
     },
     "Coretrek AS": {
       "mrr": 5000,
@@ -62826,7 +62950,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-10-31",
       "antallFakturaer": 8,
-      "dagsSiden": 27
+      "dagsSiden": 28
     },
     "Kitch'n AS": {
       "mrr": 7500,
@@ -62834,7 +62958,7 @@
       "sisteBeloep": 7500,
       "sisteFaktura": "2026-11-14",
       "antallFakturaer": 2,
-      "dagsSiden": 13
+      "dagsSiden": 14
     },
     "Servicealliansen AS": {
       "mrr": 20000,
@@ -62842,7 +62966,7 @@
       "sisteBeloep": 20000,
       "sisteFaktura": "2026-11-17",
       "antallFakturaer": 1,
-      "dagsSiden": 10
+      "dagsSiden": 11
     },
     "BEDRE RESULTATER AS": {
       "mrr": 5000,
@@ -62850,7 +62974,7 @@
       "sisteBeloep": 5000,
       "sisteFaktura": "2026-11-17",
       "antallFakturaer": 3,
-      "dagsSiden": 10
+      "dagsSiden": 11
     },
     "Aprila Bank ASA": {
       "mrr": 15000,
@@ -62858,7 +62982,7 @@
       "sisteBeloep": 15000,
       "sisteFaktura": "2026-11-25",
       "antallFakturaer": 1,
-      "dagsSiden": 2
+      "dagsSiden": 3
     },
     "Kingo Ai AS": {
       "mrr": 7500,
@@ -62866,7 +62990,7 @@
       "sisteBeloep": 7500,
       "sisteFaktura": "2026-11-13",
       "antallFakturaer": 1,
-      "dagsSiden": 14
+      "dagsSiden": 15
     },
     "Aviga AS": {
       "mrr": 7500,
@@ -62874,7 +62998,7 @@
       "sisteBeloep": 7500,
       "sisteFaktura": "2026-11-12",
       "antallFakturaer": 1,
-      "dagsSiden": 15
+      "dagsSiden": 16
     },
     "Naprapatkontoret AS": {
       "mrr": 6375,
@@ -62882,7 +63006,7 @@
       "sisteBeloep": 6375,
       "sisteFaktura": "2026-11-03",
       "antallFakturaer": 1,
-      "dagsSiden": 24
+      "dagsSiden": 25
     }
   },
   "gjentagendeOrdre": [
